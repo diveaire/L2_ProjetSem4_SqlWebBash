@@ -37,7 +37,8 @@ CREATE TABLE Atelier (
 
 CREATE TABLE Maintenance (
    IdM INT PRIMARY KEY,
-   DateM DATE,
+   DateDebutM DATE,
+   DateFinM DATE,
    NomM VARCHAR(32),
    FOREIGN KEY (NomM) REFERENCES Manege(NomM)
 );
@@ -63,7 +64,7 @@ CREATE TABLE Objet (
    PRIMARY KEY(IdO)
 );
 
-CREATE TABLE PieceDetachees (
+CREATE TABLE PiecesDetachees (
    NumSerie NUMBER(8) PRIMARY KEY
    nomPC VARCHAR(32),
    IdA INT,
@@ -99,7 +100,7 @@ CREATE TABLE Competences (
 CREATE TABLE Bilan (
    NomM VARCHAR(32),
    NumSS NUMBER(15),
-   Date DATE,
+   DateB DATE,
    frequentation INT,
    demi_journee VARCHAR(2),
    PRIMARY KEY (NomM,NumSS,Date),
