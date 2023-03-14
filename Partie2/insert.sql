@@ -173,28 +173,28 @@ INSERT INTO Bilan VALUES ("La danse des dauphins",259057174363269,to_char("14/03
 INSERT INTO Bilan VALUES ("La danse des dauphins",273129489402427,to_char("14/03/2023","dd/mm/yyyy"),514,"PM");
 
 INSERT INTO Bilan VALUES ("Buffalo",177094416301428,to_char("14/03/2023","dd/mm/yyyy"),264,"AM");
-INSERT INTO Bilan VALUES ("Buffalo",184010670392524,to_char("14/03/2023","dd/mm/yyyy"),352,"PM"));
+INSERT INTO Bilan VALUES ("Buffalo",184010670392524,to_char("14/03/2023","dd/mm/yyyy"),352,"PM");
 
 INSERT INTO Bilan VALUES ("Mille-Patte",184010670392524,to_char("14/03/2023","dd/mm/yyyy"),421,"AM");
-INSERT INTO Bilan VALUES ("Mille-Patte",269019550295812,to_char("14/03/2023","dd/mm/yyyy"),354,"PM"));
+INSERT INTO Bilan VALUES ("Mille-Patte",269019550295812,to_char("14/03/2023","dd/mm/yyyy"),354,"PM");
 
 INSERT INTO Bilan VALUES ("La racine",262017839201528,to_char("14/03/2023","dd/mm/yyyy"),512,"AM");
-INSERT INTO Bilan VALUES ("La racine",259057174363269,to_char("14/03/2023","dd/mm/yyyy"),580,"PM"));
+INSERT INTO Bilan VALUES ("La racine",259057174363269,to_char("14/03/2023","dd/mm/yyyy"),580,"PM");
 
 INSERT INTO Bilan VALUES ("L'oeil",160120623950185,to_char("14/03/2023","dd/mm/yyyy"),315,"AM");
-INSERT INTO Bilan VALUES ("L'oeil",177094416301428,to_char("14/03/2023","dd/mm/yyyy"),315,"PM"));
+INSERT INTO Bilan VALUES ("L'oeil",177094416301428,to_char("14/03/2023","dd/mm/yyyy"),315,"PM");
 
 INSERT INTO Bilan VALUES ("L'envol des troglodytes",170055426428642,to_char("14/03/2023","dd/mm/yyyy"),230,"AM");
-INSERT INTO Bilan VALUES ("L'envol des troglodytes",170055426428642,to_char("14/03/2023","dd/mm/yyyy"),299,"PM"));
+INSERT INTO Bilan VALUES ("L'envol des troglodytes",170055426428642,to_char("14/03/2023","dd/mm/yyyy"),299,"PM");
 
 INSERT INTO Bilan VALUES ("La chute d'Icare",192080610253029,to_char("14/03/2023","dd/mm/yyyy"),480,"AM");
-INSERT INTO Bilan VALUES ("La chute d'Icare",160120623950185,to_char("14/03/2023","dd/mm/yyyy"),512,"PM"));
+INSERT INTO Bilan VALUES ("La chute d'Icare",160120623950185,to_char("14/03/2023","dd/mm/yyyy"),512,"PM");
 
 INSERT INTO Bilan VALUES ("L'hirrondelle",273129489402427,to_char("14/03/2023","dd/mm/yyyy"),360,"AM");
-INSERT INTO Bilan VALUES ("L'hirrondelle",192080610253029,to_char("14/03/2023","dd/mm/yyyy"),452,"PM"));
+INSERT INTO Bilan VALUES ("L'hirrondelle",192080610253029,to_char("14/03/2023","dd/mm/yyyy"),452,"PM");
 
 INSERT INTO Bilan VALUES ("Balade des hypocampes",186119185783610,to_char("14/03/2023","dd/mm/yyyy"),350,"AM");
-INSERT INTO Bilan VALUES ("Balade des hypocampes",186119185783610,to_char("14/03/2023","dd/mm/yyyy"),280,"PM"));
+INSERT INTO Bilan VALUES ("Balade des hypocampes",186119185783610,to_char("14/03/2023","dd/mm/yyyy"),280,"PM");
 
 
 
