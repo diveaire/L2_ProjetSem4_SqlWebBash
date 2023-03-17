@@ -34,7 +34,7 @@ SELECT nomP, prenomP FROM Personnel P WHERE chef=1 OR responsable=1;
 
 SELECT libelleT, AVG(prix) AS "Moyenne" FROM TypeObjet T,Objet O WHERE T.IdT=O.IdT GROUP BY (O.IdT);
 
-SELECT nomP, prenomP FROM Personnel WHERE upper(prenomP) like 'N%' OR prenomP like 'J%';
+SELECT nomP, prenomP FROM Personnel WHERE upper(prenomP) like 'N%' OR upper(prenomP) like 'J%';
 
 (SELECT NomM,tailleMin from Manege M,Famille F WHERE M.IdF=F.IdF AND (libelleF='Grand-huit' OR libelleF='Train') AND tailleMin<=150)
 UNION
