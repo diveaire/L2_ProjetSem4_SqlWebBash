@@ -89,12 +89,14 @@ INSERT INTO PiecesDetachees VALUES (36664674,'Wagon',4,null);
 
 INSERT INTO Personnel VALUES (393874739983721,'Jack','Laproie',TO_DATE('04/12/1959','dd/mm/yyyy'),standard_hash('Monpass0','MD5'),'Directeur',null,null,0,null,0);
 INSERT INTO Personnel VALUES (269019550295812,'Ansel','Narcisse',TO_DATE('03/01/1969','dd/mm/yyyy'),standard_hash('Monpass1','MD5'),'Chargé de manège',null,null,0,null,0);
-INSERT INTO Personnel VALUES (184010670392524,'Guay','Christien',TO_DATE('16/01/1984','dd/mm/yyyy'),standard_hash('Monpass3','MD5'),'Chargé de manège',null,null,0,null,0);
-INSERT INTO Personnel VALUES (273129489402427,'Fontaine','Charlotte',TO_DATE('05/12/1973','dd/mm/yyyy'),standard_hash('Monpass2','MD5'),'Chargé de manège',null,null,0,null,0);
 INSERT INTO Personnel VALUES (160120623950185,'Harbin','Langlois',TO_DATE('30/12/1960','dd/mm/yyyy'),standard_hash('Monpass5','MD5'),'Chargé de manège',null,null,0,null,0);
 INSERT INTO Personnel VALUES (259057174363269,'Galarneau','Diane',TO_DATE('08/05/1959','dd/mm/yyyy'),standard_hash('Monpass4','MD5'),'Chargé de manège',null,null,0,null,0);
 INSERT INTO Personnel VALUES (177094416301428,'Beaulieu','Felicien',TO_DATE('23/09/1977','dd/mm/yyyy'),standard_hash('Monpass6','MD5'),'Chargé de manège',null,null,0,null,0);
-INSERT INTO Personnel VALUES (192080610253029,'Tanguay','Felix',TO_DATE('22/08/1992','dd/mm/yyyy'),standard_hash('Monpass7','MD5'),'Chargé de manège',null,null,0,null,0);
+INSERT INTO Personnel VALUES (177092774664744,'Lio','Fabrice',TO_DATE('24/09/1977','dd/mm/yyyy'),standard_hash('Monpass21','MD5'),'Chargé de manège',null,null,0,null,0);
+INSERT INTO Personnel VALUES (192082736647756,'Lord','Seb',TO_DATE('24/08/1992','dd/mm/yyyy'),standard_hash('Monpass22','MD5'),'Chargé de manège',null,null,0,null,0);
+INSERT INTO Personnel VALUES (184010670392524,'Guay','Christien',TO_DATE('16/01/1984','dd/mm/yyyy'),standard_hash('Monpass3','MD5'),'Chargé de manège',177094416301428,null,0,null,0);
+INSERT INTO Personnel VALUES (273129489402427,'Fontaine','Charlotte',TO_DATE('05/12/1973','dd/mm/yyyy'),standard_hash('Monpass2','MD5'),'Chargé de manège',184010670392524,null,0,null,0);
+INSERT INTO Personnel VALUES (192080610253029,'Tanguay','Felix',TO_DATE('22/08/1992','dd/mm/yyyy'),standard_hash('Monpass7','MD5'),'Chargé de manège',269019550295812,null,0,null,0);
 INSERT INTO Personnel VALUES (262017839201528,'Plouffe','Élodie',TO_DATE('03/06/1962','dd/mm/yyyy'),standard_hash('Monpass12','MD5'),'Vendeur',null,null,0,4,1);
 INSERT INTO Personnel VALUES (170055426428642,'Lotye','Alexandre',TO_DATE('29/05/1970','dd/mm/yyyy'),standard_hash('Monpass13','MD5'),'Vendeur',null,null,0,4,0);
 INSERT INTO Personnel VALUES (186119185783610,'Roch','Bernard',TO_DATE('21/11/1986','dd/mm/yyyy'),standard_hash('Monpass14','MD5'),'Vendeur',null,null,0,5,1);
@@ -109,12 +111,15 @@ INSERT INTO Personnel VALUES (188109516634135,'Landers','Roger',TO_DATE('14/10/1
 INSERT INTO Personnel VALUES (285062730491825,'Méthoir','Carole',TO_DATE('27/06/1985','dd/mm/yyyy'),standard_hash('Monpass19','MD5'),'Technicien',null,3,1,null,0);
 INSERT INTO Personnel VALUES (183125910395284,'Lagrange','Arnaud',TO_DATE('05/12/1983','dd/mm/yyyy'),standard_hash('Monpass20','MD5'),'Technicien',null,4,1,null,0);
 
-
 INSERT INTO Competences VALUES (269019550295812,1);
 INSERT INTO Competences VALUES (269019550295812,3);
+INSERT INTO Competences VALUES (273129489402427,1);
 INSERT INTO Competences VALUES (273129489402427,2);
+INSERT INTO Competences VALUES (273129489402427,3);
 INSERT INTO Competences VALUES (273129489402427,4);
 INSERT INTO Competences VALUES (273129489402427,5);
+INSERT INTO Competences VALUES (273129489402427,6);
+INSERT INTO Competences VALUES (273129489402427,7);
 INSERT INTO Competences VALUES (184010670392524,6);
 INSERT INTO Competences VALUES (184010670392524,7);
 INSERT INTO Competences VALUES (184010670392524,3);
@@ -130,18 +135,19 @@ INSERT INTO Competences VALUES (192080610253029,1);
 INSERT INTO Competences VALUES (192080610253029,2);
 INSERT INTO Competences VALUES (192080610253029,3);
 INSERT INTO Competences VALUES (192080610253029,4);
-INSERT INTO Competences VALUES (262017839201528,4);
-INSERT INTO Competences VALUES (170055426428642,3);
-INSERT INTO Competences VALUES (170055426428642,1);
-INSERT INTO Competences VALUES (186119185783610,1);
+INSERT INTO Competences VALUES (177092774664744,4);
+INSERT INTO Competences VALUES (177092774664744,3);
+INSERT INTO Competences VALUES (177092774664744,1);
+INSERT INTO Competences VALUES (192082736647756,1);
 
-
+INSERT INTO Equipe VALUES (280061676520542,1);
 INSERT INTO Equipe VALUES (199027268902305,1);
 INSERT INTO Equipe VALUES (199027268902305,2);
-INSERT INTO Equipe VALUES (280061676520542,1);
 INSERT INTO Equipe VALUES (192121367804307,2);
 INSERT INTO Equipe VALUES (159119710789325,2);
-
+INSERT INTO Equipe VALUES (192121367804307,3);
+INSERT INTO Equipe VALUES (159119710789325,3);
+INSERT INTO Equipe VALUES (159119710789325,4);
 
 INSERT INTO Bilan VALUES ('Wave',269019550295812,TO_DATE('14/03/2023','dd/mm/yyyy'),564,'AM');
 INSERT INTO Bilan VALUES ('Wave',259057174363269,TO_DATE('14/03/2023','dd/mm/yyyy'),612,'PM');
