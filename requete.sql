@@ -40,4 +40,4 @@ SELECT nomP, prenomP FROM Personnel WHERE upper(prenomP) like 'N%' OR upper(pren
 UNION
 (SELECT NomM, 'Trop Petit' FROM Manege M,Famille F WHERE M.IdF=F.IdF AND (libelleF='Grand-huit' OR libelleF='Train') AND  tailleMin>150);
 
-SELECT sum(prix) FROM Objet O, Boutique B WHERE O.IdB=B.IdB AND O.DateVente>=STR_TO_DATE('01/02/2023','%d/%m/%Y') AND O.DateVente<=STR_TO_DATE('31/02/2023','%d/%m/%Y');
+SELECT sum(prix) FROM Objet O, Boutique B WHERE O.IdB=B.IdB AND O.DateVente>=STR_TO_DATE('01/02/2023','%d/%m/%Y') AND O.DateVente<=STR_TO_DATE('28/02/2023','%d/%m/%Y');
