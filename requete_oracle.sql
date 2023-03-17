@@ -4,7 +4,7 @@ SELECT P.nomP, P.prenomP FROM Personnel P, Competences C, Manege M WHERE P.Metie
 
 SELECT T.libelleT, TO_CHAR(O.DateVente,'MONTH') Mois, SUM(O.prix) Revenus FROM Objet O, TypeObjet T WHERE T.IdT=O.IdT AND O.DateVente IS NOT NULL GROUP BY T.libelleT, TO_CHAR(O.DateVente,'MONTH');
 
-SELECT P.nomPc FROM PiecesDetachees P, Maintenance M WHERE P.IdM=M.IdM AND M.NomM='High-Speed' AND M.DateFin >=(SELECT MAX(M1.DateFin) FROM Maintenance M1 WHERE M1.NomM='high-speed' );
+SELECT P.nomPc FROM PiecesDetachees P, Maintenance M WHERE P.IdM=M.IdM AND M.NomM='High-Speed' AND M.DateFin >=(SELECT MAX(M1.DateFin) FROM Maintenance M1 WHERE M1.NomM='High-Speed' );
 
 SELECT T.libelleT FROM TypeObjet T WHERE EXISTS(
     SELECT B.IdB FROM Boutique B WHERE NOT EXISTS(
