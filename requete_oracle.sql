@@ -6,7 +6,7 @@ SELECT T.libelleT, TO_CHAR(O.DateVente,'MONTH') Mois, SUM(O.prix) Revenus FROM O
 
 SELECT P.nomPc FROM PiecesDetachees P, Maintenance M WHERE P.IdM=M.IdM AND M.NomM='High-Speed' AND M.DateFin >=(SELECT MAX(M1.DateFin) FROM Maintenance M1 WHERE M1.NomM='High-Speed' );
 
-SELECT T.libelleT FROM TypeObjet T WHERE EXISTS(
+SELECT T.libelleT FROM TypeObjet T WHERE NOT EXISTS(
     SELECT B.IdB FROM Boutique B WHERE NOT EXISTS(
         SELECT * FROM Objet O WHERE O.IdT=T.IdT AND B.IdB=O.IdB
     )
