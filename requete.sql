@@ -32,7 +32,7 @@ SELECT F.libelleF FROM Famille F, Manege M WHERE F.IdF=M.IdF GROUP BY (F.IdF) HA
 
 SELECT nomP, prenomP FROM Personnel P WHERE chef=1 OR responsable=1;
 
-SELECT libelleT, AVG(prix) FROM TypeObjet T,Objet O WHERE T.IdT=O.IdT GROUP BY (O.IdT);
+SELECT libelleT, AVG(prix) AS "Moyenne" FROM TypeObjet T,Objet O WHERE T.IdT=O.IdT GROUP BY (O.IdT);
 
 SELECT nomP, prenomP FROM Personnel WHERE upper(prenomP) like 'N%' OR prenomP like 'J%';
 
