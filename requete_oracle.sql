@@ -24,20 +24,18 @@ SELECT M.IdM, M.NomM, COUNT(E.NumSS) Effectif FROM Maintenance M, Equipe E WHERE
 
 SELECT B.DateB FROM Bilan B WHERE B.NomM='Buffalo' AND B.frequentation=(SELECT MAX(B1.frequentation) FROM Bilan B1 WHERE B1.NomM='Buffalo');
 
-SELECT DISTINCT O.nomO FROM Objet O, Boutique B WHERE O.DateVente>=TO_DATE('01/12/2022','DD/MM/YYYY') AND O.DateVente<=STR_TO_DATE('15/12/2022','DD/MM/YYYY') AND B.nomB="Le sculpteur Joe" AND B.IdB=O.IdB;
+SELECT DISTINCT O.nomO FROM Objet O, Boutique B WHERE O.DateVente>=TO_DATE('01/12/2022','DD/MM/YYYY') AND O.DateVente<=TO_DATE('15/12/2022','DD/MM/YYYY') AND B.nomB='Le sculpteur Joe' AND B.IdB=O.IdB;
 
-SELECT P.nomP, P.prenomP FROM Personnel P WHERE P.Metier="Chargé de manège" AND NOT EXISTS(SELECT * FROM Bilan B WHERE B.NumSS=P.NumSS);
+SELECT P.nomP, P.prenomP FROM Personnel P WHERE P.Metier='Chargé de manège' AND NOT EXISTS(SELECT * FROM Bilan B WHERE B.NumSS=P.NumSS);
 
 SELECT F.libelleF FROM Famille F, Manege M WHERE F.IdF=M.IdF GROUP BY (F.libelleF,F.IdF) HAVING COUNT(M.NomM)>=ALL(SELECT COUNT(M2.NomM) FROM Manege M2, Famille F2 WHERE F2.IdF=M2.IdF GROUP BY(F2.IdF));
 
 SELECT nomP, prenomP FROM Personnel P WHERE chef=1 OR responsable=1;
 
-SELECT libelleT, AVG(prix) "Moyenne" FROM TypeObjet T,Objet O WHERE T.IdT=O.IdT GROUP BY (libelleT,O.IdT);
+SELECT libelleT, AVG(prix) Moyenne FROM TypeObjet T,Objet O WHERE T.IdT=O.IdT GROUP BY (libelleT,O.IdT);
 
-SELECT nomP, prenomP FROM Personnel WHERE upper(prenomP) like 'N%' OR prenomP like 'J%';
+SELECT nomP, prenomP FROM Personnel WHERE upper(prenomP) like 'N%' OR upper(prenomP) like 'J%';
 
-(SELECT NomM,tailleMin from Manege M,Famille F WHERE M.IdF=F.IdF AND (libelleF='Grand-huit' OR libelleF='Train') AND tailleMin<=150)
-UNION
-(SELECT NomM, 'Trop Petit' FROM Manege M,Famille F WHERE M.IdF=F.IdF AND (libelleF='Grand-huit' OR libelleF='Train') AND  tailleMin>150);
+SELECT NomM,to_char(tailleMin) tailleMin from Manege M,Famille F WHERE M.IdF=F.IdF AND (libelleF='Grand-huit' OR libelleF='Train') AND tailleMin<=150 UNION SELECT NomM, 'Trop Petit' FROM Manege M,Famille F WHERE M.IdF=F.IdF AND (libelleF='Grand-huit' OR libelleF='Train') AND  tailleMin>150;
 
-SELECT sum(prix) FROM Objet O, Boutique B WHERE O.IdB=B.IdB AND O.DateVente>=STR_TO_DATE('01/02/2023','DD/MM/YYYY') AND O.DateVente<=TO_DATE('31/02/2023','DD/MM/YYYY');
+SELECT sum(prix) FROM Objet O, Boutique B WHERE O.IdB=B.IdB AND O.DateVente>=TO_DATE('01/02/2023','dd/mm/yyyy') AND O.DateVente<=TO_DATE('28/02/2023','dd/mm/yyyy');
