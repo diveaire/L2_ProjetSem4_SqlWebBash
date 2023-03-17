@@ -20,7 +20,7 @@ SELECT P.nomP, P.prenomP FROM Personnel P, Maintenance M, Equipe E WHERE M.IdM=E
 
 SELECT P.nomP,P.prenomP FROM Personnel P WHERE NOT EXISTS((SELECT F.IdF FROM Famille F)MINUS(SELECT C.IdF FROM Competences C WHERE P.NumSS=C.NumSS));
 
-SELECT M.IdM, M.NomM, COUNT(E.NumSS) 'Effectif' FROM Maintenance M, Equipe E WHERE M.IdM=E.IdM GROUP BY (M.IdM,M.NomM) HAVING (COUNT(E.NumSS)>= ALL(SELECT COUNT(E1.NumSS) FROM Equipe E1 GROUP BY(E1.IdM)));
+SELECT M.IdM, M.NomM, COUNT(E.NumSS) Effectif FROM Maintenance M, Equipe E WHERE M.IdM=E.IdM GROUP BY (M.IdM,M.NomM) HAVING (COUNT(E.NumSS)>= ALL(SELECT COUNT(E1.NumSS) FROM Equipe E1 GROUP BY(E1.IdM)));
 
 SELECT B.DateB FROM Bilan B WHERE B.NomM="Buffalo" AND B.frequentation=(SELECT MAX(B1.frequentation) FROM Bilan B1 WHERE B1.NomM="Buffalo");
 
