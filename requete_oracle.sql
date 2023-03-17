@@ -1,4 +1,4 @@
-SELECT P.NomP, P.PrenomP FROM Personnel P WHERE P.NumSS=(SELECT E.NumSS FROM Equipe E WHERE E.IdM=(SELECT M.IdM FROM Maintenance M WHERE DateDeb=TO_DATE('12/03/2022','DD/MM/YYYY') AND NomM='Splash'));
+SELECT P.NomP, P.PrenomP FROM Personnel P WHERE P.NumSS in (SELECT E.NumSS FROM Equipe E WHERE E.IdM in (SELECT M.IdM FROM Maintenance M WHERE DateDeb=TO_DATE('12/03/2023','dd/mm/yyyy') AND NomM='Splash'));
 
 SELECT P.nomP, P.prenomP FROM Personnel P, Competences C, Manege M WHERE P.Metier='Chargé de manège' AND M.NomM='Big Noise' AND P.NumSS=C.NumSS AND M.IdF=C.IdF AND NOT EXISTS( SELECT B.NomM FROM Bilan B WHERE B.NumSS=P.NumSS AND B.Date_B=TO_DATE('11/11/2023','dd/mm/yyyy'));
 
