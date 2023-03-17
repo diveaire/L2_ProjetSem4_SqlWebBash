@@ -46,7 +46,7 @@ INSERT INTO Atelier VALUES (4,'Entrepôt',3);
 
 INSERT INTO Maintenance VALUES (1,TO_DATE('25/05/2023','dd/mm/yyyy'),TO_DATE('30/05/2023','dd/mm/yyyy'),'Le moulin');
 INSERT INTO Maintenance VALUES (2,TO_DATE('25/05/2023','dd/mm/yyyy'),TO_DATE('25/05/2023','dd/mm/yyyy'),'La racine');
-INSERT INTO Maintenance VALUES (3,TO_DATE('12/03/2023','dd/mm/yyyy'),TO_DATE('12/03/2022','dd/mm/yyyy'),'Splash');
+INSERT INTO Maintenance VALUES (3,TO_DATE('12/03/2022','dd/mm/yyyy'),TO_DATE('12/03/2022','dd/mm/yyyy'),'Splash');
 INSERT INTO Maintenance VALUES (4,TO_DATE('28/04/2023','dd/mm/yyyy'),TO_DATE('29/04/2023','dd/mm/yyyy'),'High-Speed');
 
 INSERT INTO Boutique VALUES (1,'Macdo','restaurant',3);
