@@ -4,7 +4,6 @@ INSERT INTO Metier VALUES ('Vendeur');
 INSERT INTO Metier VALUES ('Serveur');
 INSERT INTO Metier VALUES ('Technicien');
 
-
 INSERT INTO TypeObjet VALUES (1,'Friandise');
 INSERT INTO TypeObjet VALUES (2,'Gadget');
 INSERT INTO TypeObjet VALUES (3,'Peluche');
@@ -13,11 +12,9 @@ INSERT INTO TypeObjet VALUES (5,'Souvenir');
 INSERT INTO TypeObjet VALUES (6,'Vetement');
 INSERT INTO TypeObjet VALUES (7,'Jouet');
 
-
 INSERT INTO Zone VALUES (1,'Aqualand');
 INSERT INTO Zone VALUES (2,'Haute-Voltige');
 INSERT INTO Zone VALUES (3,'Lumber-zone');
-
 
 INSERT INTO Famille VALUES (1,'Carrousel');
 INSERT INTO Famille VALUES (2,'Tour');
@@ -26,7 +23,6 @@ INSERT INTO Famille VALUES (4,'Grand-huit');
 INSERT INTO Famille VALUES (5,'Train');
 INSERT INTO Famille VALUES (6,'Auto-tamponeuse');
 INSERT INTO Famille VALUES (7,'Roue');
-
 
 INSERT INTO Manege VALUES ('Balade des hypocampes',125,'carrousel pour enfant immergé dans l eau',1,1);
 INSERT INTO Manege VALUES ('Le moulin',0,'Petit carrousel',1,3);
@@ -39,17 +35,19 @@ INSERT INTO Manege VALUES ('La chute d Icare',155,'Attraction à sensation forte
 INSERT INTO Manege VALUES ('Wave',150,'Descente à haute vitesse, avec chute d eau et cascade',5,1);
 INSERT INTO Manege VALUES ('Buffalo',150,'Auto-tamponeuse en forme de buffle',6,3);
 INSERT INTO Manege VALUES ('L oeil',0,'Tour de grande roue',7,2);
-
+INSERT INTO Manege VALUES ('Splash',145,'Attraction qui éclabousse',5,1);
+INSERT INTO Manege VALUES ('Big Noise',120,'Chenille bruyante',3,2);
+INSERT INTO Manege VALUES ('High-Speed',145,'Un grand huit à haute vitesse',4,2);
 
 INSERT INTO Atelier VALUES (1,'La base sous marine',1);
 INSERT INTO Atelier VALUES (2,'La forge des airs',2);
 INSERT INTO Atelier VALUES (3,'L établi',3);
 INSERT INTO Atelier VALUES (4,'Entrepôt',3);
 
-
 INSERT INTO Maintenance VALUES (1,TO_DATE('25/05/2023','dd/mm/yyyy'),TO_DATE('30/05/2023','dd/mm/yyyy'),'Le moulin');
 INSERT INTO Maintenance VALUES (2,TO_DATE('25/05/2023','dd/mm/yyyy'),TO_DATE('25/05/2023','dd/mm/yyyy'),'La racine');
-
+INSERT INTO Maintenance VALUES (3,TO_DATE('12/03/2023','dd/mm/yyyy'),TO_DATE('12/03/2023','dd/mm/yyyy'),'Splash');
+INSERT INTO Maintenance VALUES (4,TO_DATE('28/04/2023','dd/mm/yyyy'),TO_DATE('29/04/2023','dd/mm/yyyy'),'High-Speed');
 
 INSERT INTO Boutique VALUES (1,'Macdo','restaurant',3);
 INSERT INTO Boutique VALUES (2,'BK','restaurant',2);
@@ -57,7 +55,6 @@ INSERT INTO Boutique VALUES (3,'KFC','restaurant',1);
 INSERT INTO Boutique VALUES (4,'Le sculpteur Joe','souvenir',3);
 INSERT INTO Boutique VALUES (5,'Le nuage de l amour','souvenir',2);
 INSERT INTO Boutique VALUES (6,'Au coeur de l épave','souvenir',1);
-
 
 INSERT INTO Objet VALUES (1,'Bague',4,4,null,35);
 INSERT INTO Objet VALUES (2,'Porte_clef',4,5,null,5);
@@ -73,20 +70,22 @@ INSERT INTO Objet VALUES (11,'Orque',6,3,null,35);
 INSERT INTO Objet VALUES (12,'Phoque 30 cm',6,3,TO_DATE('22/03/2023','dd/mm/yyyy'),26);
 INSERT INTO Objet VALUES (13,'Débardeur Joe',4,6,TO_DATE('12/04/2023','dd/mm/yyyy'),23);
 INSERT INTO Objet VALUES (14,'Boite de chocolat',5,1,TO_DATE('15/02/2023','dd/mm/yyyy'),8);
-
+INSERT INTO Objet VALUES (15,'Bonnet de Père Noel',4,6,STR_TO_DATE('10/12/2022','%d/%m/%Y'),4);
 
 INSERT INTO PiecesDetachees VALUES (14189639,'Roue',4,1);
 INSERT INTO PiecesDetachees VALUES (61231584,'Moteur',1,2);
-INSERT INTO PiecesDetachees VALUES (34578422,'siège',4,null);
+INSERT INTO PiecesDetachees VALUES (34578422,'Siège',4,3);
+INSERT INTO PiecesDetachees VALUES (23477564,'Engrenage',4,4);
+INSERT INTO PiecesDetachees VALUES (72938848,'Wagon',2,4);
 INSERT INTO PiecesDetachees VALUES (54236789,'Engrenage',4,null);
-INSERT INTO PiecesDetachees VALUES (72435685,'wagon',2,null);
-INSERT INTO PiecesDetachees VALUES (19626463,'auto',3,null);
+INSERT INTO PiecesDetachees VALUES (72435685,'Wagon',2,null);
+INSERT INTO PiecesDetachees VALUES (19626463,'Auto',3,null);
 INSERT INTO PiecesDetachees VALUES (52910329,'Moteur',4,null);
-INSERT INTO PiecesDetachees VALUES (91025273,'chaise',2,null);
+INSERT INTO PiecesDetachees VALUES (91025273,'Chaise',2,null);
 INSERT INTO PiecesDetachees VALUES (79193025,'Roue',1,null);
 INSERT INTO PiecesDetachees VALUES (16718152,'Moteur',3,null);
-INSERT INTO PiecesDetachees VALUES (87654327,'wagon',4,null);
-
+INSERT INTO PiecesDetachees VALUES (87654327,'Wagon',4,null);
+INSERT INTO PiecesDetachees VALUES (36664674,'Wagon',4,null);
 
 INSERT INTO Personnel VALUES (393874739983721,'Jack','Laproie',TO_DATE('04/12/1959','dd/mm/yyyy'),standard_hash('Monpass0','MD5'),'Directeur',null,null,0,null,0);
 INSERT INTO Personnel VALUES (269019550295812,'Ansel','Narcisse',TO_DATE('03/01/1969','dd/mm/yyyy'),standard_hash('Monpass1','MD5'),'Chargé de manège',null,null,0,null,0);
