@@ -70,7 +70,7 @@ INSERT INTO Objet VALUES (11,'Orque',6,3,null,35);
 INSERT INTO Objet VALUES (12,'Phoque 30 cm',6,3,TO_DATE('22/03/2023','dd/mm/yyyy'),26);
 INSERT INTO Objet VALUES (13,'Débardeur Joe',4,6,TO_DATE('12/04/2023','dd/mm/yyyy'),23);
 INSERT INTO Objet VALUES (14,'Boite de chocolat',5,1,TO_DATE('15/02/2023','dd/mm/yyyy'),8);
-INSERT INTO Objet VALUES (15,'Bonnet de Père Noel',4,6,STR_TO_DATE('10/12/2022','%d/%m/%Y'),4);
+INSERT INTO Objet VALUES (15,'Bonnet de Père Noel',4,6,TO_DATE('10/12/2022','dd/mm/yyyy'),4);
 
 INSERT INTO PiecesDetachees VALUES (14189639,'Roue',4,1);
 INSERT INTO PiecesDetachees VALUES (61231584,'Moteur',1,2);
