@@ -1,0 +1,6 @@
+<?php
+define("MYHOST","l'adresse du serveur");
+define("MYUSER","le login");
+define("MYPASS","le mot de passe");
+define("MYBASE","le nom de la base");
+?> 
