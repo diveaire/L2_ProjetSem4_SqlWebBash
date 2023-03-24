@@ -3,17 +3,18 @@
 <head>
 	<title>SAE</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="styleIndex.css">
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 	<?PHP
-
+	$res=false;
 	if (isset($_POST['identifiant']) && isset($_POST['password']) ){
 
 		include("connex.inc.php");
-		$idcom=connex("nicolasauvray","myparam");
+		$idcom=connex("myparam");
 		if (isset($idcom)){
+
 			$id=$_POST['identifiant'];
 			$pass=$_POST['password'];
 			$requete="select * from Personnel where NumSS='$id' AND passwd=md5('$pass')";
@@ -24,12 +25,15 @@
 		}
 	}
 	?>
-	<h1>connexion</h1>
-	<form method='post' action='index.php'>
-		<input type="text" placeholder="identifiant" name="identifiant"></br>
-		<input type="password" placeholder="password" name="password"></br>
-		<input type="submit" name="submit" value="log in">
-	</form>
+    <div class="bloc">
+        <h1>connexion</h1>
+        <form method='post' action='index.php'>
+            <input class="nom" type="text" placeholder="Identifiant" name="identifiant"><br />
+            <input class="pass" type="password" placeholder="Mot de passe" name="password"><br />
+            <input class="btn" type="submit" name="submit" value="log in">
+        </form>
+    </div>
+
 	<?php
 	if ($res){
 		$rep=mysqli_fetch_array($res);
@@ -46,6 +50,5 @@
 		}
 	}
 	?>
-
 </body>
 </html>

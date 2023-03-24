@@ -1,12 +1,13 @@
 <?php
-function connex($base,$param)
+function connex($param)
 {
 	include($param.".inc.php");
-	$idcom=mysqli_connect(MYHOST,MYUSER,MYPASS,$base);
+	$idcom=mysqli_connect(MYHOST,MYUSER,MYPASS,MYBASE);
 	if(!$idcom)
 	{
-    echo "<script type=text/javascript>";
-		echo "alert('Connexion Impossible à la base  $base')</script>";
+		$base=MYBASE;
+    	echo "<script type=text/javascript>";
+		echo "alert('Connexion Impossible Ã  la base $base')</script>";
 	}
 	return $idcom;
 }
