@@ -16,6 +16,8 @@
             $res=mysqli_query($idcom,$requete);
             $requete1="SELECT DATE_FORMAT(M.DateDeb,'%d/%m/%Y'),DATE_FORMAT(M.DateFin,'%d/%m/%Y') FROM Maintenance M WHERE M.NomM='$NomM' AND M.DateFin>=ALL(SELECT M1.DateFin FROM Maintenance M1 WHERE M1.NomM='$NomM')";
             $res1=mysqli_query($idcom,$requete1);
+            $requete2="SELECT DATE_FORMAT(B.DateB,'%d/%m/%Y'),demi_journee,UPPER(P.nomP),P.prenomP,frequentation FROM Bilan B, Personnel P WHERE P.NumSS=B.NumSS AND B.NomM='$NomM' ORDER BY B.DateB DESC, demi_journee DESC ";
+            $res2=mysqli_query($idcom,$requete2);
             if($res){
                 $row=mysqli_fetch_array($res);
                 echo "Manege : ".$_GET["NomM"]."<br><br>";
@@ -40,8 +42,28 @@
                 echo "<tr><td>$NomM</td><td>$tailleMin</td><td>$description</td><td>$nomF</td><td>$nomZ</td><td>$dateM</td></tr>"; 
                 echo "</table>";    
             }
+            if($res2){
+                echo "<br>Bilan : ".$_GET["NomM"]."<br><br>";
+                echo "<table border='2px'>";
+                echo "<tr><td>Date</td><td>AM/PM</td><td>Chargé de Manège</td><td>Fréquentation</td></tr>";
+                $l=mysqli_num_rows($res2);
+                if($l>0){
+                    while($row=mysqli_fetch_array($res2)){
+                        $DateB=$row[0];
+                        $ap=$row[1];
+                        $CM="$row[2] $row[3]";
+                        $freq=$row[4];
+                        echo "<tr><td>$DateB</td><td>$ap</td><td>$CM</td><td>$freq</td></tr>"; 
+                    }
+                }
+                else{
+                    echo "<tr><td>Aucune donnée</td><td>Aucune donnée</td><td>Aucune donnée</td><td>Aucune donnée</td></tr>"; 
+                }
+                echo "</table>";    
+            }
 
             echo "<br><a href='javascript:window.close();'>Fermer la fenêtre</a> ";
+            mysqli_close($idcom);
         }else{
             echo "Merci de vous connecter <a href='index.php'>log in </a>";
         }
