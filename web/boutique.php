@@ -42,6 +42,7 @@
             }
 
             echo "<br><a href='javascript:window.close();'>Fermer la fenêtre</a> ";
+            mysqli_close($idcom);
         }else{
             echo "Merci de vous connecter <a href='index.php'>log in </a>";
         }
