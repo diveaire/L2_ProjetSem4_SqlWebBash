@@ -7,7 +7,6 @@ if (isset($_SESSION['metier'])){
     $idcom=connex("myparam");
     $id=$_SESSION['numss'];
     $metier=$_SESSION['metier'];
-    $choix="Manege";
     if (isset($_POST['mb'])){
         $choix=$_POST['mb'];
     }
@@ -47,6 +46,7 @@ if (isset($_SESSION['metier'])){
                 <?PHP
                 if(isset($_SESSION['recherche'])){
                     if($_SESSION['recherche']=='Manege'){
+                        echo "<br />";
                         echo "<input type='text' placeholder='Taille' name='Taille'>";
                         echo "</div>";
                         echo "<div class='group3'>";
@@ -130,11 +130,11 @@ if (isset($_SESSION['metier'])){
                             }
                         }
                         else{
-                            $requete="SELECT B.NomB FROM Boutique B, Zone Z WHERE Z.IdZ=B.IdZ";
+                            $requete="SELECT B.NomB,B.IdB FROM Boutique B, Zone Z WHERE Z.IdZ=B.IdZ";
                             echo "<th>Nom de la boutique</th>";
                             if(!empty($_POST['Nom'])){
                                 $val=$_POST['Nom'];
-                                $requete=$requete." AND B.NomM LIKE '%$val%'";
+                                $requete=$requete." AND B.NomB LIKE '%$val%'";
                             }
                             if($_POST['Type']!="nonet"){
                                 $val=$_POST['Type'];
@@ -149,8 +149,17 @@ if (isset($_SESSION['metier'])){
                         if ($result){
                             echo "<br>";
                             while($row=mysqli_fetch_array($result)){
-                                echo "<tr><td>".$row[0]."</td></tr>";
+                                if($_SESSION['recherche']=="Manege"){
+                                    echo "<tr><td>"."<a href='manege.php?NomM=".$row[0]."' target='_blank'>".$row[0]."</a>"."</td></tr>";
+                                }
+                                else{
+                                    echo "<tr><td>"."<a href='boutique.php?IdB=".$row[1]."' target='_blank' >".$row[0]."</a>"."</td></tr>";
+                                }
                             }
+                        }
+                        else
+                        {
+                            echo "PB";
                         }
                         echo "</table>";
                     }
