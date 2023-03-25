@@ -3,7 +3,7 @@
 <head>
     <title>Boutique</title>
     <meta charset='UTF-8'>
-    <link rel="stylesheet">
+    <link rel="stylesheet" href="styleAccueil.css">
 </head>
 <body>
 <?PHP
@@ -18,26 +18,28 @@
             $resi=mysqli_query($idcom,$requetei);
             if($res){
                 $row=mysqli_fetch_array($res);
-                echo "Boutique : ".$row[0]."<br><br>";
+                echo "<div class='bloc'>";
+                echo "<div class='group'> Boutique : ".$row[0]."</div>";
                 $nomB=$row[0];
                 $typeB=$row[1];
                 $nomZ=$row[2];
                 $responsable="$row[3] $row[4]";
                 echo "<table border='2px'>";
-                echo "<tr><td>Nom Boutique</td><td>Type</td><td>Responsable</td><td>Zone</td></tr>";
+                echo "<tr><th>Nom Boutique</th><th>Type</th><th>Responsable</th><th>Zone</th></tr>";
                 echo "<tr><td>$nomB</td><td>$typeB</td><td>$responsable</td><td>$nomZ</td></tr>"; 
-                echo "</table><br>";    
+                echo "</table></div>";
             }
             if($resi){
                 $l=mysqli_num_rows($resi);
                 if($l>0){
-                     echo "Inventaire : <br><br>";
+                    echo "<div class='bloc'>";
+                    echo "<div class='group'>Inventaire : </div>";
                     echo "<table border='2px'>";
-                    echo "<tr><td>Type d'objet</td><td>Quantité</td></tr>";
+                    echo "<tr><th>Type d'objet</th><th>Quantité</th></tr>";
                     while($row=mysqli_fetch_array($resi)){
                         echo "<tr><td>".$row[0]."</td><td>".$row[1]."</td></tr>";
                     }
-                    echo "</table>";  
+                    echo "</table></div>";
                 }  
             }
 
