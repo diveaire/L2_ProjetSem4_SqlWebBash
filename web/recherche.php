@@ -7,21 +7,23 @@ if (isset($_SESSION['metier'])){
     $idcom=connex("myparam");
     $id=$_SESSION['numss'];
     $metier=$_SESSION['metier'];
+    $choix="";
     if (isset($_POST['mb'])){
         $choix=$_POST['mb'];
     }
-    if(!isset($_SESSION['recherche'])||empty($_SESSION['recherche'])||$choix=="Manege"){
+    if(empty($_SESSION['recherche'])||$choix=="Manege"){
         $_SESSION['recherche']='Manege';
     }
-    elseif($_POST['mb']=="Boutique"){
+    elseif($choix=="Boutique"){
         $_SESSION['recherche']='Boutique';
     }
 ?>
-<html>
+<html lang="fr">
 <head>
     <title>Recherche</title>
     <meta charset='UTF-8'>
-    <link rel="stylesheet" href="style3.css">
+    <link rel="stylesheet" href="menu.css">
+    <link rel="stylesheet" href="styleRecherche.css">
     <script src="script.js"></script>
 </head>
 <body>
@@ -42,14 +44,16 @@ if (isset($_SESSION['metier'])){
                 <input type="submit" name='mb' value='Boutique'>
             </div>
             <div class="group2">
-                <input type="text" placeholder="Recherche" name="Nom">
+                <input id="recherche" type="text" placeholder="Recherche" name="Nom">
+            </div>
                 <?PHP
                 if(isset($_SESSION['recherche'])){
                     if($_SESSION['recherche']=='Manege'){
-                        echo "<br /><br />";
-                        echo "Taille entre : <br><input type='text' placeholder='TailleMin' name='Taille1'> <br>et <br><input type='text' placeholder='TailleMax' name='Taille2'>";
+                        echo "<br />";
+                        echo "<div class='group5'>";
+                        echo "Taille entre : <br><input class='taille' type='text' placeholder='TailleMin' name='Taille1'> <br>et <br><input class='taille' type='text' placeholder='TailleMax' name='Taille2'>";
                         echo "</div>";
-                        echo "<div class='group3'>";
+                        echo "<div class='group4'>";
                         $requetef="select libelleF from Famille";
                         $resf=mysqli_query($idcom,$requetef);
 
@@ -66,8 +70,7 @@ if (isset($_SESSION['metier'])){
                         }
                     }
                     else {
-                        echo "</div>";
-                        echo "<div class='group3'>";
+                        echo "<div class='group4'>";
                         $requetet = "select distinct typeB from Boutique";
                         $rest = mysqli_query($idcom, $requetet);
                         if ($rest) {
@@ -82,6 +85,8 @@ if (isset($_SESSION['metier'])){
                         }
                     }
                 }
+                echo "</div>";
+                echo "<div class='group3'>";
                 $requetez="select nomZ from Zone";
                 $resz=mysqli_query($idcom,$requetez);
                 if ($resz){
@@ -96,7 +101,7 @@ if (isset($_SESSION['metier'])){
                 }
                 echo "</div>";
                 ?>
-            <div class="group4">
+            <div class="group6">
                 <input type="submit" name='submit' value="Rechercher">
             </div>
         </div>
@@ -105,7 +110,7 @@ if (isset($_SESSION['metier'])){
                     if(!empty($_POST['submit'])){
                         echo "<div class='bloc'>";
                         echo "<div class='group'>Résultat de la recherche</div>";
-                        echo "<table style='border:solid;''>";
+                        echo "<div id='grouptab'><table style='border:solid;''>";
                         if($_SESSION['recherche']=='Manege'){
                             echo "<th>Nom du Manege</th>";
                             $requete="SELECT DISTINCT M.NomM FROM Manege M, Famille F, Zone Z WHERE Z.IdZ=M.IdZ AND M.IdF=F.IdF";
@@ -118,7 +123,7 @@ if (isset($_SESSION['metier'])){
                                 $val2=max($_POST['Taille1'],$_POST['Taille2']);
                                 $requete=$requete." AND M.tailleMin BETWEEN $val1 AND $val2";
                             }
-                            if($_POST['Famille']){
+                            if(!empty($_POST['Famille'])){
                                 $var=$_POST['Famille'];
                                 $requete=$requete." AND (F.libelleF = '$var[0]'";
                                 for($i=1;$i<count($var);$i++){
@@ -126,7 +131,7 @@ if (isset($_SESSION['metier'])){
                                 }
                                 $requete=$requete.")"; 
                             }
-                            if($_POST['Zone']){
+                            if(!empty($_POST['Zone'])){
                                 $var=$_POST['Zone'];
                                 $requete=$requete." AND (Z.nomZ = '$var[0]'";
                                 for($i=1;$i<count($var);$i++){
@@ -142,7 +147,7 @@ if (isset($_SESSION['metier'])){
                                 $val=$_POST['Nom'];
                                 $requete=$requete." AND B.NomM LIKE '%$val%'";
                             }
-                            if($_POST['Type']){
+                            if(!empty($_POST['Type'])){
                                 $var=$_POST['Type'];
                                 $requete=$requete." AND (B.typeB = '$var[0]'";
                                 for($i=1;$i<count($var);$i++){
@@ -150,7 +155,7 @@ if (isset($_SESSION['metier'])){
                                 }  
                                 $requete=$requete.")";
                             }
-                            if($_POST['Zone']){
+                            if(!empty($_POST['Zone'])){
                                 $var=$_POST['Zone'];
                                 $requete=$requete." AND (Z.nomZ = '$var[0]'";
                                 for($i=1;$i<count($var);$i++){
@@ -175,7 +180,7 @@ if (isset($_SESSION['metier'])){
                         {
                             echo "PB";
                         }
-                        echo "</table>";
+                        echo "</table></div>";
                     }
                     ?>
         </div>

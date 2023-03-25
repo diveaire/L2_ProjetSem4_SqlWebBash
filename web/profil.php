@@ -12,7 +12,8 @@ if (isset($_SESSION['metier'])){
 <head>
     <title>page de Modification</title>
     <meta charset='UTF-8'>
-    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="menu.css">
+    <link rel="stylesheet" href="styleProfil.css">
     <script src="script.js"></script>
 </head>
 <body>
@@ -56,8 +57,8 @@ if (isset($_SESSION['metier'])){
         }
     }
 
-
     ?>
+
     <div class="bloc">
         <div class="group"><b>Coordonnées</b></div>
         <div class="group1">

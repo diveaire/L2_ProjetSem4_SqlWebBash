@@ -3,7 +3,7 @@
 <head>
     <title>Manege</title>
     <meta charset='UTF-8'>
-    <link rel="stylesheet">
+    <link rel="stylesheet" href="styleAccueil.css">
 </head>
 <body>
 <?PHP
@@ -20,7 +20,8 @@
             $res2=mysqli_query($idcom,$requete2);
             if($res){
                 $row=mysqli_fetch_array($res);
-                echo "Manege : ".$_GET["NomM"]."<br><br>";
+                echo "<div class='bloc'>";
+                echo "<div class='group'> Manege : ".$_GET["NomM"]."</div>";
                 $tailleMin=$row[0];
                 $description=$row[1];
                 $nomF=$row[2];
@@ -37,15 +38,16 @@
                 else{
                     $dateM="Aucune";
                 }
-                echo "<table border='2px'>";
-                echo "<tr><td>Nom Manège</td><td>Taille Minimale</td><td>Description</td><td>Famille de manège</td><td>Zone</td><td>Dernière Maintenance</td></tr>";
+                echo "<table>";
+                echo "<tr><th>Nom Manège</th><th>Taille Minimale</th><th>Description</th><th>Famille de manège</th><th>Zone</th><th>Dernière Maintenance</th></tr>";
                 echo "<tr><td>$NomM</td><td>$tailleMin</td><td>$description</td><td>$nomF</td><td>$nomZ</td><td>$dateM</td></tr>"; 
-                echo "</table>";    
+                echo "</table></div>";
             }
             if($res2){
-                echo "<br>Bilan : ".$_GET["NomM"]."<br><br>";
-                echo "<table border='2px'>";
-                echo "<tr><td>Date</td><td>AM/PM</td><td>Chargé de Manège</td><td>Fréquentation</td></tr>";
+                echo "<div class='bloc'>";
+                echo "<div class='group'>Bilan : ".$_GET["NomM"]."</div>";
+                echo "<table>";
+                echo "<tr><th>Date</th><th>AM/PM</th><th>Chargé de Manège</th><th>Fréquentation</th></tr>";
                 $l=mysqli_num_rows($res2);
                 if($l>0){
                     while($row=mysqli_fetch_array($res2)){
@@ -59,7 +61,8 @@
                 else{
                     echo "<tr><td>Aucune donnée</td><td>Aucune donnée</td><td>Aucune donnée</td><td>Aucune donnée</td></tr>"; 
                 }
-                echo "</table>";    
+                echo "</table>";
+                echo "</div>";
             }
 
             echo "<br><a href='javascript:window.close();'>Fermer la fenêtre</a> ";

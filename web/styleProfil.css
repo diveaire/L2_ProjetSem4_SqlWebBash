@@ -1,0 +1,61 @@
+/*
+    accueil.php + manège.php + boutique.php
+ */
+
+
+/* Bloc de modification */
+.bloc{
+  background-color:#f9f9f9;
+  margin-top:1%;
+  padding:1%;
+  display:grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-template-rows: repeat(3, auto);
+  grid-gap:10px;
+  margin-bottom: 20px;
+  border:solid #0057a4;
+  border-radius:10px;
+  -webkit-box-shadow: 8px 13px 10px 1px #A7A7A7;
+  box-shadow: 8px 9px 10px 1px #A7A7A7;
+}
+/* Gestion de la grid */
+
+.group{
+  font-size:22px;
+  color: #546ac2;
+  padding-left:45px;
+  grid-column: 1 / 4;
+  grid-row:1;
+  border-bottom:solid #f1f2f9;
+
+}
+.group1{
+  grid-column: 1;
+  grid-row:2;
+}
+.group2{
+  grid-column: 2;
+  grid-row:2;
+}
+.group3{
+  grid-column: 3;
+  grid-row:2;
+}
+
+/* MODIF COORDONNEES */
+#nom{
+  display:none;
+  grid-column: 1;
+  grid-row:3;
+}
+#prenom{
+  display:none;
+  grid-column: 2;
+  grid-row:3;
+}
+#pass{
+  display:none;
+  grid-column: 3;
+  grid-row:3;
+}
+

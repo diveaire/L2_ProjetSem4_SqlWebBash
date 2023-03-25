@@ -3,7 +3,7 @@
 <head>
 	<title>SAE</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="styleIndex.css">
 </head>
 <body>
 

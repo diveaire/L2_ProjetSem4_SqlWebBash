@@ -12,14 +12,15 @@ $metier=$_SESSION['metier'];
 <head>
     <title>page de Modification</title>
     <meta charset='UTF-8'>
-    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="menu.css">
+    <link rel="stylesheet" href="styleProfil.css">
     <script src="script.js"></script>
 </head>
 <body>
 <ul id="menu">
     <li class="menu_elm"><a class="menuLink" href="accueil.php">Accueil</a></li>
     <li class="menu_elm"><a class="menuLink" href="profil.php">Profil</a></li>
-    <li class="menu_elm"><a class="menuLink" href="recherche.php">Recherche</a></li>
+    <li class="menu_elm"><a class="menuLink" href="recherche.old.php">Recherche</a></li>
     <li class="menu_elm"><a class="menuLink" href="gestion.php">Gestion Administrative</a></li>
     <li id="logout" ><a class="menuLink" href="logout.php">Log out</a></li>
 </ul>
