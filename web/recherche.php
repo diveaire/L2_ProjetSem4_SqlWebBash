@@ -46,20 +46,19 @@ if (isset($_SESSION['metier'])){
                 <?PHP
                 if(isset($_SESSION['recherche'])){
                     if($_SESSION['recherche']=='Manege'){
-                        echo "<br />";
-                        echo "<input type='text' placeholder='Taille' name='Taille'>";
+                        echo "<br /><br />";
+                        echo "Taille entre : <br><input type='text' placeholder='TailleMin' name='Taille1'> <br>et <br><input type='text' placeholder='TailleMax' name='Taille2'>";
                         echo "</div>";
                         echo "<div class='group3'>";
                         $requetef="select libelleF from Famille";
                         $resf=mysqli_query($idcom,$requetef);
 
                         if ($resf){
-                            echo "<select name='Famille' id='Famille'>";
-                            echo "<option value='nonef'>Toutes</option>";
+                            echo "Famille : <br>";
                             while($row=mysqli_fetch_array($resf)){
-                                echo "<option value=".$row[0].">".$row[0]."</option>";
+                                echo "$row[0] :<input type='checkbox' name='Famille[]' value='$row[0]'>";
+                                echo "<br />";
                             }
-                            echo "</select>";
                             echo "<br />";
                         }
                         else{
@@ -72,27 +71,25 @@ if (isset($_SESSION['metier'])){
                         $requetet = "select distinct typeB from Boutique";
                         $rest = mysqli_query($idcom, $requetet);
                         if ($rest) {
-                            echo "<select name='Type' id='Type'>";
-                            echo "<option value='nonet'>Toutes</option>";
-                            while ($row = mysqli_fetch_array($rest)) {
-                                echo "<option value=" . $row[0] . ">" . $row[0] . "</option>";
+                            echo "Type de boutique : <br>";
+                            while($row=mysqli_fetch_array($rest)){
+                                echo "$row[0] :<input type='checkbox' name='Type[]' value='$row[0]'>";
+                                echo "<br />";
                             }
-                            echo "</select>";
                             echo "<br />";
                         } else {
-                            echo "Problème pour Famille";
+                            echo "Problème pour Type de Boutique";
                         }
                     }
                 }
                 $requetez="select nomZ from Zone";
                 $resz=mysqli_query($idcom,$requetez);
                 if ($resz){
-                    echo "<select name='Zone' id='Zone'>";
-                    echo "<option value='nonez'>Toutes</option>";
+                    echo "Zone : <br>";
                     while($row=mysqli_fetch_array($resz)){
-                        echo "<option value=".$row[0].">".$row[0]."</option>";
+                        echo "$row[0] :<input type='checkbox' name='Zone[]' value='$row[0]'>";
+                        echo "<br />";
                     }
-                    echo "</select>";
                 }
                 else{
                     echo "Problème pour Zone";
@@ -111,38 +108,55 @@ if (isset($_SESSION['metier'])){
                         echo "<table style='border:solid;''>";
                         if($_SESSION['recherche']=='Manege'){
                             echo "<th>Nom du Manege</th>";
-                            $requete="SELECT M.NomM FROM Manege M, Famille F, Zone Z WHERE Z.IdZ=M.IdZ AND M.IdF=F.IdF";
+                            $requete="SELECT DISTINCT M.NomM FROM Manege M, Famille F, Zone Z WHERE Z.IdZ=M.IdZ AND M.IdF=F.IdF";
                             if(!empty($_POST['Nom'])){
                                 $val=$_POST['Nom'];
                                 $requete=$requete." AND M.NomM LIKE '%$val%'";
                             }
-                            if(!empty($_POST['Taille'])){
-                                $val=$_POST['Taille'];
-                                $requete=$requete." AND M.tailleMin = $val";
+                            if((!empty($_POST['Taille1']))&&(!empty($_POST['Taille2']))){
+                                $val1=min($_POST['Taille1'],$_POST['Taille2']);
+                                $val2=max($_POST['Taille1'],$_POST['Taille2']);
+                                $requete=$requete." AND M.tailleMin BETWEEN $val1 AND $val2";
                             }
-                            if($_POST['Famille']!="nonef"){
-                                $val=$_POST['Famille'];
-                                $requete=$requete." AND F.libelleF='$val'";
+                            if($_POST['Famille']){
+                                $var=$_POST['Famille'];
+                                $requete=$requete." AND (F.libelleF = '$var[0]'";
+                                for($i=1;$i<count($var);$i++){
+                                    $requete=$requete." OR F.libelleF = '$var[$i]'";
+                                }
+                                $requete=$requete.")"; 
                             }
-                            if($_POST['Zone']!="nonez"){
-                                $val=$_POST['Zone'];
-                                $requete=$requete." AND Z.nomZ='$val'";
+                            if($_POST['Zone']){
+                                $var=$_POST['Zone'];
+                                $requete=$requete." AND (Z.nomZ = '$var[0]'";
+                                for($i=1;$i<count($var);$i++){
+                                    $requete=$requete." OR Z.nomZ = '$var[$i]'";
+                                }   
+                                $requete=$requete.")";
                             }
                         }
                         else{
-                            $requete="SELECT B.NomB,B.IdB FROM Boutique B, Zone Z WHERE Z.IdZ=B.IdZ";
+                            $requete="SELECT DISTINCT B.NomB,B.IdB FROM Boutique B, Zone Z WHERE Z.IdZ=B.IdZ";
                             echo "<th>Nom de la boutique</th>";
                             if(!empty($_POST['Nom'])){
                                 $val=$_POST['Nom'];
-                                $requete=$requete." AND B.NomB LIKE '%$val%'";
+                                $requete=$requete." AND B.NomM LIKE '%$val%'";
                             }
-                            if($_POST['Type']!="nonet"){
-                                $val=$_POST['Type'];
-                                $requete=$requete." AND B.typeB='$val'";
+                            if($_POST['Type']){
+                                $var=$_POST['Type'];
+                                $requete=$requete." AND (B.typeB = '$var[0]'";
+                                for($i=1;$i<count($var);$i++){
+                                    $requete=$requete." OR B.typeB = '$var[$i]'";
+                                }  
+                                $requete=$requete.")";
                             }
-                            if($_POST['Zone']!="nonez"){
-                                $val=$_POST['Zone'];
-                                $requete=$requete." AND Z.nomZ='$val'";
+                            if($_POST['Zone']){
+                                $var=$_POST['Zone'];
+                                $requete=$requete." AND (Z.nomZ = '$var[0]'";
+                                for($i=1;$i<count($var);$i++){
+                                    $requete=$requete." OR Z.nomZ = '$var[$i]'";
+                                }   
+                                $requete=$requete.")";
                             }
                         }
                         $result=mysqli_query($idcom,$requete);
