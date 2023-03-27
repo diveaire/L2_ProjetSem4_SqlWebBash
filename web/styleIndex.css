@@ -6,7 +6,7 @@ html{
     align-items: center;
     background: rgb(0,87,164);
     background-repeat: no-repeat ;
-    background: radial-gradient(circle, rgba(0,87,164,1) 0%, rgba(7,168,244,1) 40%, rgba(0,0,0,1) 100%);
+    background: radial-gradient(circle, rgba(0,87,164,1) 0%, rgba(7,168,244,1) 40%, rgba(0,0,0,1) 105%);
 }
 body{
     font-family: "Times New Roman", Times, serif;
@@ -63,4 +63,8 @@ h1{
 
 .btn:hover{
     background-color:#2CC06B;
+}
+.erreur{
+	font-weight:800;
+	margin: 10% auto auto auto;
 }
