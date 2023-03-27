@@ -88,7 +88,7 @@ $metier=$_SESSION['metier'];
         echo "<div class='bloc'>";
         echo "<br>AJOUT D'UN ATELIER :";
         echo "<br><form action='insertion.php' method='POST'>";
-        echo "<br>Nom de l'atelier <input type='text' name='nomM'>";
+        echo "<br>Nom de l'atelier <input type='text' name='nomA'>";
         echo "<br>Zone de l'atelier <select name='nomZ'>";
         $requete="select nomZ from Zone";
         $res=mysqli_query($idcom,$requete);
