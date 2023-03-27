@@ -58,7 +58,7 @@ $metier=$_SESSION['metier'];
             echo "Problème pour Zone";
         }
         echo "</select>";
-        echo "<br><input type='submit' name='inserman' value='Ajouter'>";
+        echo "<br><input type='submit' name='inser' value='Ajouter'>";
         echo "</form>";
         echo "</div>";
     }
@@ -66,8 +66,8 @@ $metier=$_SESSION['metier'];
         echo "<div class='bloc'>";
         echo "<br>AJOUT D'UNE BOUTIQUE :";
         echo "<br><form action='insertion.php' method='POST'>";
-        echo "<br>Nom de la boutique <input type='text' name='nomM'>";
-        echo "<br>Type de la boutique<input type='text' name='tailleMin'>";
+        echo "<br>Nom de la boutique <input type='text' name='nomB'>";
+        echo "<br>Type de la boutique<input type='text' name='typeB'>";
         echo "<br>Zone de la boutique <select name='nomZ'>";
         $requete="select nomZ from Zone";
         $res=mysqli_query($idcom,$requete);
@@ -80,7 +80,7 @@ $metier=$_SESSION['metier'];
             echo "Problème pour Zone";
         }
         echo "</select>";
-        echo "<br><input type='submit' name='inserbou' value='Ajouter'>";
+        echo "<br><input type='submit' name='inser' value='Ajouter'>";
         echo "</form>";
         echo "</div>";
     }
@@ -101,7 +101,7 @@ $metier=$_SESSION['metier'];
             echo "Problème pour Zone";
         }
         echo "</select>";
-        echo "<br><input type='submit' name='inserate' value='Ajouter'>";
+        echo "<br><input type='submit' name='inser' value='Ajouter'>";
         echo "</form>";
         echo "</div>";
     }
