@@ -13,7 +13,7 @@ $metier=$_SESSION['metier'];
     <title>page de Modification</title>
     <meta charset='UTF-8'>
     <link rel="stylesheet" href="menu.css">
-    <link rel="stylesheet" href="styleProfil.css">
+    <link rel="stylesheet" href="styleGestion.css">
     <script src="script.js"></script>
 </head>
 <body>
@@ -29,10 +29,10 @@ $metier=$_SESSION['metier'];
 <?PHP
     if(!empty($_POST['manege'])){
         echo "<div class='bloc'>";
-        echo "<br>AJOUT D'UN MANEGE :";
-        echo "<br><form action='insertion.php' method='POST'>";
-        echo "<br>Nom du Manège <input type='text' name='nomM'>";
-        echo "<br>Taille Minimale <input type='text' name='tailleMin'>";
+        echo "<div class='group'>AJOUT D'UN MANEGE :</div>";
+        echo "<form action='insertion.php' method='POST'>";
+        echo "<div class='group1'> Nom du Manège <input type='text' name='nomM'></div>";
+        echo "Taille Minimale<div class='slider'> <input type='range' min='0' max='200' value='100' name='tailleMin' oninput='rangeValue.innerText = this.value'><p id='rangeValue'>100</p></div>";
         echo "<br>Description <input type='text' name='description'>";
         echo "<br>Famille de manège <select name='libelleF'>";
         $requete="select libelleF from Famille";
@@ -64,7 +64,7 @@ $metier=$_SESSION['metier'];
     }
     elseif(!empty($_POST['boutique'])){
         echo "<div class='bloc'>";
-        echo "<br>AJOUT D'UNE BOUTIQUE :";
+        echo "<div class='group'>AJOUT D'UNE BOUTIQUE :</div>";
         echo "<br><form action='insertion.php' method='POST'>";
         echo "<br>Nom de la boutique <input type='text' name='nomB'>";
         echo "<br>Type de la boutique<input type='text' name='typeB'>";
@@ -86,8 +86,8 @@ $metier=$_SESSION['metier'];
     }
     elseif(!empty($_POST['atelier'])){
         echo "<div class='bloc'>";
-        echo "<br>AJOUT D'UN ATELIER :";
-        echo "<br><form action='insertion.php' method='POST'>";
+        echo "<div class='group'>AJOUT D'UN ATELIER :</div>";
+        echo "<form action='insertion.php' method='POST'>";
         echo "<br>Nom de l'atelier <input type='text' name='nomA'>";
         echo "<br>Zone de l'atelier <select name='nomZ'>";
         $requete="select nomZ from Zone";

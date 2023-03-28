@@ -60,6 +60,11 @@
         }
         $result=mysqli_query($idcom,$requete);
         mysqli_close($idcom);
+        if ($result){
+        	echo "<script>alert('ça marche');</script>";
+        }else{
+        	echo "<script>alert('ça marche pas');</script>";
+        }
         header('Location: gestion.php');
     }
     else{

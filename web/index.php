@@ -32,34 +32,24 @@
             <input class="pass" type="password" placeholder="Mot de passe" name="password"><br />
             <input class="btn" type="submit" name="submit" value="log in">
         </form>
-    </div>
+    
 
 	<?php
 	if ($res){
 		$rep=mysqli_fetch_array($res);
 		if (!empty($rep)){
-			$requete="select Metier,chef,responsable from Personnel where NumSS='$id'";
+			$requete="select Metier from Personnel where NumSS='$id'";
 			$metier=mysqli_fetch_array(mysqli_query($idcom,$requete));
 			session_start();
 			$_SESSION['numss']=$id;
-			if($metier[1]=="1"){
-				$_SESSION['metier']="Chef d'Atelier";
-			}
-			elseif (($metier[2]=="1")&&($metier[0]=="Serveur")){
-				$_SESSION['metier']="Responsable de Restaurant";
-			}
-			elseif (($metier[2]=="1")&&($metier[0]=="Vendeur")){
-				$_SESSION['metier']="Responsable de Boutique";
-			}
-			else{
-				$_SESSION['metier']=$metier[0];
-			}
+			$_SESSION['metier']=$metier;
 			mysqli_close($idcom);
 			header('Location: accueil.php');
 		}else{
-			echo "Erreur identifiant ou mot de passe";
+			echo "<div class='erreur'>Erreur identifiant ou mot de passe</div>";
 		}
 	}
 	?>
+   </div>
 </body>
 </html>

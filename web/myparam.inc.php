@@ -1,7 +1,7 @@
 <?php
-define("MYHOST","localhost");
-define("MYUSER","nicolas");
+define("MYHOST","10.1.16.236");
+define("MYUSER","nicolasauvray");
 define("MYPASS","mysql");
-define("MYBASE","SAE4");
+define("MYBASE","nicolasauvray");
 ?>
 
