@@ -1,0 +1,70 @@
+/* MENU */
+#menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #0057a4;
+    border-radius:10px;
+}
+.menu_elm {
+    float: left;
+}
+.menuLink {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition-duration: 0.4s;
+}
+.menuLink:hover {
+    font-size: 18px;
+    background-color: #07a8f4;
+}
+#logout{
+    float: right;
+}
+/* GENERAL */
+html{
+    font-family : "Times New Roman", Times, serif;
+    background-color:#f1f2f9;
+}
+button, input[type='submit'] {
+    display: inline-block;
+    background-color: #0057a4;
+    border-radius: 10px;
+    border: 4px double #cccccc;
+    color: #eeeeee;
+    text-align: center;
+    font-size: 15px;
+    padding: 5px;
+    width:auto;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+button span:after {
+    content: "\00bb";
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+button:hover , input[type='submit']:hover{
+    background-color: #07a8f4;
+}
+button:hover span {
+    padding-right: 25px;
+}
+button:hover span:after {
+    opacity: 1;
+    right: 0;
+}

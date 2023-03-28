@@ -3,7 +3,7 @@
 <head>
 	<title>SAE</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="styleIndex.css">
+	<link rel="stylesheet" href="Style/styleIndex.css">
 </head>
 <body>
 
@@ -11,7 +11,7 @@
 	$res=false;
 	if (isset($_POST['identifiant']) && isset($_POST['password']) ){
 
-		include("connex.inc.php");
+		include("Parametres/connex.inc.php");
 		$idcom=connex("myparam");
 		if (isset($idcom)){
 
@@ -44,7 +44,7 @@
 			$_SESSION['numss']=$id;
 			$_SESSION['metier']=$metier;
 			mysqli_close($idcom);
-			header('Location: accueil.php');
+			header('Location: Menu/accueil.php');
 		}else{
 			echo "<div class='erreur'>Erreur identifiant ou mot de passe</div>";
 		}

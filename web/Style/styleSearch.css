@@ -1,0 +1,40 @@
+/*
+    accueil.php + manège.php + boutique.php
+ */
+
+
+.bloc{
+    background-color:#f9f9f9;
+    margin-top:1%;
+    padding:1%;
+    display:grid;
+    grid-template-columns: repeat(1,1fr);
+    grid-template-rows: repeat(2, auto);
+    grid-gap:10px;
+    margin-bottom: 20px;
+    border:solid #0057a4;
+    border-radius:10px;
+    -webkit-box-shadow: 8px 13px 10px 1px #A7A7A7;
+    box-shadow: 8px 9px 10px 1px #A7A7A7;
+}
+.group{
+    font-size:22px;
+    color: #546ac2;
+    padding-left:45px;
+    grid-column: 1;
+    grid-row:1;
+    border-bottom:solid #f1f2f9;
+
+}
+table, th{
+    border: 1px solid black;
+    border-radius: 10px;
+}
+th{
+    font-weight:normal;
+    color:white;
+    background-color:#0057a4;
+}
+tr:nth-child(2n){
+    background-color:lightsteelblue;
+}
