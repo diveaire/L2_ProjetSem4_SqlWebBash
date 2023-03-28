@@ -122,7 +122,7 @@ $metier=$_SESSION['metier'];
 			if($res){
 				echo "<table border=2px>";
 				while($row=mysqli_fetch_array($res)){
-					echo "<tr><td><a href='manegeadm.php?$row[0]'>$row[0]</a></td></tr>";
+					echo "<tr><td><a href='manegeadm.php?NomM=$row[0]'>$row[0]</a></td></tr>";
 				}
 				echo "</table>";
 			}
@@ -138,7 +138,7 @@ $metier=$_SESSION['metier'];
 			if($res){
 				echo "<table border=2px>";
 				while($row=mysqli_fetch_array($res)){
-					echo "<tr><td>$row[0]</td><td><a href='boutiqueadm.php?$row[0]'>$row[1]</a></td></tr>";
+					echo "<tr><td>$row[0]</td><td><a href='boutiqueadm.php?IdB=$row[0]'>$row[1]</a></td></tr>";
 				}
 				echo "</table>";
 			}
@@ -154,7 +154,7 @@ $metier=$_SESSION['metier'];
 			if($res){
 				echo "<table border=2px>";
 				while($row=mysqli_fetch_array($res)){
-					echo "<tr><td>$row[0]</td><td><a href='atelieradm.php?$row[0]'>$row[1]</a></td></tr>";
+					echo "<tr><td>$row[0]</td><td><a href='atelieradm.php?IdA=$row[0]'>$row[1]</a></td></tr>";
 				}
 				echo "</table>";
 			}
