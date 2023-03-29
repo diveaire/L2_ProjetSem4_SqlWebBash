@@ -29,6 +29,7 @@ $metier=$_SESSION['metier'];
 <div id='ajoutManege' style='display:none;' class='bloc'>
     <div class='group'>AJOUT D'UN MANEGE :</div>
     <form action='Modif/insertion.php' method='POST'>
+    <input type='hidden' name='tb' value='Manege'></input>
         <div class='group1'>
             Nom du Manège <input type='text' name='nomM'>
             Taille Minimale<div class='slider'><input type='range' min='0' max='200' value='100' name='tailleMin' oninput='rangeValue.innerText = this.value'><p id='rangeValue'>100</p></div>
@@ -69,6 +70,7 @@ $metier=$_SESSION['metier'];
 <div id='ajoutBoutique' style='display:none;' class='bloc'>
     <div class='group'>AJOUT D'UNE BOUTIQUE :</div>
         <form action='Modif/insertion.php' method='POST'>
+        <input type='hidden' name='tb' value='Boutique'></input>
         <div>Nom de la boutique <input type='text' name='nomB'><br />
             Type de la boutique<input type='text' name='typeB'>
         </div>
@@ -94,6 +96,7 @@ $metier=$_SESSION['metier'];
 <div id='ajoutAtelier' style='display:none;' class='bloc'>
     <div class='group'>AJOUT D'UN ATELIER :</div>
     <form action='Modif/insertion.php' method='POST'>
+        <input type='hidden' name='tb' value='Atelier'></input>
         <div>Nom de l'atelier <input type='text' name='nomA'></div>
         <div>Zone de l'atelier <select name='nomZ'>
             <?PHP
