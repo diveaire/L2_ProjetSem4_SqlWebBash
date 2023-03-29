@@ -10,7 +10,7 @@
         session_start();
         if (isset($_SESSION['metier'])){
             $NomM=$_GET["NomM"];
-            include("connex.inc.php");
+            include("../../Parametres/connex.inc.php");
             $idcom=connex("myparam");
             $requete="SELECT tailleMin,description,libelleF,nomZ FROM Manege M, Zone Z, Famille F WHERE NomM='$NomM' AND Z.IdZ=M.IdZ AND F.IdF=M.IdF";
             $res=mysqli_query($idcom,$requete);

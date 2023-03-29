@@ -169,10 +169,10 @@ if (isset($_SESSION['metier'])){
                             echo "<br>";
                             while($row=mysqli_fetch_array($result)){
                                 if($_SESSION['recherche']=="Manege"){
-                                    echo "<tr><td>"."<a href='manege.php?NomM=".$row[0]."' target='_blank'>".$row[0]."</a>"."</td></tr>";
+                                    echo "<tr><td>"."<a href='SearchResult/manege.php?NomM=".$row[0]."' target='_blank'>".$row[0]."</a>"."</td></tr>";
                                 }
                                 else{
-                                    echo "<tr><td>"."<a href='boutique.php?IdB=".$row[1]."' target='_blank' >".$row[0]."</a>"."</td></tr>";
+                                    echo "<tr><td>"."<a href='SearchResult/boutique.php?IdB=".$row[1]."' target='_blank' >".$row[0]."</a>"."</td></tr>";
                                 }
                             }
                         }

@@ -68,3 +68,19 @@ button:hover span:after {
     opacity: 1;
     right: 0;
 }
+
+/* TABLEAU */
+table, th{
+    border: 1px solid black;
+    border-radius: 10px;
+    padding-left:5px;
+    padding-right:5px;
+}
+th{
+    font-weight:normal;
+    color:white;
+    background-color:#0057a4;
+}
+tr:nth-child(2n){
+    background-color:lightsteelblue;
+}

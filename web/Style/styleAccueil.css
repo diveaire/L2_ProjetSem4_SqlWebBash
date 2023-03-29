@@ -62,15 +62,3 @@ html{
     grid-column:2/4;
     grid-row:2;
 }
-table, th{
-    border: 1px solid black;
-    border-radius: 10px;
-}
-th{
-    font-weight:normal;
-    color:white;
-    background-color:#0057a4;
-}
-tr:nth-child(2n){
-    background-color:lightsteelblue;
-}

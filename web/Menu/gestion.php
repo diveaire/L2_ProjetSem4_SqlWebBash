@@ -25,142 +25,153 @@ $metier=$_SESSION['metier'];
     <li id="logout" ><a class="menuLink" href="logout.php">Log out</a></li>
 </ul>
 
+<!-- FORM CACHER POUR AJOUTER UN MANEGE -->
+<div id='ajoutManege' style='display:none;' class='bloc'>
+    <div class='group'>AJOUT D'UN MANEGE :</div>
+    <form action='Modif/insertion.php' method='POST'>
+        <div class='group1'>
+            Nom du Manège <input type='text' name='nomM'>
+            Taille Minimale<div class='slider'><input type='range' min='0' max='200' value='100' name='tailleMin' oninput='rangeValue.innerText = this.value'><p id='rangeValue'>100</p></div>
+        </div>
+        <div>Description <input type='text' name='description'>
+            <br />Famille de manège <select name='libelleF'>
+            <?PHP
+               $requete="select libelleF from Famille";
+               $res=mysqli_query($idcom,$requete);
+               if($res){
+                    while($row=mysqli_fetch_array($res)){
+                        echo "<option value='$row[0]'>$row[0]</option>";
+                    }
+                }else{
+                   echo "Problème pour Famille";
+                }
+            ?>
+            </select>
+        </div>
+        <div>Zone du manège <select name='nomZ'>
+            <?PHP
+                $requete="select nomZ from Zone";
+                $res=mysqli_query($idcom,$requete);
+                if ($res){
+                    while($row=mysqli_fetch_array($res)){
+                        echo "<option value='$row[0]'>$row[0]</option>";
+                    }
+                }else{
+                    echo "Problème pour Zone";
+                }
+            ?>
+            </select>
+        </div>
+        <div><input type='submit' name='inser' value='Ajouter'></div>
+    </form>
+</div>
 
-<?PHP
-    if(!empty($_POST['manege'])){
-        echo "<div class='bloc'>";
-        echo "<div class='group'>AJOUT D'UN MANEGE :</div>";
-        echo "<form action='Modif/insertion.php' method='POST'>";
-        echo "<div class='group1'> Nom du Manège <input type='text' name='nomM'></div>";
-        echo "Taille Minimale<div class='slider'> <input type='range' min='0' max='200' value='100' name='tailleMin' oninput='rangeValue.innerText = this.value'><p id='rangeValue'>100</p></div>";
-        echo "<br>Description <input type='text' name='description'>";
-        echo "<br>Famille de manège <select name='libelleF'>";
-        $requete="select libelleF from Famille";
-        $res=mysqli_query($idcom,$requete);
-        if($res){
-            while($row=mysqli_fetch_array($res)){
-                echo "<option value='$row[0]'>$row[0]</option>";
-            }
-        }
-        else{
-            echo "Problème pour Famille";
-        }
-        echo "</select>";
-        echo "<br>Zone du manège <select name='nomZ'>";
-        $requete="select nomZ from Zone";
-        $res=mysqli_query($idcom,$requete);
-        if ($res){
-            while($row=mysqli_fetch_array($res)){
-                echo "<option value='$row[0]'>$row[0]</option>";
-            }
-        }
-        else{
-            echo "Problème pour Zone";
-        }
-        echo "</select>";
-        echo "<br><input type='submit' name='inser' value='Ajouter'>";
-        echo "</form>";
-        echo "</div>";
-    }
-    elseif(!empty($_POST['boutique'])){
-        echo "<div class='bloc'>";
-        echo "<div class='group'>AJOUT D'UNE BOUTIQUE :</div>";
-        echo "<br><form action='Modif/insertion.php' method='POST'>";
-        echo "<br>Nom de la boutique <input type='text' name='nomB'>";
-        echo "<br>Type de la boutique<input type='text' name='typeB'>";
-        echo "<br>Zone de la boutique <select name='nomZ'>";
-        $requete="select nomZ from Zone";
-        $res=mysqli_query($idcom,$requete);
-        if ($res){
-            while($row=mysqli_fetch_array($res)){
-                echo "<option value='$row[0]'>$row[0]</option>";
-            }
-        }
-        else{
-            echo "Problème pour Zone";
-        }
-        echo "</select>";
-        echo "<br><input type='submit' name='inser' value='Ajouter'>";
-        echo "</form>";
-        echo "</div>";
-    }
-    elseif(!empty($_POST['atelier'])){
-        echo "<div class='bloc'>";
-        echo "<div class='group'>AJOUT D'UN ATELIER :</div>";
-        echo "<form action='Modif/insertion.php' method='POST'>";
-        echo "<br>Nom de l'atelier <input type='text' name='nomA'>";
-        echo "<br>Zone de l'atelier <select name='nomZ'>";
-        $requete="select nomZ from Zone";
-        $res=mysqli_query($idcom,$requete);
-        if ($res){
-            while($row=mysqli_fetch_array($res)){
-                echo "<option value='$row[0]'>$row[0]</option>";
-            }
-        }
-        else{
-            echo "Problème pour Zone";
-        }
-        echo "</select>";
-        echo "<br><input type='submit' name='inser' value='Ajouter'>";
-        echo "</form>";
-        echo "</div>";
-    }
-?>
+<div id='ajoutBoutique' style='display:none;' class='bloc'>
+    <div class='group'>AJOUT D'UNE BOUTIQUE :</div>
+        <form action='Modif/insertion.php' method='POST'>
+        <div>Nom de la boutique <input type='text' name='nomB'><br />
+            Type de la boutique<input type='text' name='typeB'>
+        </div>
+        <div>Zone de la boutique
+            <select name='nomZ'>
+            <?PHP
+                $requete="select nomZ from Zone";
+                $res=mysqli_query($idcom,$requete);
+                if ($res){
+                    while($row=mysqli_fetch_array($res)){
+                        echo "<option value='$row[0]'>$row[0]</option>";
+                    }
+                }else{
+                    echo "Problème pour Zone";
+                }
+            ?>
+            </select>
+        </div>
+        <div class="groupX"><input type='submit' name='inser' value='Ajouter'></div>
+    </form>
+</div>
+
+<div id='ajoutAtelier' style='display:none;' class='bloc'>
+    <div class='group'>AJOUT D'UN ATELIER :</div>
+    <form action='Modif/insertion.php' method='POST'>
+        <div>Nom de l'atelier <input type='text' name='nomA'></div>
+        <div>Zone de l'atelier <select name='nomZ'>
+            <?PHP
+                $requete="select nomZ from Zone";
+                $res=mysqli_query($idcom,$requete);
+                if ($res){
+                    while($row=mysqli_fetch_array($res)){
+                        echo "<option value='$row[0]'>$row[0]</option>";
+                    }
+                }else{
+                    echo "Problème pour Zone";
+                }
+            ?>
+            </select>
+        </div>
+        <div class="groupX"><input type='submit' name='inser' value='Ajouter'></div>
+    </form>
+</div>
 
 
-
-
-<div class='bloc'>
-	<form action='gestion.php' method='POST'>
+<div class='bloc1' >
 	<div class='bloc'>
 		<div class='group'>Manège
-			<input class='modif' type='submit' name='manege' value='Modifier'>
+            <button onclick=aff("ajoutManege")><span>Ajouter</span></button>
 		</div>
 		<?PHP
 			$req="SELECT nomM FROM Manege";
 			$res=mysqli_query($idcom,$req);
 			if($res){
-				echo "<table border=2px>";
+                echo "<div class='group1'>";
+				echo "<table>";
+                echo "<tr><th>Nom Manege</th>";
 				while($row=mysqli_fetch_array($res)){
 					echo "<tr><td><a href='manegeadm.php?NomM=$row[0]'>$row[0]</a></td></tr>";
 				}
 				echo "</table>";
+                echo "</div>";
 			}
 		?>
 	</div>
 	<div class='bloc'>
 		<div class='group'>Boutique
-			<input class='modif' type='submit' name='boutique' value='Modifier'>
+            <button onclick=aff("ajoutBoutique")><span>Ajouter</span></button>
 		</div>
 		<?PHP
 			$req="SELECT IdB,nomB FROM Boutique";
 			$res=mysqli_query($idcom,$req);
 			if($res){
-				echo "<table border=2px>";
+                echo "<div class='group1'>";
+				echo "<table>";
+                echo "<tr><th>Id Boutique</th><th>Nom Boutique</th>";
 				while($row=mysqli_fetch_array($res)){
 					echo "<tr><td>$row[0]</td><td><a href='boutiqueadm.php?IdB=$row[0]'>$row[1]</a></td></tr>";
 				}
 				echo "</table>";
+                echo "</div>";
 			}
 		?>
 	</div>
 	<div class='bloc'>
 		<div class='group'>Atelier
-			<input class='modif' type='submit' name='atelier' value='Modifier'>
+            <button onclick=aff("ajoutAtelier")><span>Ajouter</span></button>
 		</div>
 		<?PHP
 			$req="SELECT IdA,nomA FROM Atelier";
 			$res=mysqli_query($idcom,$req);
 			if($res){
-				echo "<table border=2px>";
+                echo "<div class='group1'>";
+				echo "<table>";
+                echo "<tr><th>Id Atelier</th><th>Nom Atelier</th>";
 				while($row=mysqli_fetch_array($res)){
 					echo "<tr><td>$row[0]</td><td><a href='atelieradm.php?IdA=$row[0]'>$row[1]</a></td></tr>";
 				}
 				echo "</table>";
+                echo "</div>";
 			}
 		?>
 	</div>
-	</form>
 </div>
 
 
