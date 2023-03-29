@@ -42,7 +42,18 @@
 			$metier=mysqli_fetch_array(mysqli_query($idcom,$requete));
 			session_start();
 			$_SESSION['numss']=$id;
-			$_SESSION['metier']=$metier;
+			if($metier[1]=="1"){
+				$_SESSION['metier']="Chef d'Atelier";
+			}
+			elseif (($metier[2]=="1")&&($metier[0]=="Serveur")){
+				$_SESSION['metier']="Responsable de Restaurant";
+			}
+			elseif (($metier[2]=="1")&&($metier[0]=="Vendeur")){
+				$_SESSION['metier']="Responsable de Boutique";
+			}
+			else{
+				$_SESSION['metier']=$metier[0];
+			}
 			mysqli_close($idcom);
 			header('Location: Menu/accueil.php');
 		}else{
