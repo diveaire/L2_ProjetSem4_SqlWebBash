@@ -73,8 +73,8 @@ button:hover span:after {
 table, th{
     border: 1px solid black;
     border-radius: 10px;
-    padding-left:5px;
-    padding-right:5px;
+    padding-left:2x;
+    padding-right:2px;
 }
 th{
     font-weight:normal;

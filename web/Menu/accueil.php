@@ -62,7 +62,7 @@ $metier=$_SESSION['metier'];
         </div>
     </div>
     <div class="group3">
-        <img src="../Fichiers/images/UPJV.png" alt="Logo de l'UPJV (bleu)" width="200" height="200">
+        <img src="../Fichiers/Images/UPJV.png" alt="Logo de l'UPJV (bleu)" width="200" height="200">
     </div>
 </div>
 <div class="bloc">

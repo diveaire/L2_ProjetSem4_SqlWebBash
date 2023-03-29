@@ -2,7 +2,7 @@
 <?PHP
     session_start();
     if (isset($_SESSION['metier'])&&(isset($_POST['inser']))){
-        include("connex.inc.php");
+        include("../../Parametres/connex.inc.php");
         $idcom=connex("myparam");
         if(!empty($_POST['nomM'])&&(!empty($_POST['libelleF']))&&(!empty($_POST['nomZ']))){
             $nomM=$_POST['nomM'];
@@ -65,10 +65,10 @@
         }else{
         	echo "<script>alert('ça marche pas');</script>";
         }
-        header('Location: gestion.php');
+        header('Location: ../gestion.php');
     }
     else{
-        header('Location: index.php');
+        header('Location: ../../index.php');
     }
 ?>
 </HTML>

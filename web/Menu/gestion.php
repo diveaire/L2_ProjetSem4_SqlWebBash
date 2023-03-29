@@ -127,7 +127,7 @@ $metier=$_SESSION['metier'];
 				echo "<table>";
                 echo "<tr><th>Nom Manege</th>";
 				while($row=mysqli_fetch_array($res)){
-					echo "<tr><td><a href='manegeadm.php?NomM=$row[0]'>$row[0]</a></td></tr>";
+					echo "<tr><td><a href='AdminModif/manegeadm.php?NomM=$row[0]'>$row[0]</a></td></tr>";
 				}
 				echo "</table>";
                 echo "</div>";
