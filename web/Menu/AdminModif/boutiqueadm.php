@@ -251,8 +251,8 @@
                     }
                 } 
                 else{
-                    echo "<tr><th>Numéro de sécurité social</th><th>Nom</th><th>Prénom</th></tr>";
-                    echo "<tr><td>Aucun personnel</td><td>Aucun personnel</td><td>Aucun personnel</td></tr>";
+                    echo "<tr><th>Type d'objet</th><th>Nom de l'objet</th><th>Date de vente</th><th>Prix</th></tr>";
+                    echo "<tr><td>Aucune donnée</td><td>Aucune donnée</td><td>Aucune donnée</td></tr>";
                 }
                 echo "</table>";
                 echo "<div><button onclick=aff('addVen')><span>Ajouter une vente</span></button></div>";
