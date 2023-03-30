@@ -10,14 +10,15 @@
     <link rel="stylesheet" href="../../Style/menu.css">
     <link rel="stylesheet" href="../../Style/styleProfil.css">
     <script src="../../Script/script.js"></script>
+    <script src="../../Script/date.js"></script>
 </head>
 <body>
 <ul id="menu">
-    <li class="menu_elm"><a class="menuLink" href="accueil.php">Accueil</a></li>
-    <li class="menu_elm"><a class="menuLink" href="profil.php">Profil</a></li>
-    <li class="menu_elm"><a class="menuLink" href="recherche.php">Recherche</a></li>
-    <li class="menu_elm"><a class="menuLink" href="gestion.php">Gestion Administrative</a></li>
-    <li id="logout" ><a class="menuLink" href="logout.php">Log out</a></li>
+    <li class="menu_elm"><a class="menuLink" href="../accueil.php">Accueil</a></li>
+    <li class="menu_elm"><a class="menuLink" href="../profil.php">Profil</a></li>
+    <li class="menu_elm"><a class="menuLink" href="../recherche.php">Recherche</a></li>
+    <li class="menu_elm"><a class="menuLink" href="../gestion.php">Gestion Administrative</a></li>
+    <li id="logout" ><a class="menuLink" href="../logout.php">Log out</a></li>
 </ul>
 <?PHP
     $NomM=$_GET["NomM"];
@@ -41,8 +42,8 @@
         echo "<tr><th>Nom Manège</th><th>Taille Minimale</th><th>Description</th><th>Famille de manège</th><th>Zone</th></tr>";
         echo "<tr><td>$NomM</td><td>$tailleMin</td><td>$description</td><td>$nomF</td><td>$nomZ</td></tr>"; 
         echo "</table>";
-        echo "<div><button onclick=aff('modMan')>Modifier</button></div>";
-        echo "<div><button onclick=aff('delMan')>Supprimer</button></div>";
+        echo "<div><button onclick=aff('modMan')><span>Modifier</span></button></div>";
+        echo "<div><button onclick=aff('delMan')><span>Supprimer</span></button></div>";
         echo "</div>";
     }
 ?>
@@ -91,19 +92,19 @@
             echo "<tr><td>Aucune donnée</td><td>Aucune donnée</td><td>Aucune donnée</td><td>Aucune donnée</td></tr>"; 
         }
         echo "</table>";
-        echo "<div><button onclick=aff('adBil')>Modifier</button></div>";
-        echo "<div><button onclick=aff('delBil')>Supprimer</button></div>";
+        echo "<div><button onclick=aff('addBil')><span>Modifier</span></button></div>";
+        echo "<div><button onclick=aff('delBil')><span>Supprimer</span></button></div>";
         echo "</div>";
     }
 ?>
- <div class='bloc' id="adBil" style='display:none;'>
+ <div class='bloc' id="addBil" style='display:none;'>
             <form method='POST' action='../Modif/modify.php'>
                     <?PHP
                     echo "<input type='hidden' name='id' value='".$_GET['NomM']."'></input>";
                     echo "<input type='hidden' name='tb' value='Bilan'></input>";
                     ?>
                     Date :
-                    <input type="date"></input>
+                    <input type="date" name='DateB' min="2020-01-01" required pattern="\d{2}-\d{2}-\d{4}"></input>
                     <select name="ap">
                         <option value="AM">AM</option>
                         <option value="PM">PM</option>
@@ -111,13 +112,14 @@
                     Chargé de manège :
                     <select name="ns">
                     <?PHP
-                        $req="SELECT NumSS, UPPER(nomP), prenomP FROM Personnel WHERE Metier='Chargé de manège'";
+                        $req="SELECT P.NumSS, UPPER(nomP), prenomP FROM Personnel P, Competences C WHERE P.Metier='Chargé de manège' AND P.NumSS=C.NumSS AND EXISTS(SELECT * FROM Manege M WHERE M.NomM='$NomM' AND C.IdF=M.IdF)";
                         $res=mysqli_query($idcom,$req);
                         while($row=mysqli_fetch_array($res)){
                             echo "<option value=".$row[0].">".$row[1]." ".$row[2]." N° : ".$row[0]."</option>";
                         }
                     ?>
                     </select>
+                    <input type="text" name="frequentation" placeholder="Fréquentation"></input>
                     <input type="submit" name="modify" value="Confirmer">
             </form>
     </div>
@@ -128,7 +130,7 @@
                     echo "<input type='hidden' name='tb' value='Bilan'></input>";
                     ?>
                     Date :
-                    <input type="date"></input>
+                    <input type="date" name='date' required pattern="\d{2}-\d{2}-\d{4}"></input>
                     <select name="ap">
                         <option value="AM">AM</option>
                         <option value="PM">PM</option>
@@ -164,7 +166,75 @@
             echo "<tr><td>Aucune donnée</td><td>Aucune donnée</td><td>Aucune donnée</td><td>Aucune donnée</td></tr>"; 
         }
         echo "</table>";
+        $req="SELECT IdM FROM Maintenance  WHERE NomM='$NomM' AND DateFin IS NULL";
+        $res=mysqli_query($idcom,$req);
+        $ligne=mysqli_num_rows($res);
+        if($ligne==0){
+            echo "<div><button onclick=aff('addMai');setDateD()><span>Mettre en maintenance</span></button></div>";
+        }else{
+            $val=mysqli_fetch_array($res);
+            $val=$val[0];
+            echo "<div><button onclick=aff('addMai');setDateF()><span>Fin de la maintenance</span></button></div>";
+            echo "<div><button onclick=aff('delMai')><span>Annuler</span></button></div>";
+        }
         echo "</div>";
+?>
+        <div class='bloc' id="addMai" style='display:none;'>
+        <?PHP
+        if($ligne==0){
+        ?>
+                <form method='POST' action='equipeadm.php'>
+                        <?PHP
+                        echo "<input type='hidden' name='id' value='".$_GET['NomM']."'></input>";
+                        echo "<input type='hidden' name='tb' value='Maintenance'></input>";
+                        ?>
+                        Début de la maintenance :
+                        <input type="date" id="DebMaintenance" name='DateDeb' required pattern="\d{2}-\d{2}-\d{4}"></input>
+                        Atelier :
+                        <?php
+                            $req="SELECT A.IdA, A.nomA FROM Atelier A WHERE A.IdZ=(SELECT M.IdZ FROM Manege M WHERE M.NomM='$NomM')";
+                            $res=mysqli_query($idcom,$req);
+                        ?>
+                        <select name="IdA">
+                        <?php
+                            while($row=mysqli_fetch_array($res)){
+                                echo"<option value='$row[0]'>$row[1]</option>";
+                            }
+                        ?>
+                        </select>
+                        <input type="submit" name="Add" value="Confirmer">
+                </form>
+        <?php
+        }else{
+        ?>
+            <form method='POST' action='../Modif/modify.php'>
+                        <?PHP
+                        echo "<input type='hidden' name='id' value='".$val."'></input>";
+                        echo "<input type='hidden' name='tb' value='Maintenance'></input>";
+                        $req="SELECT DATE_FORMAT(DateDeb,'%Y-%m-%d') FROM Maintenance WHERE IdM=$val";
+                        $res=mysqli_query($idcom,$req);
+                        if($res){
+                            $row=mysqli_fetch_array($res);
+                            echo "Fin de la maintenance :";
+                            echo "<input type='date' min='$row[0]' name='DateFin' required pattern='\d{2}-\d{2}-\d{4}'></input>";
+                        }
+                        ?>
+                        <input type="submit" name="End" value="Confirmer">
+            </form>
+        </div>
+        <div class='bloc' id="delMai" style='display:none;'>
+                <form method='POST' action='../Modif/delete.php'>
+                        <?PHP
+                        echo "<input type='hidden' name='id' value='".$val."'></input>";
+                        echo "<input type='hidden' name='tb' value='Maintenance'></input>";
+                        ?>
+                        <input type="submit" name="delete" value="Confirmer">
+                </form>
+        </div>
+        <?php
+        }
+            ?>
+ <?PHP       
     }
     mysqli_close($idcom);
     }
