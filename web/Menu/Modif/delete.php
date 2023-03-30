@@ -20,7 +20,7 @@
             $requete="DELETE FROM Maintenance WHERE IdM=$IdM";
         }
         elseif($tb=="Boutique"){
-            $req="UPDATE Personnel SET responsable=0 WHERE responsable=1 AND IdB=$id";
+            $req="UPDATE Personnel SET responsable=0,IdB=null WHERE IdB=$id";
             $res=mysqli_query($idcom,$req);
             $requete="DELETE FROM Boutique WHERE IdB='$id'";
         }
