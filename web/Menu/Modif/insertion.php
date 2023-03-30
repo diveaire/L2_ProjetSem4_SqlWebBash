@@ -34,19 +34,31 @@
             }
         }
         elseif($_POST['tb']=="Boutique"){
-            if(!empty($_POST['nomB'])&&(!empty($_POST['nomZ']))&&(!empty($_POST['typeB']))){
+            if(!empty($_POST['nomB'])&&(!empty($_POST['nomZ']))&&(!empty($_POST['typeB']))&&(!empty($_POST['resp']))){
                 $nomB=$_POST['nomB'];
                 $nomZ=$_POST['nomZ'];
                 $typeB=$_POST['typeB'];
+                $resp=$_POST['resp'];
                 $req="SELECT IdZ FROM Zone WHERE nomZ='$nomZ'";
                 $res=mysqli_fetch_array(mysqli_query($idcom,$req));
                 if($res){
                     $IdZ=$res[0];
                 }
-                $req="SELECT MAX(IdB) FROM Boutique";
+                $req="SELECT Metier FROM Personnel WHERE NumSS='$resp'";
                 $res=mysqli_fetch_array(mysqli_query($idcom,$req));
-                $IdB=$res[0]+1;
-                $requete="INSERT INTO Boutique VALUES ('$IdB','$nomB','$typeB','$IdZ')";
+                if($res){
+                    $metier=$res[0];
+                }
+                if((($metier!="Serveur")&&(($typeB=="Souvenir")||($typeB=="souvenir")))||(($metier!="Vendeur")&&(($typeB=="Restaurant")||($typeB=="restaurant")))){
+                    $req="SELECT MAX(IdB) FROM Boutique";
+                    $res=mysqli_fetch_array(mysqli_query($idcom,$req));
+                    $IdB=$res[0]+1;
+                    $requete="INSERT INTO Boutique VALUES ('$IdB','$nomB','$typeB','$IdZ')";
+                    $result=mysqli_query($idcom,$requete); 
+                    $requete1="UPDATE Personnel SET responsable=1, IdB=$IdB WHERE NumSS='$resp'";
+                    $result1=mysqli_query($idcom,$requete1);   
+                    unset($requete);
+                }
             }
         }
         elseif($_POST['tb']=="Atelier"){
