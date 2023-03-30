@@ -64,7 +64,39 @@
                 $requete="INSERT INTO Atelier VALUES ('$IdA','$nomA','$IdZ')";
             }
         }
-        $result=mysqli_query($idcom,$requete);
+        elseif($_POST['tb']=="Maintenance"){
+            if(!empty($_POST['NumSS'])){
+                $NomM=$_POST['id'];
+                $DateDeb=$_POST['DateDeb'];
+                $req="SELECT MAX(IdM) FROM Maintenance";
+                $res=mysqli_fetch_array(mysqli_query($idcom,$req));
+                $IdM=$res[0]+1;
+                $requete="INSERT INTO Maintenance (IdM,DateDeb,NomM) VALUES ($IdM,STR_TO_DATE('$DateDeb','%Y-%m-%d'),'$NomM')";
+                echo $requete;
+                $result=mysqli_query($idcom,$requete);
+                $tabN=$_POST['NumSS'];
+                for($i=0;$i<count($tabN);$i++){
+                    $req="INSERT INTO Equipe VALUES ($tabN[$i],$IdM)";
+                    $result=mysqli_query($idcom,$req);
+                }
+                unset($requete);
+            }
+        }
+        elseif($_POST['tb']=="Objet"){
+            if(!empty($_POST['nomO'])){
+                $IdB=$_POST['id'];
+                $nomO=$_POST['nomO'];
+                $IdT=$_POST['IdT'];
+                $req="SELECT MAX(IdO) FROM Objet";
+                $res=mysqli_fetch_array(mysqli_query($idcom,$req));
+                $IdO=$res[0]+1;
+                $requete="INSERT INTO Objet (IdO,nomO,IdB,IdT) VALUES ($IdO,'$nomO',$IdB,$IdT)";
+                echo $requete;
+            }
+        }
+        if(isset($requete)){
+            $result=mysqli_query($idcom,$requete);            
+        }
         mysqli_close($idcom);
         header('Location: ../gestion.php');
     }
