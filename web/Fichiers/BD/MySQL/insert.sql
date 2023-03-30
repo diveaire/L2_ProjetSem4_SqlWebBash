@@ -11,6 +11,8 @@ INSERT INTO TypeObjet VALUES (4,'Bijoux');
 INSERT INTO TypeObjet VALUES (5,'Souvenir');
 INSERT INTO TypeObjet VALUES (6,'Vetement');
 INSERT INTO TypeObjet VALUES (7,'Jouet');
+INSERT INTO TypeObjet VALUES (8,'Nourriture');
+INSERT INTO TypeObjet VALUES (9,'Boisson');
 
 INSERT INTO Zone VALUES (1,'Aqualand');
 INSERT INTO Zone VALUES (2,'Haute-Voltige');
@@ -71,6 +73,14 @@ INSERT INTO Objet VALUES (12,'Phoque 30 cm',6,3,STR_TO_DATE('22/03/2023','%d/%m/
 INSERT INTO Objet VALUES (13,'Débardeur Joe',4,6,STR_TO_DATE('12/04/2023','%d/%m/%Y'),23);
 INSERT INTO Objet VALUES (14,'Boite de chocolat',5,1,STR_TO_DATE('15/02/2023','%d/%m/%Y'),8);
 INSERT INTO Objet VALUES (15,'Bonnet de Père Noel',4,6,STR_TO_DATE('10/12/2022','%d/%m/%Y'),4);
+INSERT INTO Objet VALUES (16,'Lot de Frites',1,8,null,25);
+INSERT INTO Objet VALUES (17,'Poulet',3,8,null,35);
+INSERT INTO Objet VALUES (18,'Lot de Frites',3,8,null,23);
+INSERT INTO Objet VALUES (19,'Burger',3,8,null,35);
+INSERT INTO Objet VALUES (20,'Burger',2,8,STR_TO_DATE('25/03/2023','%d/%m/%Y'),6);
+INSERT INTO Objet VALUES (21,'Burger',1,8,STR_TO_DATE('11/05/2023','%d/%m/%Y'),6);
+INSERT INTO Objet VALUES (22,'Soda Pepsi',1,9,STR_TO_DATE('11/02/2023','%d/%m/%Y'),3);
+INSERT INTO Objet VALUES (23,'Lot de Frites',1,8,STR_TO_DATE('12/12/2022','%d/%m/%Y'),2);
 
 INSERT INTO PiecesDetachees VALUES (14189639,'Roue',4,1);
 INSERT INTO PiecesDetachees VALUES (61231584,'Moteur',1,2);
