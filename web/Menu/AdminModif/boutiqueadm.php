@@ -136,7 +136,7 @@
                     Changez de responsable :
                     <select name="newresp">
                     <?PHP
-                        $req="SELECT P.NumSS, UPPER(nomP), prenomP FROM Personnel P WHERE P.Metier='Vendeur' AND P.IdB=$IdB AND responsable=0";
+                        $req="SELECT P.NumSS, UPPER(nomP), prenomP FROM Personnel P WHERE P.IdB=$IdB AND responsable=0";
                         $res=mysqli_query($idcom,$req);
                         while($row=mysqli_fetch_array($res)){
                             echo "<option value=".$row[0].">".$row[1]." ".$row[2]." N° : ".$row[0]."</option>";
@@ -144,7 +144,7 @@
                     ?>
                     </select>
                     <?PHP 
-                        $req1="SELECT P.NumSS FROM Personnel P WHERE P.Metier='Vendeur' AND P.IdB=$IdB AND responsable=1";
+                        $req1="SELECT P.NumSS FROM Personnel P WHERE P.IdB=$IdB AND responsable=1";
                         $res1=mysqli_query($idcom,$req1);
                         $row1=mysqli_fetch_array($res1);
                         echo "<input type='hidden' name='resp' value='$row1[0]'></input>";
