@@ -149,7 +149,7 @@ $metier=$_SESSION['metier'];
 				echo "<table>";
                 echo "<tr><th>Id Boutique</th><th>Nom Boutique</th>";
 				while($row=mysqli_fetch_array($res)){
-					echo "<tr><td>$row[0]</td><td><a href='boutiqueadm.php?IdB=$row[0]'>$row[1]</a></td></tr>";
+					echo "<tr><td>$row[0]</td><td><a href='AdminModif/boutiqueadm.php?IdB=$row[0]'>$row[1]</a></td></tr>";
 				}
 				echo "</table>";
                 echo "</div>";
@@ -168,7 +168,7 @@ $metier=$_SESSION['metier'];
 				echo "<table>";
                 echo "<tr><th>Id Atelier</th><th>Nom Atelier</th>";
 				while($row=mysqli_fetch_array($res)){
-					echo "<tr><td>$row[0]</td><td><a href='atelieradm.php?IdA=$row[0]'>$row[1]</a></td></tr>";
+					echo "<tr><td>$row[0]</td><td><a href='AdminModif/atelieradm.php?IdA=$row[0]'>$row[1]</a></td></tr>";
 				}
 				echo "</table>";
                 echo "</div>";
