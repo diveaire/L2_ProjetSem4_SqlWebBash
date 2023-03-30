@@ -71,8 +71,37 @@ $metier=$_SESSION['metier'];
     <div class='group'>AJOUT D'UNE BOUTIQUE :</div>
         <form action='Modif/insertion.php' method='POST'>
         <input type='hidden' name='tb' value='Boutique'></input>
-        <div>Nom de la boutique <input type='text' name='nomB'><br />
-            Type de la boutique<input type='text' name='typeB'>
+        <div>Nom de la boutique <input type='text' name='nomB'><br /></div>
+        <div>
+            Type de la boutique
+            <select name='typeB'>
+            <?PHP
+                $requete="select distinct typeB from Boutique ";
+                $res=mysqli_query($idcom,$requete);
+                if ($res){
+                    while($row=mysqli_fetch_array($res)){
+                        echo "<option value='$row[0]'>$row[0]</option>";
+                    }
+                }else{
+                    echo "Problème pour typeB";
+                }
+            ?>
+            </select>
+        </div>
+        <div>Responsable
+            <select name='resp'>
+            <?PHP
+                $requete="select NumSS,UPPER(nomP),prenomP,Metier from Personnel where (Metier='Vendeur' OR Metier='Serveur') AND IdB IS NULL";
+                $res=mysqli_query($idcom,$requete);
+                if ($res){
+                    while($row=mysqli_fetch_array($res)){
+                        echo "<option value='$row[0]'>$row[3] : $row[1] $row[2]</option>";
+                    }
+                }else{
+                    echo "Problème pour Responsable";
+                }
+            ?>
+            </select>
         </div>
         <div>Zone de la boutique
             <select name='nomZ'>
