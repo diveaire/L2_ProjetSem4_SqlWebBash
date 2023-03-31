@@ -86,7 +86,8 @@
                 $requete="UPDATE Maintenance SET DateFin=STR_TO_DATE('$DateFin','%Y-%m-%d') WHERE IdM=$id";
                 $req="SELECT NomM FROM Maintenance WHERE IdM=$id";
                 $res=mysqli_query($idcom,$req);
-                $NomM=$res[0];
+                $val=mysqli_fetch_array($res);
+                $NomM=$val[0];
                 $retour="../AdminModif/manegeadm.php?NomM=$NomM";
             }
             else{
