@@ -2,7 +2,7 @@
 <?PHP
     session_start();
     if (isset($_SESSION['metier'])&&(isset($_POST['id']))&&(isset($_POST['tb']))){
-        $NomM=$_POST['id'];
+        $IdM=$_POST['id'];
         $tb=$_POST['tb'];
         $DateDeb=$_POST['DateDeb'];
         $IdA=$_POST['IdA'];
@@ -32,7 +32,7 @@
     <form method='POST' action='../Modif/insertion.php'>
     Choisissez les techniciens :
         <?PHP
-            echo "<input type='hidden' name='id' value='$NomM'></input>";
+            echo "<input type='hidden' name='id' value='$IdM'></input>";
             echo "<input type='hidden' name='tb' value='$tb'></input>";
             echo "<input type='hidden' name='DateDeb' value='$DateDeb'></input>";
         ?>
