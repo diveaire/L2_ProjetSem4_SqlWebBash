@@ -8,7 +8,7 @@ $idcom=connex("myparam");
 $id=$_SESSION['numss'];
 $metier=$_SESSION['metier'];
 ?>
-<html>
+<html lang="fr">
 <head>
     <title>page de Modification</title>
     <meta charset='UTF-8'>
@@ -34,8 +34,8 @@ $metier=$_SESSION['metier'];
         Johann THOMAS
     </div>
     <div class="group2">
-        <div id=Calendar style="position:relative;width:238px;top:-2px;" align="left"></div>
-        <div id=NavBar style="position:relative;width:286px;top:5px;" align="left">
+        <div id=Calendar style="position:relative;width:238px;top:-2px;"></div>
+        <div id=NavBar style="position:relative;width:286px;top:5px;"   >
             <form name="when">
                 <table>
                     <tr>
@@ -43,9 +43,9 @@ $metier=$_SESSION['metier'];
                         <td> </td>
                         <td><select name="Mois" onChange="On_Month()">
 
-                                <script language="JavaScript1.2">
+                                <script>
                                     if (ie4||ns6){
-                                        for (j=0;j<Nom_Mois.length;j++) {
+                                        for (let j=0;j<Nom_Mois.length;j++) {
                                             document.writeln('<option value=' + j + '>' + Nom_Mois[j]);
                                         }
                                     }
@@ -53,7 +53,7 @@ $metier=$_SESSION['metier'];
 
                             </select>
                         </td>
-                        <td><input type="text" name="Annee" size=4 maxlength=4 onKeyPress="return Check_Nums()" onKeyUp="On_Year()"></td>
+                        <td><input type="text" name="Annee" size=4 maxlength=4 onKeyUp="On_Year()"></td>
                         <td> </td>
                         <td><input type="button" value="Next -->" onClick="Skip('+')"></td>
                     </tr>

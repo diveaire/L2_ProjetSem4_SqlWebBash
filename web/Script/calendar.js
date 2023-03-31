@@ -61,7 +61,7 @@
     HTML_String += '<tr><th colspan=7 BGCOLOR="FFFFFF" BORDERCOLOR="000000">' + Heading + '</font></th></tr>';
     
     HTML_String += '<tr>' +
-        '<th ALIGN="CENTER" BGCOLOR="FFFFFF" BORDERCOLOR="000000">Lun</th>' +
+        '<th>Lun</th>' +
         '<th ALIGN="CENTER" BGCOLOR="FFFFFF" BORDERCOLOR="000000">Mar</th>' +
         '<th ALIGN="CENTER" BGCOLOR="FFFFFF" BORDERCOLOR="000000">Mer</th>' +
         '<th ALIGN="CENTER" BGCOLOR="FFFFFF" BORDERCOLOR="000000">Jeu</th>' +

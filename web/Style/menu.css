@@ -68,12 +68,25 @@ button:hover span:after {
     opacity: 1;
     right: 0;
 }
-
+/* style petit champ de texte */
+.petitChamp{
+    grid-column: 2;
+    grid-row:3;
+    width: 30%;
+    height: 25px;
+    padding: 0 10px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+    box-shadow: none;
+    transition: all 0.3s ease-in-out;
+}
 /* TABLEAU */
 table, th{
     border: 1px solid black;
     border-radius: 10px;
-    padding-left:2x;
+    padding-left:2px;
     padding-right:2px;
 }
 th{

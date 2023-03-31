@@ -36,19 +36,6 @@
     box-shadow: none;
     transition: all 0.3s ease-in-out;
 }
-.petitChamp{
-    grid-column: 2;
-    grid-row:3;
-    width: 30%;
-    height: 25px;
-    padding: 0 10px;
-    font-size: 12px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    outline: none;
-    box-shadow: none;
-    transition: all 0.3s ease-in-out;
-}
 
 input[type=text]:focus, #recherche:focus {
     border-color: #007bff;
@@ -62,7 +49,7 @@ input[type=text]:focus, #recherche:focus {
 }
 .group2{
     text-align:center;
-    grid-column: 1 / 5;
+    grid-column: 1 / 6;
     grid-row:2;
 }
 .group3{

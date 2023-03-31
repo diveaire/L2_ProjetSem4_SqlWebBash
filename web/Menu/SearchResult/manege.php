@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="fr">
 <head>
     <title>Manege</title>
     <meta charset='UTF-8'>

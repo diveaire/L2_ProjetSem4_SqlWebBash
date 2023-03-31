@@ -51,7 +51,7 @@ if (isset($_SESSION['metier'])){
         <div class="group1">
             <input type="submit" name='mb' value='Manege'><br />
             <input type="submit" name='mb' value='Boutique'><br />
-            <?PHP if ($metier=="Directeur"){ ?>
+            <?PHP if ($metier=="Directeur"){ //affichage des options suplémentaires (recherche) pour le directeur?>
                 <input type="submit" name='mb' value='Personnel'><br />
                 <input type="submit" name='mb' value='Vente'><br />
                 <input type="submit" name='mb' value='Inventaire'><br />
@@ -150,10 +150,13 @@ if (isset($_SESSION['metier'])){
                         else{
                             echo "Problème pour TypeObjet";
                         }
-                        echo "<fieldset><legend>Date de Vente :</legend><select name='signe' style='margin-right:3px;'><option value='='>=</option><option value='<'>&lt;</option><option value='>'>&gt;</option></select><input type=date name='date'></fieldset>";
+                        echo "<fieldset><legend>Date de Vente :</legend><select name='signe' style='margin-right:3px;'>
+                                    <option value='='>=</option><option value='<'>&lt;</option><option value='>'>&gt;</option>
+                               </select><input type=date name='date'></fieldset>";
                     echo "</div>";
                     echo "<div class='group5'>";
-                        echo "<fieldset><legend>Prix entre :</legend><input class='petitChamp' type='text' placeholder='Prix Min' name='Prix1'> <br>et <br><input class='petitChamp' type='text' placeholder='Prix Max' name='Prix2'></fieldset>";
+                        echo "<fieldset><legend>Prix entre :</legend><input class='petitChamp' pattern='[0-9]+' type='text' placeholder='Prix Min (€)' name='Prix1'> 
+                                <br>et <br><input class='petitChamp' type='text' pattern='[0-9]+' placeholder='Prix Max (€)' name='Prix2'></fieldset>";
                     echo "</div>";
                 }
                 //CHOIX RECHERCHE Inventaire -- TABLE Objet/PiecesDetachées -- Recherche : nomO,nomPc -- Champs : Prix(range),Boutique,type,Atelier -- RESTRICT DIRECTEUR
@@ -203,7 +206,8 @@ if (isset($_SESSION['metier'])){
                         }
                     echo "</div>";
                     echo "<div class='group5'>";
-                        echo "<fieldset><legend>Prix entre :</legend><input class='petitChamp' type='text' placeholder='Prix Min' name='Prix1'> <br>et <br><input class='petitChamp' type='text' placeholder='Prix Max' name='Prix2'></fieldset>";
+                        echo "<fieldset><legend>Prix entre :</legend><input class='petitChamp' type='text' pattern='[0-9]+' placeholder='Prix Min (€)' name='Prix1'> 
+                                <br>et <br><input class='petitChamp' type='text' pattern='[0-9]+' placeholder='Prix Max (€)' name='Prix2'></fieldset>";
                         echo "<fieldset><legend>Vendu </legend>";
                         echo "Oui<input type='radio' name='vente' value='oui'>";
                         echo "Non<input type='radio' name='vente' value='non'></fieldset>";
@@ -212,7 +216,8 @@ if (isset($_SESSION['metier'])){
                 //CHOIX RECHERCHE MANEGE -- Recherche : nomM -- Champs : taille(range),zone,famille -- RESTRICT ALL
                 elseif ($_SESSION['recherche']=='Manege'){
                     echo "<div class='group5'>";
-                    echo "<fieldset><legend>Taille entre :</legend><input class='petitChamp' type='text' placeholder='TailleMin' name='Taille1'> <br>et <br><input class='petitChamp' type='text' placeholder='TailleMax' name='Taille2'></fieldset>";
+                    echo "<fieldset><legend>Taille entre :</legend><input class='petitChamp' type='text' pattern='[0-9]+' placeholder='TailleMin (cm)' name='Taille1'> 
+                            <br>et <br><input class='petitChamp' type='text' placeholder='TailleMax (cm)' pattern='[0-9]+' name='Taille2'></fieldset>";
                     echo "</div>";
                     echo "<div class='group4'>";
                     $requetef="select libelleF from Famille";
@@ -559,6 +564,6 @@ if (isset($_SESSION['metier'])){
 <?PHP
 mysqli_close($idcom);
 }else{
-	echo "Merci de vous connecter <a href='index.php'>log in </a>";
+	echo "Merci de vous connecter <a href='../index.php'>log in </a>";
 }
 ?>

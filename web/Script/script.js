@@ -1,4 +1,4 @@
-
+//permet de faire la vérification entre les 2champs de password
 function validatePassword(){
     let password = document.getElementById("password")
         , password1 = document.getElementById("password1");
@@ -8,9 +8,12 @@ function validatePassword(){
         password1.setCustomValidity('');
     }
 }
-function showModif(modif){
+//permet d'afficher une alert sur le site
+function showModif(){
     alert("Enregistrer");
 }
+
+//permet l'affichage d'un élément en fonction de son id fournis en paramètre
 function aff(element){
     let elm = document.getElementById(element)
     if(getComputedStyle(elm).display != "none"){

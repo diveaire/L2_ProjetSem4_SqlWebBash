@@ -24,7 +24,7 @@
         }
     }
 ?>
-<html>
+<html lang="fr">
 <head>
     <title>page de Modification</title>
     <meta charset='UTF-8'>
@@ -59,7 +59,7 @@ if($val&&(($_SESSION['droit']==1)||($_SESSION['droit']==5))){
         $nomA=$row[0];
         $nomZ=$row[1];
         $chef="$row[2] $row[3]";
-        echo "<table border=2px>";
+        echo "<table>";
         echo "<tr><th>Nom Atelier</th><th>Chef</th><th>Zone</th></tr>";
         echo "<tr><td>$nomA</td><td>$chef</td><td>$nomZ</td></tr>"; 
         echo "</table>";
@@ -73,11 +73,11 @@ if($val&&(($_SESSION['droit']==1)||($_SESSION['droit']==5))){
     <div class='bloc' id="modAte" style='display:none;'>
             <form method='POST' action='../Modif/modify.php'>
                 <?PHP
-                    echo "<input type='hidden' name='id' value='$IdA'></input>";
-                    echo "<input type='hidden' name='tb' value='Atelier'></input>";
+                    echo "<input type='hidden' name='id' value='$IdA'>";
+                    echo "<input type='hidden' name='tb' value='Atelier'>";
                 ?>
                 Nom de l'Atelier :
-                <input type="text" name="val"></input>
+                <input type="text" name="val">
                 <input type="submit" name="modify" value="Confirmer">
             </form>
         </div>
@@ -87,8 +87,8 @@ if($_SESSION['droit']==1){
     <div class='bloc' id="delAte" style='display:none;'>
         <form method='POST' action='../Modif/delete.php'>
                 <?PHP
-                    echo "<input type='hidden' name='id' value='$IdA'></input>";
-                    echo "<input type='hidden' name='tb' value='Atelier'></input>";
+                    echo "<input type='hidden' name='id' value='$IdA'>";
+                    echo "<input type='hidden' name='tb' value='Atelier'>";
                 ?>
             <input type="submit" name="delete" value="Confirmer">
         </form>
@@ -101,15 +101,14 @@ if($_SESSION['droit']==1){
         $l=mysqli_num_rows($resp);
         echo "<div class='bloc'>";
         echo "<div class='group'>Personnel : </div>";
-        echo "<table border='2px'>";
+        echo "<table>";
+        echo "<tr><th>Numéro de sécurité social</th><th>Nom</th><th>Prénom</th></tr>";
         if($l>0){
-            echo "<tr><th>Numéro de sécurité social</th><th>Nom</th><th>Prénom</th></tr>";
             while($row=mysqli_fetch_array($resp)){
                 echo "<tr><td>".$row[0]."</td><td>".$row[1]."</td><td>".$row[2]."</td></tr>";
             }
         } 
         else{
-            echo "<tr><th>Numéro de sécurité social</th><th>Nom</th><th>Prénom</th></tr>";
             echo "<tr><td>Aucun personnel</td><td>Aucun personnel</td><td>Aucun personnel</td></tr>";
         }
         echo "</table>";
@@ -126,8 +125,8 @@ if($_SESSION['droit']==1){
         <div class='bloc' id="modAteP" style='display:none;'>
                 <form method='POST' action='../Modif/modify.php'>
                     <?PHP
-                        echo "<input type='hidden' name='id' value='$IdA'></input>";
-                        echo "<input type='hidden' name='tb' value='Personnel_Atelier'></input>";
+                        echo "<input type='hidden' name='id' value='$IdA'>";
+                        echo "<input type='hidden' name='tb' value='Personnel_Atelier'>";
                     ?>
                     Ajouter un personnel :
                     
@@ -172,7 +171,7 @@ if($_SESSION['droit']==1){
                         $req1="SELECT P.NumSS FROM Personnel P WHERE P.IdA=$IdA AND chef=1";
                         $res1=mysqli_query($idcom,$req1);
                         $row1=mysqli_fetch_array($res1);
-                        echo "<input type='hidden' name='chef' value='$row1[0]'></input>";
+                        echo "<input type='hidden' name='chef' value='$row1[0]'>";
                     ?>
 
                     <input type="submit" name="modC" value="Modifier">
@@ -181,8 +180,8 @@ if($_SESSION['droit']==1){
         <div class='bloc' id="delAteP" style='display:none;'>
             <form method='POST' action='../Modif/modify.php'>
                     <?PHP
-                        echo "<input type='hidden' name='id' value='$IdA'></input>";
-                        echo "<input type='hidden' name='tb' value='Personnel_Atelier'></input>";
+                        echo "<input type='hidden' name='id' value='$IdA'>";
+                        echo "<input type='hidden' name='tb' value='Personnel_Atelier'>";
                     ?>
                     Supprimer le personnel :
                     <?PHP
@@ -213,7 +212,7 @@ if($_SESSION['droit']==1){
     if($resm){
         echo "<div class='bloc'>";
         echo "<div class='group'>Maintenances : </div>";
-        echo "<table border=2px>";
+        echo "<table>";
         echo "<tr><th>Nom du manège</th><th>Date de début</th><th>Date de fin</th><th>Nombre de personnel</th></tr>";
         $l=mysqli_num_rows($resm);
         if($l>0){
@@ -236,7 +235,7 @@ if($_SESSION['droit']==1){
         <div class='bloc' id="endMai" style='display:none;'>
             <form method='POST' action='../Modif/modify.php'>
                         <?PHP
-                        echo "<input type='hidden' name='tb' value='Maintenance'></input>";
+                        echo "<input type='hidden' name='tb' value='Maintenance'>";
                         $req="SELECT M.IdM,DATE_FORMAT(M.DateDeb,'%d/%m/%Y'),M.nomM FROM Maintenance M WHERE DateFin IS NULL AND EXISTS(SELECT P.NumSS FROM Personnel P, Equipe E WHERE E.IdM=M.IdM AND P.NumSS=E.NumSS AND P.IdA=$IdA)";
                         $res=mysqli_query($idcom,$req);
                         if($res){
@@ -264,15 +263,14 @@ if($_SESSION['droit']==1){
         $l=mysqli_num_rows($resi);
         echo "<div class='bloc'>";
         echo "<div class='group'>Inventaire : </div>";
-        echo "<table border='2px'>";
+        echo "<table>";
+        echo "<tr><th>Numéro de série</th><th>Nom de la pièce</th></tr>";
         if($l>0){
-            echo "<tr><th>Numéro de série</th><th>Nom de la pièce</th></tr>";
             while($row=mysqli_fetch_array($resi)){
                 echo "<tr><td>".$row[0]."</td><td>".$row[1]."</td></tr>";
             }
         } 
         else{
-            echo "<tr><th>Numéro de série</th><th>Nom de la pièce</th></tr>";
             echo "<tr><td>Aucune pièce</td><td>Aucune pièce</td></tr>";
         }
         echo "</table>";
@@ -284,19 +282,19 @@ if($_SESSION['droit']==1){
 <div class='bloc' id="addPie" style='display:none;'>
             <form method='POST' action='../Modif/insertion.php'>
                     <?PHP
-                        echo "<input type='hidden' name='id' value='$IdA'></input>";
-                        echo "<input type='hidden' name='tb' value='Piece'></input>";
+                        echo "<input type='hidden' name='id' value='$IdA'>";
+                        echo "<input type='hidden' name='tb' value='Piece'>";
                     ?>
-                        N° Série : <input type="text" name="NumSerie" placeholder></input>
-                        Nom : <input type="text" name="nomPC" ></input>
+                        N° Série : <input type="text" name="NumSerie" pattern="[0-9]{8}" minlength="8" maxlength="8" placeholder="(8 chiffres)">
+                        Nom : <input type="text" maxlength="32" name="nomPC" >
                 <input type="submit" name="add" value="Ajouter">
             </form>
         </div>
         <div class='bloc' id="rmvPie" style='display:none;'>
             <form method='POST' action='../Modif/delete.php'>
                     <?PHP
-                        echo "<input type='hidden' name='id' value='$IdA'></input>";
-                        echo "<input type='hidden' name='tb' value='Piece'></input>";
+                        echo "<input type='hidden' name='id' value='$IdA'>";
+                        echo "<input type='hidden' name='tb' value='Piece'>";
                     ?>
                     Pièce :
                     <?PHP
@@ -327,15 +325,14 @@ if($_SESSION['droit']==1){
         $l=mysqli_num_rows($resf);
         echo "<div class='bloc'>";
         echo "<div class='group'>Pièces fournies : </div>";
-        echo "<table border='2px'>";
+        echo "<table>";
+        echo "<tr><th>Numéro de série</th><th>Nom de la pièce</th><th>Nom du manège</th></tr>";
         if($l>0){
-            echo "<tr><th>Numéro de série</th><th>Nom de la pièce</th><th>Nom du manège</th></tr>";
             while($row=mysqli_fetch_array($resf)){
                 echo "<tr><td>".$row[0]."</td><td>".$row[1]."</td><td>".$row[2]."</td></tr>";
             }
         } 
         else{
-            echo "<tr><th>Numéro de série</th><th>Nom de la pièce</th><th>Nom du manège</th></tr>";
             echo "<tr><td>Aucune pièce</td><td>Aucune pièce</td><td>Aucune pièce</td></tr>";
         }
         echo "</table>";
@@ -346,8 +343,8 @@ if($_SESSION['droit']==1){
         <div class='bloc' id="furPie" style='display:none;'>
             <form method='POST' action='../Modif/modify.php'>
                     <?PHP
-                        echo "<input type='hidden' name='id' value='$IdA'></input>";
-                        echo "<input type='hidden' name='tb' value='Piece'></input>";
+                        echo "<input type='hidden' name='id' value='$IdA'>";
+                        echo "<input type='hidden' name='tb' value='Piece'>";
                     ?>
                     Pièce : 
                     <?PHP
@@ -389,8 +386,8 @@ if($_SESSION['droit']==1){
         <div class='bloc' id="delPie" style='display:none;'>
             <form method='POST' action='../Modif/modify.php'>
                     <?PHP
-                        echo "<input type='hidden' name='id' value='$IdA'></input>";
-                        echo "<input type='hidden' name='tb' value='Piece'></input>";
+                        echo "<input type='hidden' name='id' value='$IdA'>";
+                        echo "<input type='hidden' name='tb' value='Piece'>";
                     ?>
                     Pièce :
                     <?PHP

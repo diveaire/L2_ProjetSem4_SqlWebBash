@@ -1,4 +1,5 @@
-<HTML>
+<!DOCTYPE HTML>
+<html lang="fr">
 <?PHP
     session_start();
     if (isset($_SESSION['metier'])&&($_SESSION['droit']>0)&&(isset($_POST['tb']))){
@@ -117,7 +118,6 @@
             if(!empty($_POST['NumSerie'])&&!empty($_POST['nomPC'])){
                 $NumSerie=$_POST['NumSerie'];
                 if(preg_match("/^[0-9]{8}$/",$NumSerie)){
-                    $tailleMin=$val;
                     $nomPC=$_POST['nomPC'];
                     $IdA=$_POST['id'];
                     $requete="INSERT INTO PiecesDetachees (NumSerie,nomPC,IdA) VALUES ($NumSerie,'$nomPC',$IdA)";

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="fr">
 <head>
     <title>Boutique</title>
     <meta charset='UTF-8'>
@@ -24,7 +24,7 @@
                 $typeB=$row[1];
                 $nomZ=$row[2];
                 $responsable="$row[3] $row[4]";
-                echo "<table border='2px'>";
+                echo "<table>";
                 echo "<tr><th>Nom Boutique</th><th>Type</th><th>Responsable</th><th>Zone</th></tr>";
                 echo "<tr><td>$nomB</td><td>$typeB</td><td>$responsable</td><td>$nomZ</td></tr>"; 
                 echo "</table></div>";
@@ -34,7 +34,7 @@
                 if($l>0){
                     echo "<div class='bloc'>";
                     echo "<div class='group'>Inventaire : </div>";
-                    echo "<table border='2px'>";
+                    echo "<table>";
                     echo "<tr><th>Type d'objet</th><th>Quantité</th></tr>";
                     while($row=mysqli_fetch_array($resi)){
                         echo "<tr><td>".$row[0]."</td><td>".$row[1]."</td></tr>";

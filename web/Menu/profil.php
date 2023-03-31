@@ -1,14 +1,21 @@
 <!DOCTYPE HTML>
+<!--
+	page1--bloc1 	information personnel 	(--ALL)
+	page2--bloc2 	Moteur de recherche	(--ALL) -> retour de la recherche = tableau sous forme de lien cliquable
+	page3--bloc3	Gestion Administrative (Directeur) -> ajouter/supprimer/modifier(manège/boutique et personnel affiliés) + recherche plus poussée que 2 + 					fonctionnalités --bloc1
+	page3--bloc4	Gestion Administrative (CM/responsable Atelier || boutique) -> modification administratif sur leurs cadre de travail (manèges || boutique || atelier)
+				pas de modifications sur personnel ; pas de gestions des supervision <--(directeur)
+	page3--bloc5	Gestion Administrative (CM) manège en maintenance = CM/directeur
+-->
 <?PHP
 session_start();
-
 if (isset($_SESSION['metier'])){
     include("../Parametres/connex.inc.php");
     $idcom=connex("myparam");
     $id=$_SESSION['numss'];
     $metier=$_SESSION['metier'];
     ?>
-<html>
+<html lang="fr">
 <head>
     <title>page de Modification</title>
     <meta charset='UTF-8'>
@@ -80,20 +87,20 @@ if (isset($_SESSION['metier'])){
         </div>
         <div id="nom">
             <form method='post' action='profil.php'>
-                <input type="text" placeholder="nom" name="nom">
+                <input class='petitChamp' type="text" maxlength="32" placeholder="nom" name="nom">
                 <input type="submit" name="submit" value="valider">
             </form>
         </div>
         <div id="prenom">
             <form method='post' action='profil.php'>
-                <input type="text" placeholder="prénom" name="prénom">
+                <input class='petitChamp' type="text"  maxlength="32" placeholder="prénom" name="prénom">
                 <input type="submit" name="submit" value="valider">
             </form>
         </div>
         <div id="pass">
             <form method='post' action='profil.php'>
-                <input type="password" id="password" placeholder="mot de passe" name="password"><br />
-                <input type="password" id="password1" placeholder="confirmer le mot de passe" name="password1">
+                <input class='petitChamp' type="password" id="password"  maxlength="32" placeholder="mot de passe" name="password"><br />
+                <input class='petitChamp' type="password" id="password1" maxlength="32" placeholder="confirmer le mot de passe" name="password1">
                 <input type="submit" name="submit" onclick=validatePassword() value="valider">
             </form>
         </div>
@@ -106,17 +113,3 @@ mysqli_close($idcom);
 echo "Merci de vous connecter <a href='../index.php'>log in </a>";
 }
 ?>
-
-
-
-
-
-<!--
-	page1--bloc1 	information personnel 	(--ALL)
-	page2--bloc2 	Moteur de recherche	(--ALL) -> retour de la recherche = tableau sous forme de lien cliquable
-	page3--bloc3	Gestion Administrative (Directeur) -> ajouter/supprimer/modifier(manège/boutique et personnel affiliés) + recherche plus poussée que 2 + 					fonctionnalités --bloc1
-	page3--bloc4	Gestion Administrative (CM/responsable Atelier || boutique) -> modification administratif sur leurs cadre de travail (manèges || boutique || atelier)
-				pas de modifications sur personnel ; pas de gestions des supervision <--(directeur)
-	page3--bloc5	Gestion Administrative (CM) manège en maintenance = CM/directeur
-	pagen--bloc6
-	-->

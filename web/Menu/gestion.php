@@ -7,7 +7,7 @@ if (isset($_SESSION['metier'])){
     $id=$_SESSION['numss'];
     $metier=$_SESSION['metier'];
 ?>
-<html>
+<html lang="fr">
 <head>
     <title>page de Modification</title>
     <meta charset='UTF-8'>
@@ -34,7 +34,7 @@ if (isset($_SESSION['metier'])){
 <div id='ajoutManege' style='display:none;' class='bloc'>
     <div class='group'>AJOUT D'UN MANEGE :</div>
     <form action='Modif/insertion.php' method='POST'>
-    <input type='hidden' name='tb' value='Manege'></input>
+    <input type='hidden' name='tb' value='Manege'>
         <div class='group1'>
             Nom du Manège <input type='text' name='nomM'>
             Taille Minimale<div class='slider'><input type='range' min='0' max='200' value='100' name='tailleMin' oninput='rangeValue.innerText = this.value'><p id='rangeValue'>100</p></div>
@@ -76,7 +76,7 @@ if (isset($_SESSION['metier'])){
 <div id='ajoutBoutique' style='display:none;' class='bloc'>
     <div class='group'>AJOUT D'UNE BOUTIQUE :</div>
         <form action='Modif/insertion.php' method='POST'>
-        <input type='hidden' name='tb' value='Boutique'></input>
+        <input type='hidden' name='tb' value='Boutique'>
         <div>Nom de la boutique <input type='text' name='nomB'><br /></div>
         <div>
             Type de la boutique
@@ -135,7 +135,7 @@ if (isset($_SESSION['metier'])){
 <div id='ajoutAtelier' style='display:none;' class='bloc'>
     <div class='group'>AJOUT D'UN ATELIER :</div>
     <form action='Modif/insertion.php' method='POST'>
-        <input type='hidden' name='tb' value='Atelier'></input>
+        <input type='hidden' name='tb' value='Atelier'>
         <div>Nom de l'atelier <input type='text' name='nomA'></div>
         <div>Chef
             <?PHP

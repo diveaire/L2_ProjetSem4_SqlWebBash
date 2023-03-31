@@ -24,7 +24,7 @@
     }
     }
 ?>
-<html>
+<html lang="fr">
 <head>
     <title>page de Modification</title>
     <meta charset='UTF-8'>
@@ -72,7 +72,7 @@
                         $chaff="Aucune donnée";
                     }
                 }
-                echo "<table border='2px'>";
+                echo "<table>";
                 echo "<tr><th>Nom Boutique</th><th>Type</th><th>Responsable</th><th>Frequentation totale</th><th>Chiffre d'affaire total</th><th>Zone</th></tr>";
                 echo "<tr><td>$nomB</td><td>$typeB</td><td>$responsable</td><td>$freq</td><td>$chaff</td><td>$nomZ</td></tr>"; 
                 echo "</table>";
@@ -85,11 +85,11 @@
         <div class='bloc' id="modBou" style='display:none;'>
             <form method='POST' action='../Modif/modify.php'>
                 <?PHP
-                    echo "<input type='hidden' name='id' value='$IdB'></input>";
-                    echo "<input type='hidden' name='tb' value='Boutique'></input>";
+                    echo "<input type='hidden' name='id' value='$IdB'>";
+                    echo "<input type='hidden' name='tb' value='Boutique'>";
                 ?>
                 Nom de la boutique :
-                <input type="text" name="val"></input>
+                <input type="text" name="val">
                 <input type="submit" name="modify" value="Confirmer">
             </form>
         </div>
@@ -99,8 +99,8 @@
     <div class='bloc' id="delBou" style='display:none;'>
         <form method='POST' action='../Modif/delete.php'>
                 <?PHP
-                    echo "<input type='hidden' name='id' value='$IdB'></input>";
-                    echo "<input type='hidden' name='tb' value='Boutique'></input>";
+                    echo "<input type='hidden' name='id' value='$IdB'>";
+                    echo "<input type='hidden' name='tb' value='Boutique'>";
                 ?>
             <input type="submit" name="delete" value="Confirmer">
         </form>
@@ -112,15 +112,14 @@
                 $l=mysqli_num_rows($resp);
                 echo "<div class='bloc'>";
                 echo "<div class='group'>Personnel : </div>";
-                echo "<table border='2px'>";
+                echo "<table>";
+                echo "<tr><th>Numéro de sécurité social</th><th>Nom</th><th>Prénom</th></tr>";
                 if($l>0){
-                    echo "<tr><th>Numéro de sécurité social</th><th>Nom</th><th>Prénom</th></tr>";
                     while($row=mysqli_fetch_array($resp)){
                         echo "<tr><td>".$row[0]."</td><td>".$row[1]."</td><td>".$row[2]."</td></tr>";
                     }
                 } 
                 else{
-                    echo "<tr><th>Numéro de sécurité social</th><th>Nom</th><th>Prénom</th></tr>";
                     echo "<tr><td>Aucun personnel</td><td>Aucun personnel</td><td>Aucun personnel</td></tr>";
                 }
                 echo "</table>";
@@ -134,8 +133,8 @@
         <div class='bloc' id="modBouP" style='display:none;'>
                 <form method='POST' action='../Modif/modify.php'>
                     <?PHP
-                        echo "<input type='hidden' name='id' value='$IdB'></input>";
-                        echo "<input type='hidden' name='tb' value='Personnel_Boutique'></input>";
+                        echo "<input type='hidden' name='id' value='$IdB'>";
+                        echo "<input type='hidden' name='tb' value='Personnel_Boutique'>";
                     ?>
                     Ajouter un personnel :
                     <?php
@@ -187,7 +186,7 @@
                         $req1="SELECT P.NumSS FROM Personnel P WHERE P.IdB=$IdB AND responsable=1";
                         $res1=mysqli_query($idcom,$req1);
                         $row1=mysqli_fetch_array($res1);
-                        echo "<input type='hidden' name='resp' value='$row1[0]'></input>";
+                        echo "<input type='hidden' name='resp' value='$row1[0]'>";
                     ?>
 
                     <input type="submit" name="modR" value="Modifier">
@@ -196,8 +195,8 @@
         <div class='bloc' id="delBouP" style='display:none;'>
             <form method='POST' action='../Modif/modify.php'>
                     <?PHP
-                        echo "<input type='hidden' name='id' value='$IdB'></input>";
-                        echo "<input type='hidden' name='tb' value='Personnel_Boutique'></input>";
+                        echo "<input type='hidden' name='id' value='$IdB'>";
+                        echo "<input type='hidden' name='tb' value='Personnel_Boutique'>";
                     ?>
                     Supprimer le personnel :
                     <?PHP
@@ -226,7 +225,7 @@
         ?>
             <div class='bloc'>
             <div class='group'>Inventaire : </div>
-            <table border='2px'>
+            <table>
             <?php
             if($resi){
                 $l=mysqli_num_rows($resi);
@@ -247,21 +246,20 @@
         <div class='bloc' id="addObj" style='display:none;'>
             <form method='POST' action='../Modif/insertion.php'>
                     <?PHP
-                        echo "<input type='hidden' name='id' value='$IdB'></input>";
-                        echo "<input type='hidden' name='tb' value='Objet'></input>";
+                        echo "<input type='hidden' name='id' value='$IdB'>";
+                        echo "<input type='hidden' name='tb' value='Objet'>";
                     ?>
                     Type d'objet
                     <select name="IdT">
                     <?PHP
                         if($typeB=="restaurant"||$typeB=="Restaurant"){
                             $req="SELECT IdT,libelleT FROM TypeObjet WHERE libelleT LIKE '%Nourriture%' OR libelleT LIKE '%Boisson%'";
-                            $res=mysqli_query($idcom,$req);
                         }
                         else{
                             $req="SELECT IdT,libelleT FROM TypeObjet";
-                            $res=mysqli_query($idcom,$req);
                         }
-                        while($row=mysqli_fetch_array($res)){
+                    $res=mysqli_query($idcom,$req);
+                    while($row=mysqli_fetch_array($res)){
                             echo "<option value=".$row[0].">".$row[1]."</option>";
                         }
                     ?>
@@ -273,8 +271,8 @@
         <div class='bloc' id="supObj" style='display:none;'>
             <form method='POST' action='../Modif/delete.php'>
                     <?PHP
-                        echo "<input type='hidden' name='id' value='$IdB'></input>";
-                        echo "<input type='hidden' name='tb' value='Objet'></input>";
+                        echo "<input type='hidden' name='id' value='$IdB'>";
+                        echo "<input type='hidden' name='tb' value='Objet'>";
                     ?>
                     Supprimer le produit :
                     <?PHP
@@ -303,15 +301,14 @@
                 $l=mysqli_num_rows($resv);
                 echo "<div class='bloc'>";
                 echo "<div class='group'>Vente : </div>";
-                echo "<table border='2px'>";
+                echo "<table>";
+                echo "<tr><th>Type d'objet</th><th>Nom de l'objet</th><th>Date de vente</th><th>Prix</th></tr>";
                 if($l>0){
-                    echo "<tr><th>Type d'objet</th><th>Nom de l'objet</th><th>Date de vente</th><th>Prix</th></tr>";
                     while($row=mysqli_fetch_array($resv)){
                         echo "<tr><td>".$row[0]."</td><td>".$row[1]."</td><td>".$row[2]."</td><td>".$row[3]."</td></tr>";
                     }
                 } 
                 else{
-                    echo "<tr><th>Type d'objet</th><th>Nom de l'objet</th><th>Date de vente</th><th>Prix</th></tr>";
                     echo "<tr><td>Aucune donnée</td><td>Aucune donnée</td><td>Aucune donnée</td><td>Aucune donnée</td></tr>";
                 }
                 echo "</table>";
@@ -323,8 +320,8 @@
         <div class='bloc' id="addVen" style='display:none;'>
             <form method='POST' action='../Modif/modify.php'>
                     <?PHP
-                        echo "<input type='hidden' name='id' value='$IdB'></input>";
-                        echo "<input type='hidden' name='tb' value='Objet'></input>";
+                        echo "<input type='hidden' name='id' value='$IdB'>";
+                        echo "<input type='hidden' name='tb' value='Objet'>";
                     ?>
                     Objet :
                     <?PHP
@@ -344,16 +341,16 @@
                             }
                         }
                     ?>
-                    <input type="date" name='DateVente' required pattern="\d{2}-\d{2}-\d{4}"></input>
-                    <input type="text" name="Prix" value="0.00"></input>
+                    <input type="date" name='DateVente' required pattern="\d{2}-\d{2}-\d{4}">
+                    <input type="text" name="Prix" placeholder="prix" pattern="[0-9]+" value="0.00">
                 <input type="submit" name="add" value="Ajouter">
             </form>
         </div>
         <div class='bloc' id="rmvVen" style='display:none;'>
             <form method='POST' action='../Modif/modify.php'>
                     <?PHP
-                        echo "<input type='hidden' name='id' value='$IdB'></input>";
-                        echo "<input type='hidden' name='tb' value='Objet'></input>";
+                        echo "<input type='hidden' name='id' value='$IdB'>";
+                        echo "<input type='hidden' name='tb' value='Objet'>";
                     ?>
                     Annuler la vente :
                     <?PHP

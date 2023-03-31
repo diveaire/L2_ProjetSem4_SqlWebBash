@@ -7,7 +7,7 @@
         $DateDeb=$_POST['DateDeb'];
         $IdA=$_POST['IdA'];
 ?>
-<html>
+<html lang="fr">
 <head>
     <title>page de Modification</title>
     <meta charset='UTF-8'>
@@ -32,9 +32,9 @@
     <form method='POST' action='../Modif/insertion.php'>
     Choisissez les techniciens :
         <?PHP
-            echo "<input type='hidden' name='id' value='$IdM'></input>";
-            echo "<input type='hidden' name='tb' value='$tb'></input>";
-            echo "<input type='hidden' name='DateDeb' value='$DateDeb'></input>";
+            echo "<input type='hidden' name='id' value='$IdM'>";
+            echo "<input type='hidden' name='tb' value='$tb'>";
+            echo "<input type='hidden' name='DateDeb' value='$DateDeb'>";
         ?>
             <?PHP
                 $req="SELECT P.NumSS, UPPER(nomP), prenomP FROM Personnel P WHERE P.IdA=$IdA";
@@ -43,7 +43,7 @@
                     echo "$row[1] $row[2]:<input type='checkbox' name='NumSS[]' value='$row[0]'>";
                 }
             ?>
-            <input type='submit' name='confirmer' value='Valider'></input>
+            <input type='submit' name='confirmer' value='Valider'>
     </form>
 </div>
 <?PHP

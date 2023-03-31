@@ -26,7 +26,7 @@ INSERT INTO Famille VALUES (5,'Train');
 INSERT INTO Famille VALUES (6,'Auto-tamponeuse');
 INSERT INTO Famille VALUES (7,'Roue');
 
-INSERT INTO Manege VALUES ('Balade des hypocampes',125,'carrousel pour enfant immergé dans l eau',1,1);
+INSERT INTO Manege VALUES ('Balade des hippocampes',125,'carrousel pour enfant immergé dans l eau',1,1);
 INSERT INTO Manege VALUES ('Le moulin',0,'Petit carrousel',1,3);
 INSERT INTO Manege VALUES ('L hirrondelle',145,'Chaises volante ascendante',2,2);
 INSERT INTO Manege VALUES ('Mille-Patte',120,'Petit train pour enfant',3,3);
@@ -177,5 +177,5 @@ INSERT INTO Bilan VALUES ('La chute d Icare',192080610253029,STR_TO_DATE('14/03/
 INSERT INTO Bilan VALUES ('La chute d Icare',160120623950185,STR_TO_DATE('14/03/2023','%d/%m/%Y'),512,'PM');
 INSERT INTO Bilan VALUES ('L hirrondelle',273129489402427,STR_TO_DATE('14/03/2023','%d/%m/%Y'),360,'AM');
 INSERT INTO Bilan VALUES ('L hirrondelle',192080610253029,STR_TO_DATE('14/03/2023','%d/%m/%Y'),452,'PM');
-INSERT INTO Bilan VALUES ('Balade des hypocampes',177092774664744,STR_TO_DATE('14/03/2023','%d/%m/%Y'),350,'AM');
-INSERT INTO Bilan VALUES ('Balade des hypocampes',177092774664744,STR_TO_DATE('14/03/2023','%d/%m/%Y'),280,'PM');
+INSERT INTO Bilan VALUES ('Balade des hippocampes',177092774664744,STR_TO_DATE('14/03/2023','%d/%m/%Y'),350,'AM');
+INSERT INTO Bilan VALUES ('Balade des hippocampes',177092774664744,STR_TO_DATE('14/03/2023','%d/%m/%Y'),280,'PM');

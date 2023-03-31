@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="fr">
 <head>
     <title>Boutique</title>
     <meta charset='UTF-8'>

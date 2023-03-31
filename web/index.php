@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="fr">
 <head>
 	<title>SAE</title>
 	<meta charset="utf-8">

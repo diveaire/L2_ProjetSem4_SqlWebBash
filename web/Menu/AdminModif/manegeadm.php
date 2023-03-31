@@ -22,7 +22,7 @@
         }
     }
 ?>
-<html>
+<html lang="fr">
 <head>
     <title>page de Modification</title>
     <meta charset='UTF-8'>
@@ -55,7 +55,7 @@
         $description=$row[1];
         $nomF=$row[2];
         $nomZ=$row[3];
-        echo "<table border=2px>";
+        echo "<table>";
         echo "<tr><th>Nom Manège</th><th>Taille Minimale</th><th>Description</th><th>Famille de manège</th><th>Zone</th></tr>";
         echo "<tr><td>$NomM</td><td>$tailleMin</td><td>$description</td><td>$nomF</td><td>$nomZ</td></tr>"; 
         echo "</table>";
@@ -69,8 +69,8 @@
     <div class='bloc' id="modMan" style='display:none;'>
             <form method='POST' action='../Modif/modify.php'>
                     <?PHP
-                    echo "<input type='hidden' name='id' value='".$_GET['NomM']."'></input>";
-                    echo "<input type='hidden' name='tb' value='Manege'></input>";
+                    echo "<input type='hidden' name='id' value='".$_GET['NomM']."'>";
+                    echo "<input type='hidden' name='tb' value='Manege'>";
                     ?>
                     <select name="att">
                         <option value="nomM">Nom du Manège</option>
@@ -78,7 +78,7 @@
                         <option value="description">Description</option>
                         <option value="zone">Zone</option>
                     </select>
-                    <input type="text" name="val"></input>
+                    <input type="text" name="val">
                     <input type="submit" name="modify" value="Confirmer">
             </form>
     </div>
@@ -88,8 +88,8 @@
     <div class='bloc' id="delMan" style='display:none;'>
             <form method='POST' action='../Modif/delete.php'>
                     <?PHP
-                    echo "<input type='hidden' name='id' value='".$_GET['NomM']."'></input>";
-                    echo "<input type='hidden' name='tb' value='Manege'></input>";
+                    echo "<input type='hidden' name='id' value='".$_GET['NomM']."'>";
+                    echo "<input type='hidden' name='tb' value='Manege'>";
                     ?>
                     <input type="submit" name="delete" value="Confirmer">
             </form>
@@ -99,7 +99,7 @@
     if($res1){
         echo "<div class='bloc'>";
         echo "<div class='group'>Bilan : ".$_GET["NomM"]."</div>";
-        echo "<table border=2px>";
+        echo "<table>";
         echo "<tr><th>Date</th><th>AM/PM</th><th>Chargé de Manège</th><th>Fréquentation</th></tr>";
         $l=mysqli_num_rows($res1);
         if($l>0){
@@ -125,11 +125,11 @@
  <div class='bloc' id="addBil" style='display:none;'>
             <form method='POST' action='../Modif/modify.php'>
                     <?PHP
-                    echo "<input type='hidden' name='id' value='".$_GET['NomM']."'></input>";
-                    echo "<input type='hidden' name='tb' value='Bilan'></input>";
+                    echo "<input type='hidden' name='id' value='".$_GET['NomM']."'>";
+                    echo "<input type='hidden' name='tb' value='Bilan'>";
                     ?>
                     Date :
-                    <input type="date" name='DateB' min="2020-01-01" required pattern="\d{2}-\d{2}-\d{4}"></input>
+                    <input type="date" name='DateB' min="2020-01-01" required pattern="\d{2}-\d{2}-\d{4}">
                     <select name="ap">
                         <option value="AM">AM</option>
                         <option value="PM">PM</option>
@@ -169,7 +169,7 @@
                     }
                         
                     ?>
-                    <input type="text" name="frequentation" placeholder="Fréquentation"></input>
+                    <input type="text" name="frequentation" placeholder="Fréquentation">
                     <input type="submit" name="modify" value="Confirmer">
             </form>
     </div>
@@ -179,11 +179,11 @@
     <div class='bloc' id="delBil" style='display:none;'>
             <form method='POST' action='../Modif/delete.php'>
                     <?PHP
-                    echo "<input type='hidden' name='id' value='".$_GET['NomM']."'></input>";
-                    echo "<input type='hidden' name='tb' value='Bilan'></input>";
+                    echo "<input type='hidden' name='id' value='".$_GET['NomM']."'>";
+                    echo "<input type='hidden' name='tb' value='Bilan'>";
                     ?>
                     Date :
-                    <input type="date" name='date' required pattern="\d{2}-\d{2}-\d{4}"></input>
+                    <input type="date" name='date' required pattern="\d{2}-\d{2}-\d{4}">
                     <select name="ap">
                         <option value="AM">AM</option>
                         <option value="PM">PM</option>
@@ -196,7 +196,7 @@
     if($res2){
         echo "<div class='bloc'>";
         echo "<div class='group'>Maintenances : ".$_GET["NomM"]."</div>";
-        echo "<table border=2px>";
+        echo "<table>";
         echo "<tr><th>Nom de l'Atelier</th><th>Date de début</th><th>Date de fin</th><th>Nombre de personnel</th></tr>";
         $l=mysqli_num_rows($res2);
         if($l>0){
@@ -241,11 +241,11 @@
         ?>
                 <form method='POST' action='equipeadm.php'>
                         <?PHP
-                        echo "<input type='hidden' name='id' value='".$_GET['NomM']."'></input>";
-                        echo "<input type='hidden' name='tb' value='Maintenance'></input>";
+                        echo "<input type='hidden' name='id' value='".$_GET['NomM']."'>";
+                        echo "<input type='hidden' name='tb' value='Maintenance'>";
                         ?>
                         Début de la maintenance :
-                        <input type="date" id="DebMaintenance" name='DateDeb' required pattern="\d{2}-\d{2}-\d{4}"></input>
+                        <input type="date" id="DebMaintenance" name='DateDeb' required pattern="\d{2}-\d{2}-\d{4}">
                         Atelier :
                         <?php
                             $req="SELECT A.IdA, A.nomA FROM Atelier A WHERE A.IdZ=(SELECT M.IdZ FROM Manege M WHERE M.NomM='$NomM')";
@@ -266,14 +266,14 @@
         ?>
             <form method='POST' action='../Modif/modify.php'>
                         <?PHP
-                        echo "<input type='hidden' name='id' value='".$val."'></input>";
-                        echo "<input type='hidden' name='tb' value='Maintenance'></input>";
+                        echo "<input type='hidden' name='id' value='".$val."'>";
+                        echo "<input type='hidden' name='tb' value='Maintenance'>";
                         $req="SELECT DATE_FORMAT(DateDeb,'%Y-%m-%d') FROM Maintenance WHERE IdM=$val";
                         $res=mysqli_query($idcom,$req);
                         if($res){
                             $row=mysqli_fetch_array($res);
                             echo "Fin de la maintenance :";
-                            echo "<input type='date' min='$row[0]' name='DateFin' required pattern='\d{2}-\d{2}-\d{4}'></input>";
+                            echo "<input type='date' min='$row[0]' name='DateFin' required pattern='\d{2}-\d{2}-\d{4}'>";
                         }
                         ?>
                         <input type="submit" name="End" value="Confirmer">
@@ -282,8 +282,8 @@
         <div class='bloc' id="delMai" style='display:none;'>
                 <form method='POST' action='../Modif/delete.php'>
                         <?PHP
-                        echo "<input type='hidden' name='id' value='".$val."'></input>";
-                        echo "<input type='hidden' name='tb' value='Maintenance'></input>";
+                        echo "<input type='hidden' name='id' value='".$val."'>";
+                        echo "<input type='hidden' name='tb' value='Maintenance'>";
                         ?>
                         <input type="submit" name="delete" value="Confirmer">
                 </form>
