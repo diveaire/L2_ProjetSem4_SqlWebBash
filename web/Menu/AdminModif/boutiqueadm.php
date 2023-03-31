@@ -117,7 +117,12 @@
                     Ajouter un personnel :
                     <select name="NumSS">
                     <?php
-                        $req="SELECT P.NumSS, UPPER(nomP), prenomP FROM Personnel P WHERE P.Metier='Vendeur' AND P.IdB IS NULL";
+                        if($typeB=='Restaurant'||$typeB=='restaurant'){
+                             $req="SELECT P.NumSS, UPPER(nomP), prenomP FROM Personnel P WHERE P.Metier='Serveur' AND P.IdB IS NULL";
+                        }
+                        else{
+                            $req="SELECT P.NumSS, UPPER(nomP), prenomP FROM Personnel P WHERE P.Metier='Vendeur' AND P.IdB IS NULL";
+                        }
                         $res=mysqli_query($idcom,$req);
                         $l=mysqli_num_rows($res);
                         if($l>0){
