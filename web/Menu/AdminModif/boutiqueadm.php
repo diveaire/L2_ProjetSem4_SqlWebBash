@@ -171,27 +171,30 @@
                     </select>
                 <input type="submit" name="delete" value="Confirmer">
             </form>
-        </div>
+         </div>
         <?PHP
                 }
+        ?>
+            <div class='bloc'>
+            <div class='group'>Inventaire : </div>
+            <table border='2px'>
+            <?php
             if($resi){
                 $l=mysqli_num_rows($resi);
+                echo "<tr><th>Type d'objet</th><th>Nom du produit</th></tr>";
                 if($l>0){
-                    echo "<div class='bloc'>";
-                    echo "<div class='group'>Inventaire : </div>";
-                    echo "<table border='2px'>";
-                    echo "<tr><th>Type d'objet</th><th>Nom du produit</th></tr>";
                     while($row=mysqli_fetch_array($resi)){
                         echo "<tr><td>".$row[0]."</td><td>".$row[1]."</td></tr>";
                     }
-                    echo "</table>";
-                    echo "<div><button onclick=aff('addObj')><span>Ajouter</span></button></div>";
-                    echo "<div><button onclick=aff('supObj')><span>Supprimer</span></button></div>";
-                    echo "</div>";
-                }  
-            
-
-    ?>
+                } 
+                else{
+                    echo "<tr><td>Stock vide</td><td>Stock vide</td></tr>";
+                }
+            ?>
+            </table>
+                <div><button onclick=aff('addObj')><span>Ajouter</span></button></div>
+                <div><button onclick=aff('supObj')><span>Supprimer</span></button></div>
+            </div>
         <div class='bloc' id="addObj" style='display:none;'>
             <form method='POST' action='../Modif/insertion.php'>
                     <?PHP
