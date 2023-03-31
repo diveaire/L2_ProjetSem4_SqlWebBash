@@ -78,9 +78,9 @@ $metier=$_SESSION['metier'];
     </div>
     <div class="group5">
         <video controls >
-            <source src="../Fichiers/video" type="video/mp4">
+            <source width="50" src="../Fichiers/Video/video.mp4" type="video/mp4">
             Download the
-            <a href="/media/cc0-videos/flower.mp4">MP4</a>
+            <a href="../Fichiers/Video/video.mp4">MP4</a>
             video.
         </video>
 

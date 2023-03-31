@@ -1,10 +1,11 @@
 /*
     accueil.php + manège.php + boutique.php
  */
-
+/*
 html{
     overflow: hidden;
 }
+*/
 .bloc{
     background-color:#f9f9f9;
     margin-top:1%;
@@ -54,11 +55,11 @@ html{
     grid-row:2;
 }
 .group5{
-    padding-left:50px;
-    padding-right: 50px;
-    max-width: 60%;
-    display:grid;
-    justify-items: stretch;
     grid-column:2/4;
     grid-row:2;
 }
+video {
+    width:55%;
+    transform:translate(45%,0%);
+}
+/*.video { max-width: 100%; height: auto; }*/

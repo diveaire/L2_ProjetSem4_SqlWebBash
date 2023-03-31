@@ -29,7 +29,6 @@ $metier=$_SESSION['metier'];
 <div id='ajoutManege' style='display:none;' class='bloc'>
     <div class='group'>AJOUT D'UN MANEGE :</div>
     <form action='Modif/insertion.php' method='POST'>
-    <input type='hidden' name='tb' value='Manege'></input>
         <div class='group1'>
             Nom du Manège <input type='text' name='nomM'>
             Taille Minimale<div class='slider'><input type='range' min='0' max='200' value='100' name='tailleMin' oninput='rangeValue.innerText = this.value'><p id='rangeValue'>100</p></div>
@@ -70,38 +69,8 @@ $metier=$_SESSION['metier'];
 <div id='ajoutBoutique' style='display:none;' class='bloc'>
     <div class='group'>AJOUT D'UNE BOUTIQUE :</div>
         <form action='Modif/insertion.php' method='POST'>
-        <input type='hidden' name='tb' value='Boutique'></input>
-        <div>Nom de la boutique <input type='text' name='nomB'><br /></div>
-        <div>
-            Type de la boutique
-            <select name='typeB'>
-            <?PHP
-                $requete="select distinct typeB from Boutique ";
-                $res=mysqli_query($idcom,$requete);
-                if ($res){
-                    while($row=mysqli_fetch_array($res)){
-                        echo "<option value='$row[0]'>$row[0]</option>";
-                    }
-                }else{
-                    echo "Problème pour typeB";
-                }
-            ?>
-            </select>
-        </div>
-        <div>Responsable
-            <select name='resp'>
-            <?PHP
-                $requete="select NumSS,UPPER(nomP),prenomP,Metier from Personnel where (Metier='Vendeur' OR Metier='Serveur') AND IdB IS NULL";
-                $res=mysqli_query($idcom,$requete);
-                if ($res){
-                    while($row=mysqli_fetch_array($res)){
-                        echo "<option value='$row[0]'>$row[3] : $row[1] $row[2]</option>";
-                    }
-                }else{
-                    echo "Problème pour Responsable";
-                }
-            ?>
-            </select>
+        <div>Nom de la boutique <input type='text' name='nomB'><br />
+            Type de la boutique<input type='text' name='typeB'>
         </div>
         <div>Zone de la boutique
             <select name='nomZ'>
@@ -125,7 +94,6 @@ $metier=$_SESSION['metier'];
 <div id='ajoutAtelier' style='display:none;' class='bloc'>
     <div class='group'>AJOUT D'UN ATELIER :</div>
     <form action='Modif/insertion.php' method='POST'>
-        <input type='hidden' name='tb' value='Atelier'></input>
         <div>Nom de l'atelier <input type='text' name='nomA'></div>
         <div>Zone de l'atelier <select name='nomZ'>
             <?PHP
@@ -178,7 +146,7 @@ $metier=$_SESSION['metier'];
 				echo "<table>";
                 echo "<tr><th>Id Boutique</th><th>Nom Boutique</th>";
 				while($row=mysqli_fetch_array($res)){
-					echo "<tr><td>$row[0]</td><td><a href='AdminModif/boutiqueadm.php?IdB=$row[0]'>$row[1]</a></td></tr>";
+					echo "<tr><td>$row[0]</td><td><a href='boutiqueadm.php?IdB=$row[0]'>$row[1]</a></td></tr>";
 				}
 				echo "</table>";
                 echo "</div>";
@@ -197,7 +165,7 @@ $metier=$_SESSION['metier'];
 				echo "<table>";
                 echo "<tr><th>Id Atelier</th><th>Nom Atelier</th>";
 				while($row=mysqli_fetch_array($res)){
-					echo "<tr><td>$row[0]</td><td><a href='AdminModif/atelieradm.php?IdA=$row[0]'>$row[1]</a></td></tr>";
+					echo "<tr><td>$row[0]</td><td><a href='atelieradm.php?IdA=$row[0]'>$row[1]</a></td></tr>";
 				}
 				echo "</table>";
                 echo "</div>";

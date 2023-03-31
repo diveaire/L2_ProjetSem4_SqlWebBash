@@ -2,7 +2,6 @@
     accueil.php + manège.php + boutique.php
  */
 
-
 .bloc{
     background-color:#f9f9f9;
     margin-top:1%;
@@ -24,9 +23,16 @@
     grid-column: 1;
     grid-row:1;
     border-bottom:solid #f1f2f9;
-
+}
+.group1{
+    display: grid;
+    grid-template-columns: repeat(3,auto);
+    grid-template-rows: repeat(1, auto);
+    border-radius:10px;
+    grid-gap:10px;
 }
 table, th{
+    display:revert;
     border: 1px solid black;
     border-radius: 10px;
 }
