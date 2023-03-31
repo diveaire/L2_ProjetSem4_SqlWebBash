@@ -38,11 +38,34 @@
 	if ($res){
 		$rep=mysqli_fetch_array($res);
 		if (!empty($rep)){
-			$requete="select Metier from Personnel where NumSS='$id'";
+			$requete="select Metier,chef,responsable from Personnel where NumSS='$id'";
 			$metier=mysqli_fetch_array(mysqli_query($idcom,$requete));
 			session_start();
 			$_SESSION['numss']=$id;
-			$_SESSION['metier']=$metier[0];
+			if($metier[0]=="Directeur"){
+				$_SESSION['metier']="Directeur";
+				$_SESSION['droit']=1;
+			}
+			elseif($metier[1]=="1"){
+				$_SESSION['metier']="Chef d'Atelier";
+				$_SESSION['droit']=5;
+			}
+			elseif (($metier[2]=="1")&&($metier[0]=="Serveur")){
+				$_SESSION['metier']="Responsable de Restaurant";
+				$_SESSION['droit']=4;
+			}
+			elseif (($metier[2]=="1")&&($metier[0]=="Vendeur")){
+				$_SESSION['metier']="Responsable de Boutique";
+				$_SESSION['droit']=3;
+			}
+			elseif ($metier[0]=="Chargé de manège"){
+				$_SESSION['metier']="Chargé de manège";
+				$_SESSION['droit']=2;
+			}
+			else{
+				$_SESSION['metier']=$metier[0];
+				$_SESSION['droit']=0;
+			}
 			mysqli_close($idcom);
 			header('Location: Menu/accueil.php');
 		}else{
