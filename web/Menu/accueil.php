@@ -76,22 +76,21 @@ $metier=$_SESSION['metier'];
 <div class="bloc"><!-- 2ème bloc de données (intro + vidéo) -->
     <div class="group">description du projet</div>
     <div class="group4">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus sapien nec arcu vehicula ullamcorper.
-        Mauris augue leo, lobortis at est ut, tempus tempor tellus. Nullam tempor mollis lectus, eu ultricies
-        libero tincidunt eget. Nulla gravida elit eu iaculis lobortis. Morbi ac quam eget dolor tristique
-        Vivamus ac mi sed felis viverra pretium a a metus. Nullam neque odio, commodo a tempor non, mattis nec diam.
-        Sed a hendrerit felis, vitae tempus nisi. Vestibulum vulputate gravida nisl consectetur finibus. Fusce
-        gravida massa sit amet metus volutpat, id pellentesque neque ornare. Sed eleifend consectetur mauris nec
-        ultricies. Nulla vehicula, neque et efficitur tincidunt, velit nibh imperdiet ex, eget interdum leo massa.
+        Dans le contexte de la situation d’apprentissage et d’évaluation du semestre 4 de la licence d’informatique à l’UPJV,
+        nous avons dû réaliser un site web permettant l’interrogation, la gestion et l’administration d’une base de données.
+        C’est ainsi que nous avons réalisé ce site web dans le cadre de la mise en pratique des connaissances appliquées aux
+        modules de Base de Données et de Programmation Web.<br/>
+        Ce site web offre tout d’abord un accès à la base de données plus ou moins avancé en fonction de son niveau de privilèges.
+        La première fonctionnalité est de pouvoir se connecter, se déconnecter et modifier ses informations personnelles dans la
+        section profil. La deuxième fonctionnalité dans la section recherche concerne la possibilité d’interroger la base de
+        manière plus ou moins avancée en fonction du statut de l’utilisateur connecté. Enfin il est possible de gérer
+        administrativement le parc dans la section gestion administrative en fonction du statut de l’usager. Il y sera alors
+        possible d’ajouter, de modifier ou de supprimer certains ateliers, boutiques ou manège à condition d’avoir un niveau d’accès
+        approprié.<br/>
+        Une démonstration des différentes fonctionnalités vous est proposée dans la vidéo en page d’accueil.
     </div>
     <div class="group5">
-        <video controls >
-            <source width="50" src="../Fichiers/Video/video.mp4" type="video/mp4">
-            Download the
-            <a href="../Fichiers/Video/video.mp4">MP4</a>
-            video.
-        </video>
-
+        <iframe width="728" height="455" src="https://www.youtube.com/embed/HIGPNJRzBfg" title="Présentation web" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
 </div>
 </body>
