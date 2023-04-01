@@ -1,12 +1,15 @@
 <!DOCTYPE HTML>
 <?PHP
     session_start();
+    /*Ouverture de la session et vérification qu'il s'agit bien d'un membre du personnel qui s'est connecté*/
     if (isset($_SESSION['metier'])){
     include("../../Parametres/connex.inc.php");
+    /*Récupération des variables*/
     $idcom=connex("myparam");
     $id=$_SESSION['numss'];
     $metier=$_SESSION['metier'];
     $IdB=$_GET["IdB"];
+    /*Vérification que la personne connectée est bien en charge de la boutique*/
     if(($_SESSION['droit']==3)||($_SESSION['droit']==4)){
         $req="SELECT IdB FROM Personnel WHERE NumSS='$id'";
         $res=mysqli_query($idcom,$req);
@@ -41,17 +44,24 @@
     <li id="logout" ><a class="menuLink" href="../logout.php">Log out</a></li>
 </ul>
     <?PHP
+    /*Mise en place de toute les requètes de la base de donnée*/
         if ($val&&(($_SESSION['droit']==1)||($_SESSION['droit']==3)||($_SESSION['droit']==4))){
+            /*Requetes concernant les informations générales de la boutique */
             $requete="SELECT nomB,typeB,nomZ,UPPER(P.nomP),P.prenomP FROM Boutique B, Zone Z, Personnel P WHERE B.IdB=$IdB AND Z.IdZ=B.IdZ AND P.IdB=B.IdB AND P.responsable=1";
             $res=mysqli_query($idcom,$requete);
             $requete1="SELECT COUNT(DateVente),SUM(Prix) FROM Objet WHERE IdB=$IdB AND DateVente IS NOT NULL GROUP BY(IdB)";
             $res1=mysqli_query($idcom,$requete1);
+            /*Requete concernant les objets en stocks*/
             $requetei="SELECT DISTINCT T.libelleT,O.nomO, O.Prix FROM Objet O, TypeObjet T WHERE O.IdB=$IdB AND O.IdT=T.IdT AND O.DateVente IS NULL";
             $resi=mysqli_query($idcom,$requetei);
+            /*Requete concernant les ventes*/
             $requetev="SELECT DISTINCT T.libelleT,O.nomO,DATE_FORMAT(O.DateVente,'%Y-%m-%d'),O.Prix FROM Boutique B, Objet O, TypeObjet T WHERE O.IdB=$IdB AND O.IdT=T.IdT AND O.DateVente IS NOT NULL ORDER BY DATE_FORMAT(O.DateVente,'%Y-%m-%d')";
             $resv=mysqli_query($idcom,$requetev);
+            /*Requete concernant les personnels de la boutique*/
             $requetep="SELECT P.NumSS,UPPER(P.nomP),P.prenomP FROM Personnel P WHERE P.IdB='$IdB'";
             $resp=mysqli_query($idcom,$requetep);
+
+            /*Si la requete des informations a aboutie on affiche les données dans un tableau*/
             if($res){
                 $row=mysqli_fetch_array($res);
                 echo "<div class='bloc'>";
@@ -82,6 +92,7 @@
                 }
                 echo "</div>";
     ?>
+        <!-- Section permettant d'afficher les formulaires de modification des boutiques-->
         <div class='bloc' id="modBou" style='display:none;'>
             <form method='POST' action='../Modif/modify.php'>
                 <?PHP
@@ -89,7 +100,7 @@
                     echo "<input type='hidden' name='tb' value='Boutique'>";
                 ?>
                 Nom de la boutique :
-                <input type="text" name="val">
+                <input class='petitChamp' type="text" name="val">
                 <input type="submit" name="modify" value="Confirmer">
             </form>
         </div>
@@ -108,6 +119,7 @@
     <?PHP
     }
             }
+            /* Récupération des personnel et affichage de ceux-ci dans un tableau*/
             if($resp){
                 $l=mysqli_num_rows($resp);
                 echo "<div class='bloc'>";
@@ -130,6 +142,7 @@
                 echo "</div>";
     if(($_SESSION['droit']==1)){
     ?>
+        <!-- Section permettant d'afficher les formulaires de modification des personnels, accessible uniquement par le directeur-->
         <div class='bloc' id="modBouP" style='display:none;'>
                 <form method='POST' action='../Modif/modify.php'>
                     <?PHP
@@ -227,6 +240,7 @@
             <div class='group'>Inventaire : </div>
             <table>
             <?php
+            /* Récupération des résultats concernant les objets de la boutique et affichage de ceux-ci*/
             if($resi){
                 $l=mysqli_num_rows($resi);
                 echo "<tr><th>Type d'objet</th><th>Nom du produit</th></tr>";
@@ -243,6 +257,7 @@
                 <div><button onclick=aff('addObj')><span>Ajouter</span></button></div>
                 <div><button onclick=aff('supObj')><span>Supprimer</span></button></div>
             </div>
+        <!-- Section permettant d'afficher les formulaires de modification des objets de l'inventaire-->
         <div class='bloc' id="addObj" style='display:none;'>
             <form method='POST' action='../Modif/insertion.php'>
                     <?PHP
@@ -252,6 +267,7 @@
                     Type d'objet
                     <select name="IdT">
                     <?PHP
+                        /* Si la boutique est un restaurant, seule la nourriture et les boissons serons proposées */
                         if($typeB=="restaurant"||$typeB=="Restaurant"){
                             $req="SELECT IdT,libelleT FROM TypeObjet WHERE libelleT LIKE '%Nourriture%' OR libelleT LIKE '%Boisson%'";
                         }
@@ -263,7 +279,7 @@
                             echo "<option value=".$row[0].">".$row[1]."</option>";
                         }
                     ?>
-                    <input type="text" name="nomO" placeholder="Nom de l'objet">
+                    <input class='petitChamp' type="text" name="nomO" placeholder="Nom de l'objet">
                     </select>
                 <input type="submit" name="add" value="Ajouter">
             </form>
@@ -297,6 +313,7 @@
         </div>
     <?PHP
         }
+            /* Si il existe des produits dont la date de vente est différente de nulle, on les affiche comme produit vendu */
             if($resv){
                 $l=mysqli_num_rows($resv);
                 echo "<div class='bloc'>";
@@ -317,6 +334,7 @@
                 echo "</div>";
             
     ?>
+     <!-- Section permettant d'afficher les formulaires de mise en vente des objets de l'inventaire-->
         <div class='bloc' id="addVen" style='display:none;'>
             <form method='POST' action='../Modif/modify.php'>
                     <?PHP
@@ -342,7 +360,7 @@
                         }
                     ?>
                     <input type="date" name='DateVente' required pattern="\d{2}-\d{2}-\d{4}">
-                    <input type="text" name="Prix" placeholder="prix" pattern="[0-9]+" value="0.00">
+                    <input class='petitChamp' type="text" name="Prix" placeholder="prix" pattern="[0-9]+" value="0.00">
                 <input type="submit" name="add" value="Ajouter">
             </form>
         </div>
@@ -377,6 +395,7 @@
             }
             mysqli_close($idcom);
         }elseif(isset($_SESSION['metier'])){
+            mysqli_close($idcom);
             header('Location : ../gestion.php');
         }else{
             echo "Merci de vous connecter <a href='../../index.php'>log in </a>";

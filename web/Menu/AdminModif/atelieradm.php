@@ -1,12 +1,15 @@
 <!DOCTYPE HTML>
 <?PHP
     session_start();
+    /*Ouverture de la session et vérification qu'il s'agit bien d'un membre du personnel qui s'est connecté*/
     if (isset($_SESSION['metier'])){
         include("../../Parametres/connex.inc.php");
         $idcom=connex("myparam");
+        /*Récupération des variables*/
         $id=$_SESSION['numss'];
         $metier=$_SESSION['metier'];
         $IdA=$_GET['IdA'];
+        /*Vérification que la personne connectée est bien en charge de l'Atelier*/
         if($_SESSION['droit']==5){
             $req="SELECT IdA FROM Personnel WHERE NumSS='$id'";
             $res=mysqli_query($idcom,$req);
@@ -41,17 +44,24 @@
     <li id="logout" ><a class="menuLink" href="../logout.php">Log out</a></li>
 </ul>
 <?PHP
+/*Mise en place de toute les requètes de la base de donnée*/
 if($val&&(($_SESSION['droit']==1)||($_SESSION['droit']==5))){
+    /* Requete concernant les informations de l'atelier et son responsable */
     $requete="SELECT nomA,nomZ,UPPER(P.nomP),prenomP FROM Atelier A, Zone Z, Personnel P WHERE A.IdA=$IdA AND Z.IdZ=A.IdZ AND P.IdA=A.IdA AND chef=1";
     $res=mysqli_query($idcom,$requete);
+    /* Requete concernant les personnels de l'atelier*/
     $requetep="SELECT P.NumSS,UPPER(P.nomP),P.prenomP FROM Personnel P WHERE IdA=$IdA";
     $resp=mysqli_query($idcom,$requetep);
+    /* Requete concernant les maintenances de l'atelier */
     $requetem="SELECT E.IdM,DATE_FORMAT(M.DateDeb,'%d/%m/%Y'),DATE_FORMAT(M.DateFin,'%d/%m/%Y'),COUNT(E.NumSS),M.nomM FROM Maintenance M, Equipe E WHERE E.IdM=M.IdM AND E.NumSS IN(SELECT P.NumSS FROM Personnel P WHERE P.IdA=$IdA)GROUP BY (E.IdM)";
     $resm=mysqli_query($idcom,$requetem);
+    /* Requete concernant l'inventaire de l'atelier */
     $requetei="SELECT NumSerie,nomPC FROM PiecesDetachees WHERE IdA='$IdA' AND IdM IS NULL";
     $resi=mysqli_query($idcom,$requetei);
+    /* Requete concernant les pièces de l'atelier qui ont été livrées*/
     $requetef="SELECT P.NumSerie,P.nomPC,M.nomM FROM PiecesDetachees P, Maintenance M WHERE IdA='$IdA' AND P.IdM IS NOT NULL AND P.IdM=M.IdM";
     $resf=mysqli_query($idcom,$requetef);
+    /*Si la requete des informations a aboutie on affiche les données dans un tableau*/
     if($res){
         $row=mysqli_fetch_array($res);
         echo "<div class='bloc'>";
@@ -70,6 +80,7 @@ if($val&&(($_SESSION['droit']==1)||($_SESSION['droit']==5))){
         echo "</div>";
     }
 ?>
+<!-- Section permettant d'afficher les formulaires de modification générales sur l'atelier-->
     <div class='bloc' id="modAte" style='display:none;'>
             <form method='POST' action='../Modif/modify.php'>
                 <?PHP
@@ -77,7 +88,7 @@ if($val&&(($_SESSION['droit']==1)||($_SESSION['droit']==5))){
                     echo "<input type='hidden' name='tb' value='Atelier'>";
                 ?>
                 Nom de l'Atelier :
-                <input type="text" name="val">
+                <input class='petitChamp' type="text" name="val">
                 <input type="submit" name="modify" value="Confirmer">
             </form>
         </div>
@@ -97,6 +108,7 @@ if($_SESSION['droit']==1){
 }
 ?>
 <?php
+ /* Récupération des personnel et affichage de ceux-ci dans un tableau*/
     if($resp){
         $l=mysqli_num_rows($resp);
         echo "<div class='bloc'>";
@@ -122,6 +134,7 @@ if($_SESSION['droit']==1){
 <?PHP
     if($_SESSION['droit']==1){
 ?>
+<!-- Section permettant d'afficher les formulaires de modification des personnels, accessible uniquement par le directeur-->
         <div class='bloc' id="modAteP" style='display:none;'>
                 <form method='POST' action='../Modif/modify.php'>
                     <?PHP
@@ -209,6 +222,7 @@ if($_SESSION['droit']==1){
 ?>
     <?php
     }
+    /* Récupération des maintenances concernant cet atelier et affichage de ceux-ci dans un tableau*/
     if($resm){
         echo "<div class='bloc'>";
         echo "<div class='group'>Maintenances : </div>";
@@ -232,6 +246,7 @@ if($_SESSION['droit']==1){
         echo "<div><button onclick=aff('endMai')><span>Fin de la maintenance</span></button></div>";    
         echo "</div>";
 ?>
+<!-- Section permettant de mettre fin à une maintenance, la fin de la maintenance sera actée le jour où le responsable clique sur le bouton Mettre fin à la maintenance-->
         <div class='bloc' id="endMai" style='display:none;'>
             <form method='POST' action='../Modif/modify.php'>
                         <?PHP
@@ -259,6 +274,7 @@ if($_SESSION['droit']==1){
         
     <?php
     }
+    /* Récupération des pièces de l'inventaire de cet atelier et affichage de ceux-ci dans un tableau*/
     if($resi){
         $l=mysqli_num_rows($resi);
         echo "<div class='bloc'>";
@@ -279,14 +295,15 @@ if($_SESSION['droit']==1){
         echo "</div>";
     ?>
 
-<div class='bloc' id="addPie" style='display:none;'>
+ <!-- Section permettant d'afficher les outils d'ajout et de suppression d'une pièce-->
+ <div class='bloc' id="addPie" style='display:none;'>
             <form method='POST' action='../Modif/insertion.php'>
                     <?PHP
                         echo "<input type='hidden' name='id' value='$IdA'>";
                         echo "<input type='hidden' name='tb' value='Piece'>";
                     ?>
-                        N° Série : <input type="text" name="NumSerie" pattern="[0-9]{8}" minlength="8" maxlength="8" placeholder="(8 chiffres)">
-                        Nom : <input type="text" maxlength="32" name="nomPC" >
+                        N° Série : <input class='petitChamp' type="text" name="NumSerie" pattern="[0-9]{8}" minlength="8" maxlength="8" placeholder="(8 chiffres)">
+                        Nom : <input class='petitChamp' type="text" maxlength="32" name="nomPC" >
                 <input type="submit" name="add" value="Ajouter">
             </form>
         </div>
@@ -321,6 +338,7 @@ if($_SESSION['droit']==1){
 
     <?PHP
     }
+    /* Récupération des résultats concernant les pièces fournies et affichage de celle-ci dans un tableau */
     if($resf){
         $l=mysqli_num_rows($resf);
         echo "<div class='bloc'>";
@@ -340,6 +358,7 @@ if($_SESSION['droit']==1){
         echo "<div><button onclick=aff('delPie')><span>Annuler la livraison</span></button></div>";
         echo "</div>";
         ?>
+        <!-- Section permettant d'afficher les outils d'ajout et de suppression d'une pièce à une maintenance en cours-->
         <div class='bloc' id="furPie" style='display:none;'>
             <form method='POST' action='../Modif/modify.php'>
                     <?PHP
@@ -418,6 +437,7 @@ if($_SESSION['droit']==1){
         mysqli_close($idcom);
     }
     elseif(isset($_SESSION['metier'])){
+        mysqli_close($idcom);
         header ('Location : ../gestion.php');
     }
     else{

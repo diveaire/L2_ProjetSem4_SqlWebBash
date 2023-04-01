@@ -1,7 +1,9 @@
 <!DOCTYPE HTML>
 <?PHP
     session_start();
+    /*Ouverture de la session et vérification qu'il s'agit bien d'un membre du personnel qui s'est connecté*/
     if (isset($_SESSION['metier'])&&(isset($_POST['id']))&&(isset($_POST['tb']))){
+        /*Récupération de tous les paramètres en vue de les transmettre ensuite à insertion.php*/
         $IdM=$_POST['id'];
         $tb=$_POST['tb'];
         $DateDeb=$_POST['DateDeb'];
@@ -28,15 +30,18 @@
     include("../../Parametres/connex.inc.php");
     $idcom=connex("myparam");
 ?>
+<!-- Section permettant d'afficher le formulaires de constitution d'une equipe pour la maintenance-->
 <div class='bloc'>
     <form method='POST' action='../Modif/insertion.php'>
     Choisissez les techniciens :
         <?PHP
+            /*On passe tous les paramètres renseignés à insertion.php*/
             echo "<input type='hidden' name='id' value='$IdM'>";
             echo "<input type='hidden' name='tb' value='$tb'>";
             echo "<input type='hidden' name='DateDeb' value='$DateDeb'>";
         ?>
             <?PHP
+                /* Choix des personnels disponibles */
                 $req="SELECT P.NumSS, UPPER(nomP), prenomP FROM Personnel P WHERE P.IdA=$IdA";
                 $res=mysqli_query($idcom,$req);
                 while($row=mysqli_fetch_array($res)){

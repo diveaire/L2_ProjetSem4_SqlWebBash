@@ -1,10 +1,13 @@
 <!DOCTYPE HTML>
 <?PHP
     session_start();
+    /*Ouverture de la session et vérification qu'il s'agit bien d'un membre du personnel qui s'est connecté*/
     if (isset($_SESSION['metier'])){
+        /*Récupération des variables*/
         $NomM=$_GET["NomM"];
         include("../../Parametres/connex.inc.php");
         $idcom=connex("myparam");
+        /*Vérification que la personne connectée est bien en charge du manège*/
         if($_SESSION['droit']==2){
             $req="SELECT B.nomM FROM Bilan B, Personnel P WHERE P.NumSS='".$_SESSION['numss']."' AND P.NumSS=B.NumSS AND DateB>=(SELECT MAX(B1.DateB) FROM Bilan B1 WHERE B1.nomM=B.nomM)";
             $res=mysqli_query($idcom,$req);
@@ -40,13 +43,18 @@
     <li id="logout" ><a class="menuLink" href="../logout.php">Log out</a></li>
 </ul>
 <?PHP
+    /*Mise en place de toute les requètes de la base de donnée*/
     if (($val)&&(isset($_SESSION['metier']))&&(($_SESSION['droit']==1)||($_SESSION['droit']==2))){
+    /* Affichage des informations générales relatives au manège */
     $requete="SELECT tailleMin,description,libelleF,nomZ FROM Manege M, Zone Z, Famille F WHERE NomM='$NomM' AND Z.IdZ=M.IdZ AND F.IdF=M.IdF";
     $res=mysqli_query($idcom,$requete);
+    /* Affichage des informations relatives au bilan */
     $requete1="SELECT DATE_FORMAT(B.DateB,'%d/%m/%Y'),demi_journee,UPPER(P.nomP),P.prenomP,frequentation FROM Bilan B, Personnel P WHERE P.NumSS=B.NumSS AND B.NomM='$NomM' ORDER BY B.DateB DESC, demi_journee DESC ";
     $res1=mysqli_query($idcom,$requete1);
+    /* Affichage des informations relatives aux maintenance */
     $requete2="SELECT E.IdM,DATE_FORMAT(M.DateDeb,'%d/%m/%Y'),DATE_FORMAT(M.DateFin,'%d/%m/%Y'),COUNT(E.NumSS) FROM Maintenance M, Equipe E WHERE M.NomM='$NomM' AND E.IdM=M.IdM GROUP BY (E.IdM)";
     $res2=mysqli_query($idcom,$requete2);
+    /* Si il y a bien un résultat on affiche les informations générales dans un tableau */
     if($res){
         $row=mysqli_fetch_array($res);
         echo "<div class='bloc'>";
@@ -66,6 +74,7 @@
         echo "</div>";
     }
 ?>
+<!-- Section permettant d'afficher les formulaires de modification générales sur le manège-->
     <div class='bloc' id="modMan" style='display:none;'>
             <form method='POST' action='../Modif/modify.php'>
                     <?PHP
@@ -78,7 +87,7 @@
                         <option value="description">Description</option>
                         <option value="zone">Zone</option>
                     </select>
-                    <input type="text" name="val">
+                    <input class='petitChamp' type="text" name="val">
                     <input type="submit" name="modify" value="Confirmer">
             </form>
     </div>
@@ -96,6 +105,7 @@
     </div>
 <?PHP
     }
+    /*Si il y a un résultat pour le bilan on affiche les informations dans un tableau*/
     if($res1){
         echo "<div class='bloc'>";
         echo "<div class='group'>Bilan : ".$_GET["NomM"]."</div>";
@@ -122,6 +132,7 @@
         echo "</div>";
     }
 ?>
+<!-- Section permettant d'afficher les formulaires de modification du bilan d'exploitation du manège-->
  <div class='bloc' id="addBil" style='display:none;'>
             <form method='POST' action='../Modif/modify.php'>
                     <?PHP
@@ -169,7 +180,7 @@
                     }
                         
                     ?>
-                    <input type="text" name="frequentation" placeholder="Fréquentation">
+                    <input class='petitChamp' type="text" name="frequentation" placeholder="Fréquentation">
                     <input type="submit" name="modify" value="Confirmer">
             </form>
     </div>
@@ -193,6 +204,7 @@
     </div>
 <?PHP
     }
+    /* S'il y a un résultat pour les maintenances on affiche les information relatives aux maintenances */
     if($res2){
         echo "<div class='bloc'>";
         echo "<div class='group'>Maintenances : ".$_GET["NomM"]."</div>";
@@ -235,6 +247,7 @@
         }
         echo "</div>";
 ?>
+<!-- Section permettant d'afficher les formulaires de mise en maintenance et de fin de maintenance, le deuxième ne sera accessible que par le directeur dans cette section-->
         <div class='bloc' id="addMai" style='display:none;'>
         <?PHP
         if($ligne==0){
@@ -297,6 +310,7 @@
     mysqli_close($idcom);
     }
     elseif(isset($_SESSION['metier'])){
+        mysqli_close($idcom);
         header('Location: ../gestion.php');
     }
     else{
