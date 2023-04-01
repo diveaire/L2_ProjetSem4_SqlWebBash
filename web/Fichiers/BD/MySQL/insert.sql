@@ -112,7 +112,7 @@ INSERT INTO Personnel VALUES (170055426428642,'Lotye','Alexandre',STR_TO_DATE('2
 INSERT INTO Personnel VALUES (186119185783610,'Roch','Bernard',STR_TO_DATE('21/11/1986','%d/%m/%Y'),MD5('Monpass14'),'Vendeur',null,null,0,5,1);
 INSERT INTO Personnel VALUES (285041689753759,'Breton','Fayme',STR_TO_DATE('15/05/1985','%d/%m/%Y'),MD5('Monpass15'),'Vendeur',null,null,0,5,0);
 INSERT INTO Personnel VALUES (269054528453129,'Allard','Dominique',STR_TO_DATE('17/05/1969','%d/%m/%Y'),MD5('Monpass16'),'Vendeur',null,null,0,6,1);
-INSERT INTO Personnel VALUES (199027268902305,'Lejeune','Daniel',STR_TO_DATE('06/02/1999','%d/%m/%Y'),MD5('Monpass8'),'Serveur',null,null,1,1,1);
+INSERT INTO Personnel VALUES (199027268902305,'Lejeune','Daniel',STR_TO_DATE('06/02/1999','%d/%m/%Y'),MD5('Monpass8'),'Serveur',null,null,0,1,1);
 INSERT INTO Personnel VALUES (280061676520542,'Meilleur','Valérie',STR_TO_DATE('13/06/1980','%d/%m/%Y'),MD5('Monpass9'),'Serveur',null,null,0,1,0);
 INSERT INTO Personnel VALUES (192121367804307,'Mousseau','Geoffrey',STR_TO_DATE('01/12/1992','%d/%m/%Y'),MD5('Monpass10'),'Serveur',null,null,0,2,1);
 INSERT INTO Personnel VALUES (159119710789325,'Labonté','Robert',STR_TO_DATE('14/11/1959','%d/%m/%Y'),MD5('Monpass11'),'Serveur',null,null,0,3,1);
@@ -120,6 +120,7 @@ INSERT INTO Personnel VALUES (189027865394675,'Jolicoeur','joel',STR_TO_DATE('27
 INSERT INTO Personnel VALUES (188109516634135,'Landers','Roger',STR_TO_DATE('14/10/1988','%d/%m/%Y'),MD5('Monpass18'),'Technicien',null,2,1,null,0);
 INSERT INTO Personnel VALUES (285062730491825,'Méthoir','Carole',STR_TO_DATE('27/06/1985','%d/%m/%Y'),MD5('Monpass19'),'Technicien',null,3,1,null,0);
 INSERT INTO Personnel VALUES (183125910395284,'Lagrange','Arnaud',STR_TO_DATE('05/12/1983','%d/%m/%Y'),MD5('Monpass20'),'Technicien',null,4,1,null,0);
+INSERT INTO Personnel VALUES (193089249285020,'Heru','Léo',STR_TO_DATE('07/08/1993','%d/%m/%Y'),MD5('Monpass21'),'Technicien',null,4,0,null,0);
 
 INSERT INTO Competences VALUES (269019550295812,1);
 INSERT INTO Competences VALUES (269019550295812,3);
