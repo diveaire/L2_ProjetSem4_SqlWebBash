@@ -1,4 +1,11 @@
 <!DOCTYPE HTML>
+<!--
+    Page de Gestion Administrative
+    -> Gestion des manèges (Directeur + CM)
+    -> Gestion des Boutique (Directeur +Responsable Boutique)
+    -> Gestion des Ateliers (Directeur + Chef Atelier)
+    -> Les CM/CHEF/RESPONSABLES On uniquement accès aux MANEGE/ATELIER/BOUTIQUE dont-il s'occupent
+-->
 <?PHP
 session_start();
 if (isset($_SESSION['metier'])){
@@ -31,16 +38,20 @@ if (isset($_SESSION['metier'])){
 ?>
 
 <!-- FORM CACHER POUR AJOUTER UN MANEGE -->
-<div id='ajoutManege' style='display:none;' class='bloc'>
-    <div class='group'>AJOUT D'UN MANEGE :</div>
+<div id='ajoutManege' style='display:none;'>
     <form action='Modif/insertion.php' method='POST'>
-    <input type='hidden' name='tb' value='Manege'>
+    <div class="bloc">
+        <div class='group'>AJOUT D'UN MANEGE :</div>
+        <input type='hidden' name='tb' value='Manege'>
         <div class='group1'>
-            Nom du Manège <input type='text' name='nomM'>
-            Taille Minimale<div class='slider'><input type='range' min='0' max='200' value='100' name='tailleMin' oninput='rangeValue.innerText = this.value'><p id='rangeValue'>100</p></div>
+            <fieldset><legend>Nom du Manège : </legend><input class='petitChamp' type='text' name='nomM'><br /></fieldset>
+            <fieldset><legend>Taille Minimale :</legend><div class='slider'><input type='range' min='0' max='200' value='100' name='tailleMin' oninput='rangeValue.innerText = this.value'><p id='rangeValue'>100</p></div></fieldset>
         </div>
-        <div>Description <input type='text' name='description'>
-            <br />Famille de manège <select name='libelleF'>
+        <div class="group2">
+            <fieldset><legend>Description </legend><input class='petitChamp' type='text' name='description'></fieldset>
+            <fieldset>
+                <legend>Famille de manège </legend>
+                <select name='libelleF'>
             <?PHP
                $requete="select libelleF from Famille";
                $res=mysqli_query($idcom,$requete);
@@ -52,127 +63,153 @@ if (isset($_SESSION['metier'])){
                    echo "Problème pour Famille";
                 }
             ?>
-            </select>
+                </select>
+            </fieldset>
         </div>
-        <div>Zone du manège <select name='nomZ'>
-            <?PHP
-                $requete="select nomZ from Zone";
-                $res=mysqli_query($idcom,$requete);
-                if ($res){
-                    while($row=mysqli_fetch_array($res)){
-                        echo "<option value='$row[0]'>$row[0]</option>";
+        <div class="group3">
+            <fieldset>
+                <legend>Zone du manège </legend>
+                <select name='nomZ'>
+                <?PHP
+                    $requete="select nomZ from Zone";
+                    $res=mysqli_query($idcom,$requete);
+                    if ($res){
+                        while($row=mysqli_fetch_array($res)){
+                            echo "<option value='$row[0]'>$row[0]</option>";
+                        }
+                    }else{
+                        echo "Problème pour Zone";
                     }
-                }else{
-                    echo "Problème pour Zone";
-                }
-            ?>
-            </select>
+                ?>
+                </select>
+            </fieldset>
         </div>
         
         <div><input type='submit' name='inser' value='Ajouter'></div>
     </form>
+    </div>
 </div>
+<!-- FORM CACHER POUR AJOUTER UNE BOUTIQUE -->
 
-<div id='ajoutBoutique' style='display:none;' class='bloc'>
-    <div class='group'>AJOUT D'UNE BOUTIQUE :</div>
-        <form action='Modif/insertion.php' method='POST'>
-        <input type='hidden' name='tb' value='Boutique'>
-        <div>Nom de la boutique <input type='text' name='nomB'><br /></div>
-        <div>
-            Type de la boutique
-            <select name='typeB'>
-            <?PHP
-                $requete="select distinct typeB from Boutique ";
-                $res=mysqli_query($idcom,$requete);
-                if ($res){
-                    while($row=mysqli_fetch_array($res)){
-                        echo "<option value='$row[0]'>$row[0]</option>";
-                    }
-                }else{
-                    echo "Problème pour typeB";
-                }
-            ?>
-            </select>
-        </div>
-        <div>Responsable
-            <?PHP
-                $requete="select NumSS,UPPER(nomP),prenomP,Metier from Personnel where (Metier='Vendeur' OR Metier='Serveur') AND IdB IS NULL";
-                $res=mysqli_query($idcom,$requete);
-                if ($res){
-                    $l=mysqli_num_rows($res);
-                    if($l>0){
-                        echo "<select name='resp'>";
-                        while($row=mysqli_fetch_array($res)){
-                            echo "<option value='$row[0]'>$row[3] : $row[1] $row[2]</option>";
-                        }
-                        echo "</select>";
-                        }
-                    else{
-                            echo "Aucun Responsable disponible";
-                        }
-                }
-            ?>
-        </div>
-        <div>Zone de la boutique
-            <select name='nomZ'>
-            <?PHP
-                $requete="select nomZ from Zone";
-                $res=mysqli_query($idcom,$requete);
-                if ($res){
-                    while($row=mysqli_fetch_array($res)){
-                        echo "<option value='$row[0]'>$row[0]</option>";
-                    }
-                }else{
-                    echo "Problème pour Zone";
-                }
-            ?>
-            </select>
-        </div>
-        <div class="groupX"><input type='submit' name='inser' value='Ajouter'></div>
-    </form>
-</div>
-
-<div id='ajoutAtelier' style='display:none;' class='bloc'>
-    <div class='group'>AJOUT D'UN ATELIER :</div>
+<div id='ajoutBoutique' style='display:none;'>
     <form action='Modif/insertion.php' method='POST'>
-        <input type='hidden' name='tb' value='Atelier'>
-        <div>Nom de l'atelier <input type='text' name='nomA'></div>
-        <div>Chef
-            <?PHP
-                $requete="select NumSS,UPPER(nomP),prenomP from Personnel where Metier='Technicien' AND IdA IS NULL";
-                $res=mysqli_query($idcom,$requete);
-                if($res){
-                    $l=mysqli_num_rows($res);
-                    if($l>0){
-                        echo "<select name='chef'>";
+    <div class="bloc">
+        <div class='group'>AJOUT D'UNE BOUTIQUE :</div>
+        <input type='hidden' name='tb' value='Boutique'>
+        <div class="group1">
+            <fieldset><legend>Nom de la boutique </legend><input type='text' class='petitChamp' name='nomB'></fieldset>
+            <fieldset><legend>Type de la boutique</legend>
+                <select name='typeB'>
+                <?PHP
+                    $requete="select distinct typeB from Boutique ";
+                    $res=mysqli_query($idcom,$requete);
+                    if ($res){
                         while($row=mysqli_fetch_array($res)){
-                            echo "<option value='$row[0]'>$row[1] $row[2]</option>";
+                            echo "<option value='$row[0]'>$row[0]</option>";
                         }
-                        echo "</select>";
+                    }else{
+                        echo "Problème pour typeB";
                     }
-                    else{
-                        echo ": Aucun technicien disponible";
-                    }
-                }
-            ?>
-            </select>
+                ?>
+                </select>
+            </fieldset>
         </div>
-        <div>Zone de l'atelier <select name='nomZ'>
-            <?PHP
-                $requete="select nomZ from Zone";
-                $res=mysqli_query($idcom,$requete);
-                if ($res){
-                    while($row=mysqli_fetch_array($res)){
-                        echo "<option value='$row[0]'>$row[0]</option>";
+        <div class="group2">
+            <fieldset>
+                <legend>Responsable</legend>
+                <?PHP
+                    $requete="select NumSS,UPPER(nomP),prenomP,Metier from Personnel where (Metier='Vendeur' OR Metier='Serveur') AND IdB IS NULL";
+                    $res=mysqli_query($idcom,$requete);
+                    if ($res){
+                        $l=mysqli_num_rows($res);
+                        if($l>0){
+                            echo "<select name='resp'>";
+                            while($row=mysqli_fetch_array($res)){
+                                echo "<option value='$row[0]'>$row[3] : $row[1] $row[2]</option>";
+                            }
+                            echo "</select>";
+                            }
+                        else{
+                                echo "Aucun Responsable disponible";
+                            }
                     }
-                }else{
-                    echo "Problème pour Zone";
-                }
-            ?>
-            </select>
+                ?>
+            </fieldset>
         </div>
-        <div class="groupX"><input type='submit' name='inser' value='Ajouter'></div>
+        <div class="group3">
+            <fieldset>
+                <legend>Zone de la boutique</legend>
+                <select name='nomZ'>
+                <?PHP
+                    $requete="select nomZ from Zone";
+                    $res=mysqli_query($idcom,$requete);
+                    if ($res){
+                        while($row=mysqli_fetch_array($res)){
+                            echo "<option value='$row[0]'>$row[0]</option>";
+                        }
+                    }else{
+                        echo "Problème pour Zone";
+                    }
+                ?>
+                </select>
+            </fieldset>
+        </div>
+        <div><input type='submit' name='inser' value='Ajouter'></div>
     </form>
+    </div>
+</div>
+<!-- FORM CACHER POUR AJOUTER UN ATELIER -->
+<div id='ajoutAtelier' style='display:none;'>
+    <form action='Modif/insertion.php' method='POST'>
+    <div class="bloc">
+    <div class='group'>AJOUT D'UN ATELIER :</div>
+        <input type='hidden' name='tb' value='Atelier'>
+        <div class="group1">
+            <fieldset><legend>Nom de l'atelier </legend><input class='petitChamp' type='text' name='nomA'></fieldset>
+        </div>
+        <div class="group2">
+            <fieldset><legend>Chef</legend>
+                <?PHP
+                    $requete="select NumSS,UPPER(nomP),prenomP from Personnel where Metier='Technicien' AND IdA IS NULL";
+                    $res=mysqli_query($idcom,$requete);
+                    if($res){
+                        $l=mysqli_num_rows($res);
+                        if($l>0){
+                            echo "<select name='chef'>";
+                            while($row=mysqli_fetch_array($res)){
+                                echo "<option value='$row[0]'>$row[1] $row[2]</option>";
+                            }
+                            echo "</select>";
+                        }
+                        else{
+                            echo ": Aucun technicien disponible";
+                        }
+                    }
+                ?>
+                </select>
+            </fieldset>
+        </div>
+        <div class="group3">
+            <fieldset>
+                <legend>Zone de l'atelier </legend>
+                <select name='nomZ'>
+                <?PHP
+                    $requete="select nomZ from Zone";
+                    $res=mysqli_query($idcom,$requete);
+                    if ($res){
+                        while($row=mysqli_fetch_array($res)){
+                            echo "<option value='$row[0]'>$row[0]</option>";
+                        }
+                    }else{
+                        echo "Problème pour Zone";
+                    }
+                ?>
+                </select>
+            </fieldset>
+        </div>
+        <div><input type='submit' name='inser' value='Ajouter'></div>
+    </form>
+    </div>
 </div>
 
 <?PHP
@@ -199,7 +236,7 @@ if (isset($_SESSION['metier'])){
             }
 			$res=mysqli_query($idcom,$req);
 			if($res){
-                echo "<div class='group1'>";
+                echo "<div class='group1b'>";
 				echo "<table>";
                 echo "<tr><th>Nom Manege</th>";
 				while($row=mysqli_fetch_array($res)){
@@ -231,7 +268,7 @@ if (isset($_SESSION['metier'])){
 			
 			$res=mysqli_query($idcom,$req);
 			if($res){
-                echo "<div class='group1'>";
+                echo "<div class='group1b'>";
 				echo "<table>";
                 echo "<tr><th>Id Boutique</th><th>Nom Boutique</th>";
 				while($row=mysqli_fetch_array($res)){
@@ -262,7 +299,7 @@ if (isset($_SESSION['metier'])){
             }
 			$res=mysqli_query($idcom,$req);
 			if($res){
-                echo "<div class='group1'>";
+                echo "<div class='group1b'>";
 				echo "<table>";
                 echo "<tr><th>Id Atelier</th><th>Nom Atelier</th>";
 				while($row=mysqli_fetch_array($res)){

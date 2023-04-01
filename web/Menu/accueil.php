@@ -1,4 +1,12 @@
 <!DOCTYPE HTML>
+<!--
+
+    Page de Présentation du projet
+       -> Calendrier interactif
+       -> Texte d'intro
+       -> Vidéo de présentation
+
+-->
 <?PHP
 session_start();
 
@@ -18,15 +26,15 @@ $metier=$_SESSION['metier'];
     <script src="../Script/script.js"></script>
     <script src="../Script/calendar.js"></script>
 </head>
-<body onLoad="Defaults()">
-<ul id="menu">
+<body onLoad="Defaults()"><!-- Chargement du calendrier avec la fonction Defaults() -->
+<ul id="menu"><!-- barre de navigation du Menu -->
     <li class="menu_elm"><a class="menuLink" href="accueil.php">Accueil</a></li>
     <li class="menu_elm"><a class="menuLink" href="profil.php">Profil</a></li>
     <li class="menu_elm"><a class="menuLink" href="recherche.php">Recherche</a></li>
     <li class="menu_elm"><a class="menuLink" href="gestion.php">Gestion Administrative</a></li>
     <li id="logout" ><a class="menuLink" href="logout.php">Log out</a></li>
 </ul>
-<div class="bloc">
+<div class="bloc"> <!-- 1er bloc de données (calendrier) -->
     <div class="group">BIENVENUE</div>
     <div class="group1">
         Nicolas AUVRAY<br /><br />
@@ -65,7 +73,7 @@ $metier=$_SESSION['metier'];
         <img src="../Fichiers/Images/UPJV.png" alt="Logo de l'UPJV (bleu)" width="200" height="200">
     </div>
 </div>
-<div class="bloc">
+<div class="bloc"><!-- 2ème bloc de données (intro + vidéo) -->
     <div class="group">description du projet</div>
     <div class="group4">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus sapien nec arcu vehicula ullamcorper.

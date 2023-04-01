@@ -1,11 +1,9 @@
 <!DOCTYPE HTML>
 <!--
-	page1--bloc1 	information personnel 	(--ALL)
-	page2--bloc2 	Moteur de recherche	(--ALL) -> retour de la recherche = tableau sous forme de lien cliquable
-	page3--bloc3	Gestion Administrative (Directeur) -> ajouter/supprimer/modifier(manège/boutique et personnel affiliés) + recherche plus poussée que 2 + 					fonctionnalités --bloc1
-	page3--bloc4	Gestion Administrative (CM/responsable Atelier || boutique) -> modification administratif sur leurs cadre de travail (manèges || boutique || atelier)
-				pas de modifications sur personnel ; pas de gestions des supervision <--(directeur)
-	page3--bloc5	Gestion Administrative (CM) manège en maintenance = CM/directeur
+	Page de modification des informations personnelles
+	-> Nom
+	-> Prénom
+	-> Mot de passe
 -->
 <?PHP
 session_start();
@@ -38,7 +36,7 @@ if (isset($_SESSION['metier'])){
         $requete="update Personnel SET nomP='$nom'where NumSS='$id'";
         $ret=mysqli_query($idcom,$requete);
         if ($ret){
-            echo "<script>showModif();</script>";
+            echo "<script>alert('mise à jour du nom réussie');</script>";
         }else{
             echo "essaye encore";
         }
@@ -48,9 +46,9 @@ if (isset($_SESSION['metier'])){
         $requete="update Personnel SET prenomP='$prenom'where NumSS='$id'";
         $ret=mysqli_query($idcom,$requete);
         if ($ret){
-            echo "<script>alert(mise à jour du prénom réussie);</script>";
+            echo "<script>alert('mise à jour du prénom réussie');</script>";
         }else{
-            echo "essaye encore";
+            echo "<script>alert('Erreur');</script>";
         }
     }
     if (isset($_POST['password'])){
@@ -58,9 +56,9 @@ if (isset($_SESSION['metier'])){
         $requete="update Personnel SET passwd=MD5('$password') where NumSS='$id'";
         $ret=mysqli_query($idcom,$requete);
         if ($ret){
-            echo "<alert>mise à jour du mot de passe réussie </alert>";
+            echo "<script>alert('mise à jour du mot de passe réussie');</script>";
         }else{
-            echo "essaye encore";
+            echo "<script>alert('Erreur');</script>";
         }
     }
 
@@ -74,16 +72,16 @@ if (isset($_SESSION['metier'])){
                 $info=mysqli_fetch_array(mysqli_query($idcom,$requete));
                 echo $info[0];
                 ?>
-            <button onclick=aff("nom")><span>Modifier</span></button>
+            <button onclick=aff("nom")><span>Modifier</span></button><!-- affichage du champ pour modifier le nom -->
         </div>
         <div class="group2">
             Prenom : <?PHP
                 echo $info[1];
                 ?>
-            <button onclick=aff("prenom")><span>Modifier</span></button>
+            <button onclick=aff("prenom")><span>Modifier</span></button><!-- affichage du champ pour modifier le prenom -->
         </div>
         <div class="group3">
-            <button onclick=aff("pass")><span>Modifier Mot de passe</span></button>
+            <button onclick=aff("pass")><span>Modifier Mot de passe</span></button><!-- affichage du champ pour modifier le password -->
         </div>
         <div id="nom">
             <form method='post' action='profil.php'>
@@ -101,7 +99,7 @@ if (isset($_SESSION['metier'])){
             <form method='post' action='profil.php'>
                 <input class='petitChamp' type="password" id="password"  maxlength="32" placeholder="mot de passe" name="password"><br />
                 <input class='petitChamp' type="password" id="password1" maxlength="32" placeholder="confirmer le mot de passe" name="password1">
-                <input type="submit" name="submit" onclick=validatePassword() value="valider">
+                <input type="submit" name="submit" onclick=validatePassword() value="valider"><!-- vérifie à la validation que les 2 pass correspondent -->
             </form>
         </div>
     </div>

@@ -8,10 +8,6 @@ function validatePassword(){
         password1.setCustomValidity('');
     }
 }
-//permet d'afficher une alert sur le site
-function showModif(){
-    alert("Enregistrer");
-}
 
 //permet l'affichage d'un élément en fonction de son id fournis en paramètre
 function aff(element){

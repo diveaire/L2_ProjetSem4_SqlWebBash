@@ -1,4 +1,11 @@
 <!DOCTYPE HTML>
+<!--
+
+    Page de connexion à l'interface
+       -> identifiant = NumSS
+       -> pass = Mot de passe du personnel
+
+-->
 <html lang="fr">
 <head>
 	<title>SAE</title>
@@ -41,6 +48,7 @@
 			$requete="select Metier,chef,responsable from Personnel where NumSS='$id'";
 			$metier=mysqli_fetch_array(mysqli_query($idcom,$requete));
 			session_start();
+            //attribution des variable de session et droit du site
 			$_SESSION['numss']=$id;
 			if($metier[0]=="Directeur"){
 				$_SESSION['metier']="Directeur";

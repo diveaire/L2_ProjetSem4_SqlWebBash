@@ -1,4 +1,15 @@
 <!DOCTYPE HTML>
+<!--
+
+    Page Moteur de Recherche
+        Recherche       Restriction     éléments de recherche
+       -> Manège        (All)           Zone|Famille|Taille
+       -> Boutique      (ALL)           Zone|type de boutique
+       -> Personnel     (Directeur)     type de recherche|responsable/chef|Date de naissance|boutique|Atelier|Metier
+       -> Vente         (Directeur)     Boutique|Type objet|Prix|Date de vente
+       -> inventaire    (Directeur)     Boutique|Atelier|Type Objet|Prix|Vendu ou non
+
+-->
 <?PHP
 session_start();
 
@@ -150,11 +161,11 @@ if (isset($_SESSION['metier'])){
                         else{
                             echo "Problème pour TypeObjet";
                         }
+                    echo "</div>";
+                    echo "<div class='group5'>";
                         echo "<fieldset><legend>Date de Vente :</legend><select name='signe' style='margin-right:3px;'>
                                     <option value='='>=</option><option value='<'>&lt;</option><option value='>'>&gt;</option>
                                </select><input type=date name='date'></fieldset>";
-                    echo "</div>";
-                    echo "<div class='group5'>";
                         echo "<fieldset><legend>Prix entre :</legend><input class='petitChamp' pattern='[0-9]+' type='text' placeholder='Prix Min (€)' name='Prix1'> 
                                 <br>et <br><input class='petitChamp' type='text' pattern='[0-9]+' placeholder='Prix Max (€)' name='Prix2'></fieldset>";
                     echo "</div>";

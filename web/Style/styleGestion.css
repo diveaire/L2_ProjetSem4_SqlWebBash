@@ -5,7 +5,7 @@
   grid-template-columns: repeat(3,auto);
   grid-template-rows: repeat(1, auto);
   border-radius:10px;
-  margin-top:5%;
+  margin-top:2%;
   grid-gap:10px;
 }
 .bloc{
@@ -32,7 +32,19 @@
   grid-row:1;
   border-bottom:solid #f1f2f9;
 }
-.group1 {
+.group1{
+  grid-column: 1;
+  grid-row:2;
+}
+.group2{
+  grid-column: 2;
+  grid-row:2;
+}
+.group3{
+  grid-column:3;
+  grid-row:2;
+}
+.group1b {
   text-align: center;
   grid-column: 1/4;
   grid-row: 2/4;
