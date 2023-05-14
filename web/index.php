@@ -23,7 +23,7 @@
 		if (isset($idcom)){
 
 			$id=addslashes($_POST['identifiant']);
-			$pass=$_POST['password'];
+			$pass=addslashes($_POST['password']);
 			$requete="select * from Personnel where NumSS='$id' AND passwd=md5('$pass')";
 			$res=mysqli_query($idcom,$requete);
 
