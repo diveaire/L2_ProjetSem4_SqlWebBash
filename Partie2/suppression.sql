@@ -6,7 +6,7 @@ DROP TABLE Competences;
 DROP TABLE Personnel;
 DROP TABLE Metier;
 DROP TABLE Boutique;
-DROP TABLE Pieces detachees;
+DROP TABLE PiecesDetachees;
 DROP TABLE Maintenance;
 DROP TABLE Manege;
 DROP TABLE Famille;
